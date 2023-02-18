@@ -1,0 +1,206 @@
+[gd_scene load_steps=10 format=3 uid="uid://cx5of20h22ab3"]
+
+[ext_resource type="Script" path="res://source/voxel/world.gd" id="1_0nqr4"]
+[ext_resource type="PackedScene" uid="uid://bkbtljtp3mn2p" path="res://scenes/chunk.tscn" id="2_rblci"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mxoex"]
+sky_top_color = Color(0.0823529, 0.368627, 0.670588, 1)
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_gtm5e"]
+sky_material = SubResource("ProceduralSkyMaterial_mxoex")
+
+[sub_resource type="Environment" id="Environment_2wonb"]
+background_mode = 2
+sky = SubResource("Sky_gtm5e")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t2g70"]
+size = Vector3(20, 1, 8.45751)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ircx2"]
+size = Vector3(19.96, 1, 8.467)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2wm6m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j5yx1"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_0nqr4")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
+spawn_path = NodePath("..")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2wonb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.30817)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.02456)
+shape = SubResource("BoxShape3D_t2g70")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/StaticBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_ircx2")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -6.162)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.02456)
+shape = SubResource("BoxShape3D_t2g70")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/StaticBody3D3/CollisionShape3D"]
+mesh = SubResource("BoxMesh_ircx2")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.4374)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.02456)
+shape = SubResource("BoxShape3D_t2g70")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/StaticBody3D2/CollisionShape3D"]
+mesh = SubResource("BoxMesh_ircx2")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 10.4292)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/RigidBody3D"]
+shape = SubResource("BoxShape3D_2wm6m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/RigidBody3D"]
+mesh = SubResource("BoxMesh_j5yx1")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41223, 1, 10.4292)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/RigidBody3D2"]
+shape = SubResource("BoxShape3D_2wm6m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/RigidBody3D2"]
+mesh = SubResource("BoxMesh_j5yx1")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.779253, 2, 10.4292)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/RigidBody3D3"]
+shape = SubResource("BoxShape3D_2wm6m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/RigidBody3D3"]
+mesh = SubResource("BoxMesh_j5yx1")
+
+[node name="StaticCubeTest" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.779, -1, 1.549)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/StaticCubeTest"]
+shape = SubResource("BoxShape3D_2wm6m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/StaticCubeTest"]
+mesh = SubResource("BoxMesh_j5yx1")
+
+[node name="StaticCubeTest2" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.779, -1, 2.549)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/StaticCubeTest2"]
+shape = SubResource("BoxShape3D_2wm6m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/StaticCubeTest2"]
+mesh = SubResource("BoxMesh_j5yx1")
+
+[node name="StaticCubeTest3" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.779, 0, 2.549)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/StaticCubeTest3"]
+shape = SubResource("BoxShape3D_2wm6m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/StaticCubeTest3"]
+mesh = SubResource("BoxMesh_j5yx1")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.779253, 2, -10.0018)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/RigidBody3D4"]
+shape = SubResource("BoxShape3D_2wm6m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/RigidBody3D4"]
+mesh = SubResource("BoxMesh_j5yx1")
+
+[node name="RigidBody3D5" type="RigidBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.779253, 4.20448, -10.0018)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/RigidBody3D5"]
+shape = SubResource("BoxShape3D_2wm6m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/RigidBody3D5"]
+mesh = SubResource("BoxMesh_j5yx1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 317.0
+offset_top = 227.0
+offset_right = -317.0
+offset_bottom = -227.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter address to join here..."
+alignment = 1
+
+[node name="Chunk" parent="." instance=ExtResource("2_rblci")]
+transform = Transform3D(0.938481, 0, 0.345331, 0, 1, 0, -0.345331, 0, 0.938481, 2.03333, 0.294828, -0.715869)
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

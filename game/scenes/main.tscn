@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://blvmo1u6jmw35"]
+
+[ext_resource type="PackedScene" uid="uid://lw0avr2nc4fe" path="res://scenes/voxel/world.tscn" id="1_qu51b"]
+
+[node name="Main" type="Node"]
+
+[node name="World" parent="." instance=ExtResource("1_qu51b")]

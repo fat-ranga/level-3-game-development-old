@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://8tkij7jioxu6"]
+
+[ext_resource type="Texture2D" uid="uid://76ukexv58622" path="res://assets/textures_import/human_diffuse.png" id="1_iuxf6"]
+
+[resource]
+albedo_texture = ExtResource("1_iuxf6")
+texture_filter = 4
