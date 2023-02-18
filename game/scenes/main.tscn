@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://blvmo1u6jmw35"]
+[gd_scene load_steps=3 format=3 uid="uid://blvmo1u6jmw35"]
 
-[ext_resource type="PackedScene" uid="uid://lw0avr2nc4fe" path="res://scenes/voxel/world.tscn" id="1_qu51b"]
+[ext_resource type="Script" path="res://source/main.gd" id="1_8lgea"]
+[ext_resource type="PackedScene" uid="uid://cx5of20h22ab3" path="res://scenes/voxel/world.tscn" id="1_qu51b"]
 
 [node name="Main" type="Node"]
+script = ExtResource("1_8lgea")
 
 [node name="World" parent="." instance=ExtResource("1_qu51b")]

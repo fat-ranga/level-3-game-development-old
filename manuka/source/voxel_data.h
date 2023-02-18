@@ -17,7 +17,7 @@ public:
 	static const godot::Vector3 VOXEL_VERTICES[8];
 	// Array of the faces that make up a cube.
 	static const int VOXEL_TRIS[6][4];
-	// TODO:
+	// TODO: face_check_directions?
 	static const godot::Vector3 FACE_CHECKS[6];
 	//
 	static const godot::Vector2 VOXEL_UVS[4];

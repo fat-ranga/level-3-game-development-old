@@ -10,37 +10,8 @@
 
 using namespace godot;
 
-// Vertex positions.
-
-
-// Vertex positions that make up each face.
-
-
-
-
-const godot::Vector2 UV_0(0.0f, 0.0f);
-const godot::Vector2 UV_1(0.0f, 0.0f);
-const godot::Vector2 UV_2(0.0f, 0.0f);
-const godot::Vector2 UV_3(0.0f, 0.0f);
-const godot::Vector2 UV_4(0.0f, 0.0f);
-const godot::Vector2 UV_5(0.0f, 0.0f);
-
-
 namespace manuka {
 
-	/*
-	// Array of vertex positions, this is what we access.
-	const godot::Vector3 VoxelData::VOXEL_VERTICES[8] = {
-		{0.0f, 0.0f, 0.0f},
-		{1.0f, 0.0f, 0.0f},
-		{1.0f, 1.0f, 0.0f},
-		{0.0f, 1.0f, 0.0f},
-		{0.0f, 0.0f, 1.0f},
-		{1.0f, 0.0f, 1.0f},
-		{1.0f, 1.0f, 1.0f},
-		{0.0f, 1.0f, 1.0f}
-	};
-	*/
 	// Array of vertex positions, this is what we access.
 	const godot::Vector3 VoxelData::VOXEL_VERTICES[8] = {
 		{0.0f, 0.0f, 0.0f},
@@ -53,6 +24,7 @@ namespace manuka {
 		{0.0f, 1.0f, 1.0f}
 	};
 
+	// Array of faces that make up a cube.
 	const int VoxelData::VOXEL_TRIS[6][4] = {
 		{2, 3, 1, 0}, // Back Face
 		{7, 6, 4, 5}, // Front Face
@@ -61,18 +33,6 @@ namespace manuka {
 		{3, 7, 0, 4}, // Left Face
 		{6, 2, 5, 1} // Right Face
 	};
-
-	/*
-	// Array of the faces that make up a cube.
-	const int VoxelData::VOXEL_TRIS[6][4] = {
-		{0, 3, 1, 2}, // Back Face
-		{5, 6, 4, 7}, // Front Face
-		{3, 7, 2, 6}, // Top Face
-		{1, 5, 0, 4}, // Bottom Face
-		{4, 7, 0, 3}, // Left Face
-		{1, 2, 5, 6} // Right Face
-	};
-	*/
 
 	const godot::Vector3 VoxelData::FACE_CHECKS[6] = {
 		{0.0f, 0.0f, -1.0f},

@@ -1,4 +1,4 @@
-extends Node3D
+extends World
 
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry

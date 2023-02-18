@@ -23,12 +23,14 @@
     <ClInclude Include="source\register_types.h" />
     <ClInclude Include="source\test_node2d.h" />
     <ClInclude Include="source\voxel_data.h" />
+    <ClInclude Include="source\world.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\chunk.cpp" />
     <ClCompile Include="source\register_types.cpp" />
     <ClCompile Include="source\test_node2d.cpp" />
     <ClCompile Include="source\voxel_data.cpp" />
+    <ClCompile Include="source\world.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

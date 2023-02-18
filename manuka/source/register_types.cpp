@@ -8,6 +8,7 @@
 #include "test_node2d.h"
 #include "voxel_data.h"
 #include "chunk.h"
+#include "world.h"
 
 using namespace godot;
 
@@ -20,6 +21,7 @@ void initialise_manuka_types(ModuleInitializationLevel p_level)
 	// REGISTER ALL CLASSES HERE.
 	ClassDB::register_class<manuka::TestNode2D>();
 	ClassDB::register_class<manuka::Chunk>();
+	ClassDB::register_class<manuka::World>();
 }
 
 // Unregister them??? Apparently important for memory management or something.

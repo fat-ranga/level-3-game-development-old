@@ -27,7 +27,7 @@ size = Vector3(19.96, 1, 8.467)
 
 [sub_resource type="BoxMesh" id="BoxMesh_j5yx1"]
 
-[node name="World" type="Node3D"]
+[node name="World" type="World"]
 script = ExtResource("1_0nqr4")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
@@ -198,6 +198,8 @@ text = "Join"
 layout_mode = 2
 placeholder_text = "Enter address to join here..."
 alignment = 1
+caret_blink = true
+caret_blink_interval = 0.5
 
 [node name="Chunk" parent="." instance=ExtResource("2_rblci")]
 transform = Transform3D(0.938481, 0, 0.345331, 0, 1, 0, -0.345331, 0, 0.938481, 2.03333, 0.294828, -0.715869)

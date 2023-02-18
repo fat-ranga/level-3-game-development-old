@@ -26,7 +26,7 @@ const int chunk_width = 16;
 const int chunk_height = 16;
 
 // Array of all block types in the chunk.
-bool voxel_map[chunk_width][chunk_height][chunk_width];
+uint8_t voxel_map[chunk_width][chunk_height][chunk_width];
 
 int vertex_index = 0;
 
@@ -52,6 +52,8 @@ void Chunk::_bind_methods() {
 
 
 // Add functionality to declared functions and stuff here.
+
+// Test function.
 void Chunk::print_something(const String& thing){
 	godot::UtilityFunctions::print(thing);
 }
@@ -71,6 +73,7 @@ bool Chunk::check_voxel(const godot::Vector3& position) {
 	int y = std::floorf(position.y);
 	int z = std::floorf(position.z);
 
+	// Always draw faces at the edges of the chunk.
 	if (x < 0 || x > chunk_width - 1 || y < 0 || y > chunk_height - 1 || z < 0 || z > chunk_width - 1)
 		return false;
 
@@ -88,9 +91,11 @@ void Chunk::create_mesh_data() {
 }
 
 void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position) {
-	for (int p = 0; p < 6; p++){
-		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p])) {
-
+	for (int p = 0; p < 6; p++){ // 6 faces per voxel.
+		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p])) { // Only draw blocks that are visible.
+			// These values below aren't in a for loop because there are 4 vertices
+			// per face. Two triangles per face would be 6 vertices, but that results
+			// in 2 duplicate verts, which is why we use 4 and do this manually instead.
 			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][0]]);
 			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][1]]);
 			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][2]]);
@@ -110,25 +115,13 @@ void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position) {
 		}
 	}
 }
-/*
-void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position) {
-	for (int p = 0; p < 6; p++){
-		for (int i = 0; i < 6; i++) {
-			int triangle_index = VoxelData::VOXEL_TRIS[p][i];
-			vertices.push_back(VoxelData::VOXEL_VERTICES[triangle_index] + position);
-			uvs.push_back(VoxelData::VOXEL_UVS[i]);
-
-			vertex_index++;
-		}
-	}
-}
-*/
 
 Ref<Mesh> Chunk::create_mesh() {
 	Ref<ArrayMesh> mesh;
 
-	mesh.instantiate();
+	mesh.instantiate(); // Not entirely sure what this does, but it makes this thing not crash.
 
+	// To fit all the different enum types below.
 	surface_arrays.resize(godot::ArrayMesh::ARRAY_MAX);
 
 	surface_arrays[godot::ArrayMesh::ARRAY_VERTEX] = { vertices };
