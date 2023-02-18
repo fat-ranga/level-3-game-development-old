@@ -2,6 +2,6 @@
 
 By Kael Robertson.
 
-Made with Godot.
+Made with Godot 4.0 beta 17.
 
-Relevant code is located within game/source and extension/source.
+Relevant code is located within game/source and manuka/source.

@@ -2,11 +2,9 @@ extends Chunk
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	do_thing()
-	var cool_mesh = create_mesh()
-	var m = MeshInstance3D.new()
-	m.mesh = cool_mesh
-	add_child(m)
+	populate_voxel_map()
+	create_mesh_data()
+	mesh = create_mesh()
 
 func mesh_test():
 	print_something("cap")

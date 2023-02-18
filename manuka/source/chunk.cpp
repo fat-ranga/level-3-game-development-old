@@ -26,19 +26,11 @@ const int chunk_width = 16;
 const int chunk_height = 16;
 
 // Array of all block types in the chunk.
-bool voxels[chunk_width][chunk_height][chunk_width];
+bool voxel_map[chunk_width][chunk_height][chunk_width];
 
 int vertex_index = 0;
-//std::vector<godot::Vector3> vertices; // PackedVector3Array instead?
-//godot::PackedVector3Array vertices;
-//std::vector<int> quads;
-//std::vector<godot::Vector2> uvs;
 
-// Generates the mesh for the chunk.
-//godot::ArrayMesh array_mesh;
-//godot::SurfaceTool surface_tool;
-//godot::MeshInstance3D mesh_instance;
-//godot::Array surface_arrays;
+// TODO: Are constructors and deconstructors required?
 Chunk::Chunk()
 {
 }
@@ -51,11 +43,11 @@ Chunk::~Chunk()
 void Chunk::_bind_methods() {
 	// Bind methods here to be called in GDScript.
 	godot::ClassDB::bind_method(godot::D_METHOD("print_something", "bruh"), &Chunk::print_something);
-	godot::ClassDB::bind_method(godot::D_METHOD("do_thing"), &Chunk::do_thing);
+	godot::ClassDB::bind_method(godot::D_METHOD("populate_voxel_map"), &Chunk::populate_voxel_map);
 	godot::ClassDB::bind_method(godot::D_METHOD("add_voxel_data_to_chunk"), &Chunk::add_voxel_data_to_chunk);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh"), &Chunk::create_mesh);
+	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh_data"), &Chunk::create_mesh_data);
 
-	//godot::ClassDB::bind_method(godot::D_METHOD("get_array_mesh"), &Chunk::get_array_mesh);
 }
 
 
@@ -64,17 +56,61 @@ void Chunk::print_something(const String& thing){
 	godot::UtilityFunctions::print(thing);
 }
 
-void Chunk::do_thing() {
-	for (int x = 0; x < chunk_width; x++){
+void Chunk::populate_voxel_map() {
+	for (int x = 0; x < chunk_width; x++) {
 		for (int y = 0; y < chunk_height; y++) {
+			for (int z = 0; z < chunk_width; z++) {
+				voxel_map[x][y][z] = true;
+			}
+		}
+	}
+}
+
+bool Chunk::check_voxel(const godot::Vector3& position) {
+	int x = std::floorf(position.x);
+	int y = std::floorf(position.y);
+	int z = std::floorf(position.z);
+
+	if (x < 0 || x > chunk_width - 1 || y < 0 || y > chunk_height - 1 || z < 0 || z > chunk_width - 1)
+		return false;
+
+	return voxel_map[x][y][z];
+}
+
+void Chunk::create_mesh_data() {
+	for (int y = 0; y < chunk_width; y++) { // Build from the bottom up.
+		for (int x = 0; x < chunk_height; x++) {
 			for (int z = 0; z < chunk_width; z++) {
 				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z));
 			}
 		}
 	}
-	Chunk::create_mesh();
 }
 
+void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position) {
+	for (int p = 0; p < 6; p++){
+		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p])) {
+
+			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][0]]);
+			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][1]]);
+			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][2]]);
+			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][3]]);
+			uvs.push_back(VoxelData::VOXEL_UVS[0]);
+			uvs.push_back(VoxelData::VOXEL_UVS[1]);
+			uvs.push_back(VoxelData::VOXEL_UVS[2]);
+			uvs.push_back(VoxelData::VOXEL_UVS[3]);
+			triangles.push_back(vertex_index);
+			triangles.push_back(vertex_index + 1);
+			triangles.push_back(vertex_index + 2);
+			triangles.push_back(vertex_index + 2);
+			triangles.push_back(vertex_index + 1);
+			triangles.push_back(vertex_index + 3);
+			vertex_index += 4;
+
+		}
+	}
+}
+/*
 void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position) {
 	for (int p = 0; p < 6; p++){
 		for (int i = 0; i < 6; i++) {
@@ -86,11 +122,10 @@ void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position) {
 		}
 	}
 }
+*/
 
 Ref<Mesh> Chunk::create_mesh() {
 	Ref<ArrayMesh> mesh;
-
-
 
 	mesh.instantiate();
 
@@ -98,33 +133,13 @@ Ref<Mesh> Chunk::create_mesh() {
 
 	surface_arrays[godot::ArrayMesh::ARRAY_VERTEX] = { vertices };
 	surface_arrays[godot::ArrayMesh::ARRAY_TEX_UV] = { uvs };
+	surface_arrays[godot::ArrayMesh::ARRAY_INDEX] = { triangles };
 
 	mesh->add_surface_from_arrays(godot::Mesh::PRIMITIVE_TRIANGLES, surface_arrays);
 
 	return mesh;
 
-	// = array_mesh;
-	//mesh_instance.set_mesh(array_mesh);
-	//mesh_instance.mesh = array_mesh;
-	//godot::MeshInstance3D mesh_instance
-
-	//add_child(mesh_instance);
 }
-
-//godot::TypedArray<ArrayMesh> Chunk::get_array_mesh(){
-	//godot::TypedArray<ArrayMesh> arr;
-	//arr.resize(1);
-
-	//arr[0] = array_mesh;
-
-	//return arr;
-//}
-
-
-Vector2 Chunk::get_custom_position() const {
-	return custom_position;
-}
-
 
 
 
