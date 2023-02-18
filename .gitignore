@@ -1,0 +1,9 @@
+# Ignore out build folder?
+out
+
+# File extensions and stuff.
+.vs
+*.gdextension
+*.dll
+# Godot 4+ specific ignores
+.godot/
