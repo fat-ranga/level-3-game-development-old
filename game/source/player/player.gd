@@ -152,10 +152,11 @@ func process_movement_state(delta) -> void:
 			print("haxx")
 
 func ground_move(delta) -> void:
+	# TODO: So we don't hop and slide along if holding down jump.
 	#cancel_momentum()
-	
-	offset_velocity = Vector3.ZERO
 	is_momentum_preserved = false
+	offset_velocity = Vector3.ZERO
+	
 	
 	# Change gravity direction so we stick to slopes if moving down them.
 	# Also multiply gravity by some small value when on the ground so that we will still
@@ -238,6 +239,9 @@ func air_move(delta) -> void:
 func jump() -> void:
 	"""Launches the player vertically."""
 	gravity_vector = Vector3.UP * JUMP_POWER
+
+func cancel_momentum() -> void:
+	horizontal_velocity = Vector3.ZERO
 
 func process_camera_rotation(relative_mouse_motion) -> void:
 	# Horizontal mouse look.
