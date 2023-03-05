@@ -19,19 +19,23 @@ func _process(delta: float) -> void:
 
 func load_textures(paths: PackedStringArray) -> Array:
 	var image_array: Array
+	var images_loaded: int = 0
+	var images_not_loaded: int = 0
 	
 	for texture_path in paths:
 		var new_image = Image.load_from_file(texture_path)
 		var image_size = new_image.get_size()
 		
 		if image_size.x != TEXTURE_SIZE or image_size.y != TEXTURE_SIZE:
+			images_not_loaded += 1
 			printerr(texture_path + " not loaded to atlas: Incorrect size.")
 			printerr(str(image_size) + " vs " + str(TEXTURE_SIZE))
-			continue
 		else:
-			print(texture_path + " successfully loaded to atlas.")
+			images_loaded += 1
 		
 		image_array.append(new_image)
+	print("Atlas Packer: " + str(images_loaded) + " images successfully loaded to atlas.")
+	print("Atlas Packer: " + str(images_not_loaded) + " files not loaded to atlas.")
 	return image_array
 
 #func pack_atlas_ref(textures: Array) -> ImageTexture:
