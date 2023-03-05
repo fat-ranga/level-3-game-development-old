@@ -83,7 +83,7 @@ func pack_atlas(textures: Array) -> ImageTexture:
 	var colour
 	var x_offset = 0
 	var y_offset = 0
-	for t in range(textures.size()):
+	for t in range(textures.size() - 1):
 #		if t > 8:
 #			current_row = 3
 #			x_offset = TEXTURE_SIZE * t - 144
@@ -99,6 +99,8 @@ func pack_atlas(textures: Array) -> ImageTexture:
 #		elif t > -1:
 #			current_row = 0
 #			x_offset = TEXTURE_SIZE * t
+		
+		print(t)
 		if t % atlas_size_in_blocks == 0:
 			current_row += 1
 		
