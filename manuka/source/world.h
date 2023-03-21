@@ -6,27 +6,34 @@
 #include <godot_cpp/classes/control.hpp>
 #include <godot_cpp/classes/global_constants.hpp>
 #include <godot_cpp/core/binder_common.hpp>
+
 #include <godot_cpp/classes/node3d.hpp>
+#include <godot_cpp/classes/material.hpp>
+
+#include "voxel_data.h"
 
 using namespace godot;
 
 namespace manuka {
-	class World : public Node3D {
-		GDCLASS(World, Node3D);
-		// Vertex positions that make up each face.
-	protected:
-		static void _bind_methods();
-	public:
-		// Array of vertex positions, this is what we access.
-		static const godot::Vector3 VOXEL_VERTICES[8];
-		// Array of the faces that make up a cube.
-		static const int VOXEL_TRIS[6][4];
-		// TODO:
-		static const godot::Vector3 FACE_CHECKS[6];
-		//
-		static const godot::Vector2 VOXEL_UVS[4];
-	};
+
+class World : public Node3D {
+	GDCLASS(World, Node3D)
+private:
+	Ref<godot::Material> material;
+protected:
+	static void _bind_methods();
+public:
+	World();
+	~World();
+
+	manuka::BlockType block_types[4];
+
+	void set_material(const Ref<godot::Material> p_material);
+	Ref<godot::Material> get_material() const;
+};
+
+
 
 } // Namespace manuka.
 
-#endif // MANUKA_VOXEL_DATA_H
+#endif // MANUKA_WORLD_H

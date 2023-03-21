@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cx5of20h22ab3"]
+[gd_scene load_steps=11 format=3 uid="uid://58tmgoiqsrmq"]
 
 [ext_resource type="Script" path="res://source/voxel/world.gd" id="1_0nqr4"]
-[ext_resource type="PackedScene" uid="uid://bkbtljtp3mn2p" path="res://scenes/chunk.tscn" id="2_rblci"]
+[ext_resource type="Material" uid="uid://8tkij7jioxu6" path="res://data/new_standard_material_3d.tres" id="1_sfj78"]
+[ext_resource type="PackedScene" uid="uid://bkbtljtp3mn2p" path="res://scenes/voxel/chunk.tscn" id="2_rblci"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mxoex"]
 sky_top_color = Color(0.0823529, 0.368627, 0.670588, 1)
@@ -28,6 +29,7 @@ size = Vector3(19.96, 1, 8.467)
 [sub_resource type="BoxMesh" id="BoxMesh_j5yx1"]
 
 [node name="World" type="World"]
+material = ExtResource("1_sfj78")
 script = ExtResource("1_0nqr4")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]

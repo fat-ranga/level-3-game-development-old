@@ -3,11 +3,12 @@ extends Node
 const TEXTURE_SIZE: int = 16
 const TEXTURE_ATLAS_SIZE: int = 48 # Only works in multiples of the TEXTURE_SIZE.
 
-const TEXTURE_DIRECTORY: String = "user://textures"
+@onready var ROOT_DIRECTORY: String = str(OS.get_executable_path().get_base_dir())
+@onready var TEXTURE_DIRECTORY: String = str(ROOT_DIRECTORY + "/textures/atlas")#"user://textures"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	print(TEXTURE_DIRECTORY)
 
 func load_texture_atlas():
 	var textures = get_texture_paths_in_directory(TEXTURE_DIRECTORY)
@@ -23,6 +24,7 @@ func load_textures(paths: PackedStringArray) -> Array:
 	var images_not_loaded: int = 0
 	
 	for texture_path in paths:
+		# TODO: Add error check for anything other than pngs.
 		var new_image = Image.load_from_file(texture_path)
 		var image_size = new_image.get_size()
 		
@@ -38,40 +40,6 @@ func load_textures(paths: PackedStringArray) -> Array:
 	print("Atlas Packer: " + str(images_not_loaded) + " files not loaded to atlas.")
 	return image_array
 
-#func pack_atlas_ref(textures: Array) -> ImageTexture:
-#	var temp_atlas = Image.create(TEXTURE_ATLAS_SIZE, TEXTURE_ATLAS_SIZE, false, Image.FORMAT_RGBA8)
-#	var pixels: PackedColorArray
-#
-#	var atlas_size_in_blocks = TEXTURE_ATLAS_SIZE / TEXTURE_SIZE
-#	var current_row: int = 0
-#
-#	var current_texture_index = 0
-#
-#	for x in range(TEXTURE_ATLAS_SIZE):
-#		for y in range(TEXTURE_ATLAS_SIZE):
-#			var colour = Color(0, 0, 0, 0)
-#
-#			var texture_x: int = x / TEXTURE_SIZE
-#			var texture_y: int = y / TEXTURE_SIZE
-#
-#			#current_texture_index = texture_y * 16 + texture_x
-#			#current_texture_index = texture_y * 16 + (texture_x / atlas_size_in_blocks)
-#
-#			if current_texture_index > textures.size() - 1:
-#				colour = Color(0, 0, 0, 0)
-#			else:
-#				# Divide by current block.
-#				#colour = textures[current_texture].get_pixel(x / (current_texture + 1), y / (current_texture + 1))
-#				colour = textures[current_texture_index].get_pixel(x - (TEXTURE_SIZE * current_texture_index), y + (1 * current_texture_index))
-#
-#			temp_atlas.set_pixel(x, y, colour)
-#
-#	var atlas_texture: ImageTexture
-#
-#	temp_atlas.save_png("user://ranga.png")
-#
-#	return atlas_texture
-
 func pack_atlas(textures: Array) -> ImageTexture:
 	var temp_atlas = Image.create(TEXTURE_ATLAS_SIZE, TEXTURE_ATLAS_SIZE, false, Image.FORMAT_RGBA8)
 	var atlas_size_in_blocks = TEXTURE_ATLAS_SIZE / TEXTURE_SIZE
@@ -84,23 +52,6 @@ func pack_atlas(textures: Array) -> ImageTexture:
 	var x_offset = 0
 	var y_offset = 0
 	for t in range(textures.size() - 1):
-#		if t > 8:
-#			current_row = 3
-#			x_offset = TEXTURE_SIZE * t - 144
-#
-#		elif t > 5:
-#			current_row = 2
-#			x_offset = TEXTURE_SIZE * t - 96
-#
-#		elif t > 2:
-#			current_row = 1
-#			x_offset = TEXTURE_SIZE * t - 48
-#
-#		elif t > -1:
-#			current_row = 0
-#			x_offset = TEXTURE_SIZE * t
-		
-		print(t)
 		if t % atlas_size_in_blocks == 0:
 			current_row += 1
 		

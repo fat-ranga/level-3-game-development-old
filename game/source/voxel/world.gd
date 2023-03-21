@@ -1,5 +1,15 @@
 extends World
 
+# Voxel stuff.
+#class BlockType:
+#	var block_name: String
+#	var is_solid: bool
+#
+##@export var material: Material
+#var ranga: BlockType = BlockType.new() # could be stone, etc.
+#var blocktypes: Array = [] # array of all the types of blocks we have in the game.
+
+# Multiplayer
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 
@@ -9,6 +19,8 @@ var enet_peer := ENetMultiplayerPeer.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#thhe
+	
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,7 +37,7 @@ func _on_join_button_pressed() -> void:
 func _on_host_button_pressed() -> void:
 	main_menu.hide()
 	
-	#upnp_setup()
+	#upnp_setup() //TODO: enable this if actually using multiplayer
 	
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer

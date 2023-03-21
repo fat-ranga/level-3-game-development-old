@@ -14,6 +14,7 @@
 #include <godot_cpp/core/binder_common.hpp>
 
 #include "voxel_data.h"
+#include "world.h"
 
 using namespace godot;
 
@@ -22,17 +23,16 @@ using namespace godot;
 namespace manuka {
 
 
-const int chunk_width = 16;
-const int chunk_height = 16;
 
-// Array of all block types in the chunk.
-uint8_t voxel_map[chunk_width][chunk_height][chunk_width];
-
-int vertex_index = 0;
 
 // TODO: Are constructors and deconstructors required?
 Chunk::Chunk()
 {
+
+	// Array of all block types in the chunk.
+	//voxel_map[16][16][16];
+
+	vertex_index = 0;
 }
 
 Chunk::~Chunk()
@@ -47,7 +47,6 @@ void Chunk::_bind_methods() {
 	godot::ClassDB::bind_method(godot::D_METHOD("add_voxel_data_to_chunk"), &Chunk::add_voxel_data_to_chunk);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh"), &Chunk::create_mesh);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh_data"), &Chunk::create_mesh_data);
-
 }
 
 
@@ -68,7 +67,7 @@ void Chunk::populate_voxel_map() {
 	}
 }
 
-bool Chunk::check_voxel(const godot::Vector3& position) {
+bool Chunk::check_voxel(const godot::Vector3& position, manuka::World *world) {
 	int x = std::floorf(position.x);
 	int y = std::floorf(position.y);
 	int z = std::floorf(position.z);
@@ -77,22 +76,23 @@ bool Chunk::check_voxel(const godot::Vector3& position) {
 	if (x < 0 || x > chunk_width - 1 || y < 0 || y > chunk_height - 1 || z < 0 || z > chunk_width - 1)
 		return false;
 
-	return voxel_map[x][y][z];
+	return world->block_types[voxel_map[x][y][z]].is_solid;
+	//return voxel_map[x][y][z];
 }
 
-void Chunk::create_mesh_data() {
+void Chunk::create_mesh_data(manuka::World *world) {
 	for (int y = 0; y < chunk_width; y++) { // Build from the bottom up.
 		for (int x = 0; x < chunk_height; x++) {
 			for (int z = 0; z < chunk_width; z++) {
-				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z));
+				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), world);
 			}
 		}
 	}
 }
 
-void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position) {
+void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, manuka::World *world) {
 	for (int p = 0; p < 6; p++){ // 6 faces per voxel.
-		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p])) { // Only draw blocks that are visible.
+		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p], world)) { // Only draw blocks that are visible.
 			// These values below aren't in a for loop because there are 4 vertices
 			// per face. Two triangles per face would be 6 vertices, but that results
 			// in 2 duplicate verts, which is why we use 4 and do this manually instead.
