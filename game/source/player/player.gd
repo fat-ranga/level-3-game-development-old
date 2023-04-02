@@ -85,13 +85,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	# Which way we are going to move.
 	direction = Vector3()
-	way_facing = camera.rotation.y
 	
 	# Forwards/backwards and left/right input and movement.
 	# Direction is taken according to the camera y axis instead of the actual
 	# body so that we don't get weird physics rotation stuff!
-	direction += -global_transform.basis.x.rotated(Vector3(0, 1 ,0), way_facing) * (Input.get_action_strength("move_left") - Input.get_action_strength("move_right"))
-	direction += -global_transform.basis.z.rotated(Vector3(0, 1, 0), way_facing) * (Input.get_action_strength("move_forwards") - Input.get_action_strength("move_backwards"))
+	direction += -global_transform.basis.x.rotated(Vector3(0, 1 ,0), camera.rotation.y) * (Input.get_action_strength("move_left") - Input.get_action_strength("move_right"))
+	direction += -global_transform.basis.z.rotated(Vector3(0, 1, 0), camera.rotation.y) * (Input.get_action_strength("move_forwards") - Input.get_action_strength("move_backwards"))
 	
 	# Ensure we aren't faster when moving diagonally.
 	direction = direction.normalized()

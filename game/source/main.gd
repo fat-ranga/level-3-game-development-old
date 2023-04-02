@@ -20,7 +20,8 @@ func load_resources() -> void:
 	var texture_atlas: ImageTexture = atlas_packer.pack_atlas(textures)
 	
 	current_status = "Reading block types..."
-	data_importer.get_json_data(BLOCK_TYPES_PATH)
+	var block_types = data_importer.get_json_data(BLOCK_TYPES_PATH)
+	print(block_types.stone.block_name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

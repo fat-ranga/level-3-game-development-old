@@ -31,7 +31,7 @@ class Chunk : public MeshInstance3D{
 	const int chunk_width = 16;
 	const int chunk_height = 16;
 
-	bool voxel_map[16][16][16];
+	uint8_t voxel_map[16][16][16];
 	int vertex_index;
 
 protected:
@@ -46,7 +46,7 @@ public:
 	// Declare functions here.
 	void print_something(const String& thing);
 	void add_voxel_data_to_chunk(const godot::Vector3& position, manuka::World *world);
-	void populate_voxel_map();
+	void populate_voxel_map(manuka::World* world);
 	void create_mesh_data(manuka::World *world);
 	bool check_voxel(const godot::Vector3& position, manuka::World *world);
 

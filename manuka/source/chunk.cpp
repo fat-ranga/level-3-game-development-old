@@ -57,11 +57,12 @@ void Chunk::print_something(const String& thing){
 	godot::UtilityFunctions::print(thing);
 }
 
-void Chunk::populate_voxel_map() {
+void Chunk::populate_voxel_map(manuka::World* world) {
 	for (int x = 0; x < chunk_width; x++) {
 		for (int y = 0; y < chunk_height; y++) {
 			for (int z = 0; z < chunk_width; z++) {
-				voxel_map[x][y][z] = true;
+				//voxel_map[x][y][z] = true;
+				voxel_map[x][y][z] = world->get_block_id("stone");// must fit into uint_8, numeric ids at runtime
 			}
 		}
 	}
@@ -76,7 +77,10 @@ bool Chunk::check_voxel(const godot::Vector3& position, manuka::World *world) {
 	if (x < 0 || x > chunk_width - 1 || y < 0 || y > chunk_height - 1 || z < 0 || z > chunk_width - 1)
 		return false;
 
-	return world->block_types[voxel_map[x][y][z]].is_solid;
+	//return world->block_types[voxel_map[x][y][z]].is_solid;
+	//return world->is_block_solid(voxel_map[x][y][z]); // checks the is_solid property of the block id (uint8_t)
+	//return world->get_block_property(voxel_map[x][y][z], "is_solid")
+	return world->block_types
 	//return voxel_map[x][y][z];
 }
 

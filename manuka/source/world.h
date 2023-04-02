@@ -26,7 +26,10 @@ public:
 	World();
 	~World();
 
-	manuka::BlockType block_types[4];
+	uint8_t get_block_id(const godot::String p_name);
+	//bool is_block_solid(const uint8_t p_block_id);
+
+	//godot::Dictionary block_types;
 
 	void set_material(const Ref<godot::Material> p_material);
 	Ref<godot::Material> get_material() const;
