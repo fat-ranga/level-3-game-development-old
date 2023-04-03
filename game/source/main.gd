@@ -7,7 +7,15 @@ var current_status: String = ""
 
 @onready var main_menu_scene = "res://scenes/ui/main_menu.tscn" # TODO: figure out type, not PackedScene?
 
-@onready var ROOT_DIRECTORY: String = str(OS.get_executable_path().get_base_dir())
+# Different root directories for storing game data such as textures and stuff.
+# We have these because it's easier to work on the game in editor using the local resource directory.
+# When we export the game, we can't write to res:// anymore, so we need to use either the user directory
+# or the directory where the actual game exe is stored.
+@onready var DIRECTORY_RES = "res://"
+@onready var DIRECTORY_LOCAL_EXECUTABLE = str(OS.get_executable_path().get_base_dir())
+@onready var DIRECTORY_USER = "user://"
+
+@onready var ROOT_DIRECTORY: String = DIRECTORY_RES
 @onready var BLOCK_TYPES_PATH: String = str(ROOT_DIRECTORY + "/block_types.json")#"user://textures"
 
 # Called when the node enters the scene tree for the first time.

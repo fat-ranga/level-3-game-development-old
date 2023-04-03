@@ -2,7 +2,7 @@ extends Node
 
 const TEXTURE_SIZE: int = 16
 const TEXTURE_ATLAS_SIZE: int = 48 # Only works in multiples of the TEXTURE_SIZE.
-
+# TODO: change this to a global constant or something.
 @onready var ROOT_DIRECTORY: String = str(OS.get_executable_path().get_base_dir())
 @onready var TEXTURE_DIRECTORY: String = str(ROOT_DIRECTORY + "/textures/atlas")#"user://textures"
 
