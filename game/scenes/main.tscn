@@ -1,14 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://blvmo1u6jmw35"]
+[gd_scene load_steps=4 format=3 uid="uid://blvmo1u6jmw35"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_8lgea"]
-[ext_resource type="PackedScene" uid="uid://58tmgoiqsrmq" path="res://scenes/voxel/world.tscn" id="1_qu51b"]
 [ext_resource type="PackedScene" uid="uid://b08gmnyjq3g6r" path="res://scenes/texture_atlas_packer.tscn" id="3_arjxg"]
 [ext_resource type="Script" path="res://source/data_importer.gd" id="4_oiytg"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_8lgea")
-
-[node name="World" parent="." instance=ExtResource("1_qu51b")]
 
 [node name="Atlas Packer" parent="." instance=ExtResource("3_arjxg")]
 

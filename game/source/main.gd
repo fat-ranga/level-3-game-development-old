@@ -6,6 +6,7 @@ extends Node
 var current_status: String = ""
 
 @onready var main_menu_scene = "res://scenes/ui/main_menu.tscn" # TODO: figure out type, not PackedScene?
+@onready var world_scene = "res://scenes/voxel/world.tscn"
 
 # Different root directories for storing game data such as textures and stuff.
 # We have these because it's easier to work on the game in editor using the local resource directory.
@@ -16,6 +17,7 @@ var current_status: String = ""
 @onready var DIRECTORY_USER = "user://"
 
 @onready var ROOT_DIRECTORY: String = DIRECTORY_RES
+
 @onready var BLOCK_TYPES_PATH: String = str(ROOT_DIRECTORY + "/block_types.json")#"user://textures"
 
 # Called when the node enters the scene tree for the first time.
@@ -38,7 +40,11 @@ func load_resources() -> void:
 
 func open_main_menu() -> void:
 	
-	call_deferred("add_child", main_menu_scene)
+	#call_deferred("add_child", main_menu_scene)
+	call_deferred("add_child") #TODO: not adding child
+
+func open_world() -> void:
+	call_deferred("add_child", world_scene)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
