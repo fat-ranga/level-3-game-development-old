@@ -5,8 +5,8 @@ extends Node
 
 var current_status: String = ""
 
-@onready var main_menu_scene = "res://scenes/ui/main_menu.tscn" # TODO: figure out type, not PackedScene?
-@onready var world_scene = "res://scenes/voxel/world.tscn"
+@onready var main_menu_scene: PackedScene = load("res://scenes/ui/main_menu.tscn") # TODO: figure out type, not PackedScene?
+@onready var world_scene: PackedScene = load("res://scenes/voxel/world.tscn")
 
 # Different root directories for storing game data such as textures and stuff.
 # We have these because it's easier to work on the game in editor using the local resource directory.
@@ -41,7 +41,9 @@ func load_resources() -> void:
 func open_main_menu() -> void:
 	
 	#call_deferred("add_child", main_menu_scene)
-	call_deferred("add_child") #TODO: not adding child
+	#call_deferred("add_child", main_menu_scene)
+	add_child(world_scene.instantiate())
+	#call_deferred("add_child") #TODO: not adding child
 
 func open_world() -> void:
 	call_deferred("add_child", world_scene)

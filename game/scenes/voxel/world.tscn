@@ -204,7 +204,7 @@ caret_blink = true
 caret_blink_interval = 0.5
 
 [node name="Chunk" parent="." instance=ExtResource("2_rblci")]
-transform = Transform3D(0.938481, 0, 0.345331, 0, 1, 0, -0.345331, 0, 0.938481, 2.03333, 0.294828, -0.715869)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03333, 0.294828, -0.715869)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

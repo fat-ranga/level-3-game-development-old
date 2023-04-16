@@ -7,7 +7,7 @@ func _ready() -> void:
 	# TODO: Yucky way to do this.
 	world = get_parent()
 	
-	populate_voxel_map()
+	populate_voxel_map(world)
 	create_mesh_data(world)
 	mesh = create_mesh()
 
