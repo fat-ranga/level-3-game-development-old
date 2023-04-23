@@ -61,29 +61,18 @@ void Chunk::populate_voxel_map(manuka::World* world) {
 	for (int x = 0; x < chunk_width; x++) {
 		for (int y = 0; y < chunk_height; y++) {
 			for (int z = 0; z < chunk_width; z++) {
-<<<<<<< Updated upstream
-				voxel_map[x][y][z] = 1;
-=======
 				voxel_map[x][y][z] = 0;
 				//voxel_map[x][y][z] = true;
->>>>>>> Stashed changes
 				//voxel_map[x][y][z] = world->get_block_id("stone");// must fit into uint_8, numeric ids at runtime
 			}
 		}
 	}
 }
 
-<<<<<<< Updated upstream
-bool Chunk::check_voxel(const godot::Vector3& position, manuka::World *world) {
-	int x = std::floor(position.x);
-	int y = std::floor(position.y);
-	int z = std::floor(position.z);
-=======
 bool Chunk::check_voxel(const godot::Vector3& position, manuka::World *world) {//TODO: maybe change this to a generic Node3D to get data from?
 	int x = std::floorf(position.x);
 	int y = std::floorf(position.y);
 	int z = std::floorf(position.z);
->>>>>>> Stashed changes
 
 	// Always draw faces at the edges of the chunk.
 	if (x < 0 || x > chunk_width - 1 || y < 0 || y > chunk_height - 1 || z < 0 || z > chunk_width - 1)
@@ -92,10 +81,6 @@ bool Chunk::check_voxel(const godot::Vector3& position, manuka::World *world) {/
 	//return world->block_types[voxel_map[x][y][z]].is_solid;
 	//return world->is_block_solid(voxel_map[x][y][z]); // checks the is_solid property of the block id (uint8_t)
 	//return world->get_block_property(voxel_map[x][y][z], "is_solid")
-<<<<<<< Updated upstream
-	//return world->block_types
-	return voxel_map[x][y][z];
-=======
 	//return world->block_types[voxel_map[x][y][z]].is_solid;
 	//return world->get_block_type(voxel_map[x][y][z]).is_solid;
 	//return false;
@@ -107,7 +92,6 @@ bool Chunk::check_voxel(const godot::Vector3& position, manuka::World *world) {/
 		return false;
 	}
 	//return voxel_map[x][y][z];
->>>>>>> Stashed changes
 }
 
 void Chunk::create_mesh_data(manuka::World *world) {
