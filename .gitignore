@@ -3,6 +3,11 @@ out
 
 # File extensions and stuff.
 .vs
+.sln
+.vcxproj
+.vcxproj.filters
+.vcxproj.user
+
 # Godot 4+ specific ignores
 .godot/
 manuka/source/*.obj

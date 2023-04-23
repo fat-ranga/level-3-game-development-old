@@ -10,6 +10,7 @@ func _ready() -> void:
 	populate_voxel_map(world)
 	create_mesh_data(world)
 	mesh = create_mesh()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

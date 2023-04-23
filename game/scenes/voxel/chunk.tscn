@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkbtljtp3mn2p"]
+[gd_scene load_steps=6 format=3 uid="uid://bkbtljtp3mn2p"]
 
 [ext_resource type="Script" path="res://source/voxel/chunk.gd" id="1_1dqif"]
 
@@ -8,8 +8,12 @@
 seamless = true
 noise = SubResource("FastNoiseLite_f3r36")
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vmfw6"]
+as_normal_map = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ad7d6"]
 albedo_texture = SubResource("NoiseTexture2D_cmq0p")
+normal_texture = SubResource("NoiseTexture2D_vmfw6")
 
 [node name="Chunk" type="Chunk"]
 material_override = SubResource("StandardMaterial3D_ad7d6")

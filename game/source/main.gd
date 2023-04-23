@@ -5,8 +5,13 @@ extends Node
 
 var current_status: String = ""
 
+<<<<<<< Updated upstream
 @onready var main_menu_scene: PackedScene = load("res://scenes/ui/main_menu.tscn") # TODO: figure out type, not PackedScene?
 @onready var world_scene: PackedScene = load("res://scenes/voxel/world.tscn")
+=======
+@onready var main_menu_scene: PackedScene = preload("res://scenes/ui/main_menu.tscn")
+@onready var world_scene: PackedScene = preload("res://scenes/voxel/world.tscn")
+>>>>>>> Stashed changes
 
 # Different root directories for storing game data such as textures and stuff.
 # We have these because it's easier to work on the game in editor using the local resource directory.
@@ -41,12 +46,17 @@ func load_resources() -> void:
 func open_main_menu() -> void:
 	
 	#call_deferred("add_child", main_menu_scene)
+<<<<<<< Updated upstream
 	#call_deferred("add_child", main_menu_scene)
 	add_child(world_scene.instantiate())
 	#call_deferred("add_child") #TODO: not adding child
+=======
+	call_deferred("add_child", main_menu_scene.instantiate()) #TODO: not adding child
+>>>>>>> Stashed changes
 
 func open_world() -> void:
-	call_deferred("add_child", world_scene)
+	print("ong")
+	call_deferred("add_child", world_scene.instantiate())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

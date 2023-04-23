@@ -10,3 +10,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+
+
+func _on_start_button_pressed() -> void:
+	print("cap")
+	get_parent().open_world() # todo quick hack
+	call_deferred("queue_free")

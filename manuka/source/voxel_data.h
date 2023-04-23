@@ -23,11 +23,11 @@ public:
 	static const godot::Vector2 VOXEL_UVS[4];
 };
 
-class BlockType {
-public:
-	godot::String block_name;
-	bool is_solid;//Put in godot instead?
-};
+//class BlockType {
+//public:
+//	godot::String block_name;
+//	bool is_solid;//Put in godot instead?
+//};
 
 } // Namespace manuka.
 
