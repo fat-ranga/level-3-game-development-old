@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://h535sq7nfip" path="res://data/textures/ui/crosshair.png" id="4_6mibw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7nvsj"]
-size = Vector3(0.3, 1.8, 0.3)
+size = Vector3(0.4, 1.8, 0.4)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_kh317"]
 top_radius = 0.3

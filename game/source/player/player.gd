@@ -300,7 +300,7 @@ func handle_crouching() -> void:
 	# Crouch and regular height determine the shortest and highest we can stand, respectively.
 	current_collider_height = clamp(current_collider_height, COLLIDER_CROUCH_HEIGHT, COLLIDER_REGULAR_HEIGHT)
 	
-	collider.shape.size = Vector3(0.3, current_collider_height, 0.3)
+	collider.shape.size = Vector3(0.4, current_collider_height, 0.4)
 	
 # Used instead of clamp() so that the vector in question is limited
 # to a circle instead of a square.

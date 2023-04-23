@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://58tmgoiqsrmq"]
+[gd_scene load_steps=10 format=3 uid="uid://58tmgoiqsrmq"]
 
 [ext_resource type="Script" path="res://source/voxel/world.gd" id="1_0nqr4"]
 [ext_resource type="Material" uid="uid://8tkij7jioxu6" path="res://data/new_standard_material_3d.tres" id="1_sfj78"]
@@ -18,6 +18,118 @@ sky = SubResource("Sky_gtm5e")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="Animation" id="Animation_y5kmc"]
+length = 0.001
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:sky:sky_material:sky_top_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0823529, 0.368627, 0.670588, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldEnvironment:environment:sky:sky_material:sky_horizon_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.64625, 0.65575, 0.67075, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:sky:sky_material:ground_horizon_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.64625, 0.65575, 0.67075, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sun:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6dk8u"]
+resource_name = "day_night_cycle"
+length = 24.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WorldEnvironment:environment:sky:sky_material:sky_top_color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6, 12, 18, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.00392157, 0.027451, 0.0666667, 1), Color(0.611765, 0.611765, 0.611765, 1), Color(0.0823529, 0.368627, 0.670588, 1), Color(0.611765, 0.611765, 0.611765, 1), Color(0.00392157, 0.027451, 0.0666667, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WorldEnvironment:environment:sky:sky_material:sky_horizon_color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6, 12, 18, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.207843, 0.282353, 0.388235, 1), Color(0.929412, 0.545098, 0.247059, 1), Color(0.64625, 0.65575, 0.67075, 1), Color(0.929412, 0.545098, 0.247059, 1), Color(0.207843, 0.282353, 0.388235, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:sky:sky_material:ground_horizon_color")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6, 12, 18, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.207843, 0.282353, 0.388235, 1), Color(0.929412, 0.545098, 0.247059, 1), Color(0.64625, 0.65575, 0.67075, 1), Color(0.929412, 0.545098, 0.247059, 1), Color(0.207843, 0.282353, 0.388235, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sun:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 3.14159, 0), Vector3(-1.5708, 9.42478, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a6mgw"]
+_data = {
+"RESET": SubResource("Animation_y5kmc"),
+"day_night_cycle": SubResource("Animation_6dk8u")
+}
+
 [node name="World" type="World"]
 material = ExtResource("1_sfj78")
 script = ExtResource("1_0nqr4")
@@ -32,9 +144,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0799, 12.6939, -1.21194)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2wonb")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0, 0)
+rotation_order = 1
+light_angular_distance = 1.0
 shadow_enabled = true
+directional_shadow_mode = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -82,7 +197,7 @@ caret_blink = true
 caret_blink_interval = 0.5
 
 [node name="Chunks" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9031, -20.1302, 0)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -14.9031, -20.1302, 0)
 
 [node name="Chunk" parent="Chunks" instance=ExtResource("2_rblci")]
 skeleton = NodePath("../..")
@@ -102,6 +217,12 @@ skeleton = NodePath("../..")
 [node name="Chunk5" parent="Chunks" instance=ExtResource("2_rblci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
 skeleton = NodePath("../..")
+
+[node name="DayNightCycle" type="AnimationPlayer" parent="."]
+autoplay = "day_night_cycle"
+libraries = {
+"": SubResource("AnimationLibrary_a6mgw")
+}
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

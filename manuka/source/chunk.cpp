@@ -21,10 +21,6 @@ using namespace godot;
 
 
 namespace manuka {
-
-
-
-
 // TODO: Are constructors and deconstructors required?
 Chunk::Chunk()
 {
@@ -124,6 +120,10 @@ void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, manuka::Worl
 			triangles.push_back(vertex_index + 2);
 			triangles.push_back(vertex_index + 1);
 			triangles.push_back(vertex_index + 3);
+			normals.push_back(VoxelData::FACE_CHECKS[p]);
+			normals.push_back(VoxelData::FACE_CHECKS[p]);
+			normals.push_back(VoxelData::FACE_CHECKS[p]);
+			normals.push_back(VoxelData::FACE_CHECKS[p]);
 			vertex_index += 4;
 
 		}
@@ -142,7 +142,7 @@ Ref<Mesh> Chunk::create_mesh() {
 	surface_arrays[godot::ArrayMesh::ARRAY_TEX_UV] = { uvs };
 	surface_arrays[godot::ArrayMesh::ARRAY_INDEX] = { triangles };
 	// TODO: add normals as well
-	//surface_arrays[godot::ArrayMesh::ARRAY_NORMAL] = { normals }
+	surface_arrays[godot::ArrayMesh::ARRAY_NORMAL] = { normals };
 
 	mesh->add_surface_from_arrays(godot::Mesh::PRIMITIVE_TRIANGLES, surface_arrays);
 

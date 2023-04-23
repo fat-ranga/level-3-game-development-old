@@ -13,13 +13,15 @@ extends World
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var address_entry = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/AddressEntry
 
+@onready var day_night_cycle: AnimationPlayer = $DayNightCycle
+
 const PLAYER := preload("res://scenes/player.tscn")
 const PORT: int = 25565
 var enet_peer := ENetMultiplayerPeer.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#thhe
+	day_night_cycle.play("day_night_cycle")
 	
 	pass # Replace with function body.
 

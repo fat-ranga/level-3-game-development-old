@@ -20,6 +20,7 @@ class Chunk : public MeshInstance3D{
 	GDCLASS(Chunk, MeshInstance3D)
 
 	godot::PackedVector3Array vertices;
+	godot::PackedVector3Array normals;
 	godot::PackedVector2Array uvs;
 	godot::Array surface_arrays;
 
