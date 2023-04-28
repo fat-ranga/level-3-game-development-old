@@ -23,11 +23,12 @@ func load_resources() -> void:
 	var texture_paths: PackedStringArray = atlas_packer.get_texture_paths_in_directory()
 	var textures: Array = atlas_packer.load_textures(texture_paths)
 	var texture_atlas: Image = atlas_packer.pack_atlas(textures)
-	texture_atlas.save_png(Constants.DIRECTORY_USER + "atlas_frfr")
+	texture_atlas.save_png(Constants.DIRECTORY_USER + "atlas_frfr.png")
 	
-	#current_status = "Reading block types..."
-	#var block_types = data_importer.get_json_data(BLOCK_TYPES_PATH)
+	current_status = "Reading block types..."
+	var block_types: Dictionary = data_importer.get_json_data(Constants.BLOCK_TYPES_PATH)
 	#print(block_types.stone.block_name)
+	#print(block_types["stone"])
 
 func open_main_menu() -> void:
 	

@@ -35,6 +35,9 @@ class Chunk : public MeshInstance3D{
 	uint8_t voxel_map[16][16][16];
 	int vertex_index;
 
+	// These properties are passed from the world and set in GDScript.
+	godot::Array block_types[256];
+
 protected:
 	static void _bind_methods();
 public:
@@ -47,6 +50,8 @@ public:
 	void populate_voxel_map();
 	void create_mesh_data();
 	bool check_voxel(const godot::Vector3& position);
+
+	uint8_t get_block_id();
 
 	Ref<Mesh> create_mesh(); // Keep in mind: Godot likes Refs when returning stuff.
 };

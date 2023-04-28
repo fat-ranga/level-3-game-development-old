@@ -1,6 +1,6 @@
 extends Chunk
 
-var block_types: Dictionary
+var block_types: Array = ["cap", "ong fr fr"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

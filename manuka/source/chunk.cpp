@@ -29,6 +29,7 @@ Chunk::Chunk()
 	//voxel_map[16][16][16];
 
 	vertex_index = 0;
+	//block_types = {};
 }
 
 Chunk::~Chunk()
@@ -43,6 +44,7 @@ void Chunk::_bind_methods() {
 	godot::ClassDB::bind_method(godot::D_METHOD("add_voxel_data_to_chunk"), &Chunk::add_voxel_data_to_chunk);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh"), &Chunk::create_mesh);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh_data"), &Chunk::create_mesh_data);
+	godot::ClassDB::bind_method(godot::D_METHOD("get_block_id"), &Chunk::get_block_id);
 }
 
 
@@ -101,6 +103,8 @@ bool Chunk::check_voxel(const godot::Vector3& position) {//TODO: maybe change th
 }
 
 void Chunk::create_mesh_data() {
+	godot::UtilityFunctions::print(block_types[0]);
+
 	for (int y = 0; y < chunk_width; y++) { // Build from the bottom up.
 		for (int x = 0; x < chunk_height; x++) {
 			for (int z = 0; z < chunk_width; z++) {
@@ -158,6 +162,11 @@ Ref<Mesh> Chunk::create_mesh() {
 
 	return mesh;
 
+}
+
+uint8_t Chunk::get_block_id()
+{
+	return 0;
 }
 
 
