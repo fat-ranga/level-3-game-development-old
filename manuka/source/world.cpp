@@ -15,10 +15,10 @@ void World::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_material", "p_material"), &World::set_material);
 	ClassDB::bind_method(D_METHOD("get_material"), &World::get_material);
 	ClassDB::add_property("World", PropertyInfo(Variant::OBJECT, "material", godot::PROPERTY_HINT_RESOURCE_TYPE), "set_material", "get_material");
+	ClassDB::bind_method(D_METHOD("get_block_id"), &World::get_block_id);
 }
 
 World::World() {
-
 }
 
 World::~World() {
@@ -31,6 +31,11 @@ void World::set_material(const Ref<godot::Material> p_material)
 Ref<godot::Material> World::get_material() const
 {
 	return material;
+}
+
+uint8_t World::get_block_id(const godot::String block_string_id)
+{
+	return 0;
 }
 
 

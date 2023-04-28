@@ -1,17 +1,11 @@
 extends Node
 
-const TEXTURE_SIZE: int = 16
-const TEXTURE_ATLAS_SIZE: int = 48 # Only works in multiples of the TEXTURE_SIZE.
-# TODO: change this to a global constant or something.
-@onready var ROOT_DIRECTORY: String = str(OS.get_executable_path().get_base_dir())
-@onready var TEXTURE_DIRECTORY: String = str(ROOT_DIRECTORY + "/textures/atlas")#"user://textures"
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(TEXTURE_DIRECTORY)
+	print(Constants.TEXTURE_DIRECTORY)
 
 func load_texture_atlas():
-	var textures = get_texture_paths_in_directory(TEXTURE_DIRECTORY)
+	var textures = get_texture_paths_in_directory(Constants.TEXTURE_DIRECTORY)
 	print(textures)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,10 +22,10 @@ func load_textures(paths: PackedStringArray) -> Array:
 		var new_image = Image.load_from_file(texture_path)
 		var image_size = new_image.get_size()
 		
-		if image_size.x != TEXTURE_SIZE or image_size.y != TEXTURE_SIZE:
+		if image_size.x != Constants.TEXTURE_SIZE or image_size.y != Constants.TEXTURE_SIZE:
 			images_not_loaded += 1
 			printerr(texture_path + " not loaded to atlas: Incorrect size.")
-			printerr(str(image_size) + " vs " + str(TEXTURE_SIZE))
+			printerr(str(image_size) + " vs " + str(Constants.TEXTURE_SIZE))
 		else:
 			images_loaded += 1
 		
@@ -40,9 +34,9 @@ func load_textures(paths: PackedStringArray) -> Array:
 	print("Atlas Packer: " + str(images_not_loaded) + " files not loaded to atlas.")
 	return image_array
 
-func pack_atlas(textures: Array) -> ImageTexture:
-	var temp_atlas = Image.create(TEXTURE_ATLAS_SIZE, TEXTURE_ATLAS_SIZE, false, Image.FORMAT_RGBA8)
-	var atlas_size_in_blocks = TEXTURE_ATLAS_SIZE / TEXTURE_SIZE
+func pack_atlas(textures: Array) -> Image:
+	var atlas_image = Image.create(Constants.TEXTURE_ATLAS_SIZE, Constants.TEXTURE_ATLAS_SIZE, false, Image.FORMAT_RGBA8)
+	var atlas_size_in_blocks = Constants.TEXTURE_ATLAS_SIZE / Constants.TEXTURE_SIZE
 
 	# We use a modulo operator to increment the row, which is why we start at -1 instead
 	# of 0, otherwise the whole first row is skipped.
@@ -55,20 +49,19 @@ func pack_atlas(textures: Array) -> ImageTexture:
 		if t % atlas_size_in_blocks == 0:
 			current_row += 1
 		
-		x_offset = TEXTURE_SIZE * t - (TEXTURE_ATLAS_SIZE * current_row)
-		y_offset = TEXTURE_SIZE * current_row
+		x_offset = Constants.TEXTURE_SIZE * t - (Constants.TEXTURE_ATLAS_SIZE * current_row)
+		y_offset = Constants.TEXTURE_SIZE * current_row
 		
-		for x in range(TEXTURE_SIZE):
-			for y in range(TEXTURE_SIZE):
+		for x in range(Constants.TEXTURE_SIZE):
+			for y in range(Constants.TEXTURE_SIZE):
 				colour = textures[t].get_pixel(x, y)
-				temp_atlas.set_pixel(x + x_offset, y + y_offset, colour)
-	var atlas_texture: ImageTexture
+				atlas_image.set_pixel(x + x_offset, y + y_offset, colour)
 	
-	temp_atlas.save_png("user://ranga.png") # TODO: how is this resource going to be accessed? Sort out GameData singleton or something.
-	
-	return atlas_texture
+	return atlas_image
 
-func get_texture_paths_in_directory(root_directory: String = TEXTURE_DIRECTORY) -> PackedStringArray:
+func get_texture_paths_in_directory(root_directory: String = Constants.TEXTURE_DIRECTORY) -> PackedStringArray:
+	print(root_directory)
+	
 	var files: PackedStringArray = []
 	var directories: PackedStringArray = []
 	var dir = DirAccess.open(root_directory)

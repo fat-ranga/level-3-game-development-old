@@ -41,15 +41,12 @@ public:
 	Chunk();
 	~Chunk();
 
-	// Reference to the world this chunk is parented to.
-	// This is where we get a lot of our data from.
-
 	// Declare functions here.
 	void print_something(const String& thing);
-	void add_voxel_data_to_chunk(const godot::Vector3& position, manuka::World *world);
-	void populate_voxel_map(manuka::World* world);
-	void create_mesh_data(manuka::World *world);
-	bool check_voxel(const godot::Vector3& position, manuka::World *world);
+	void add_voxel_data_to_chunk(const godot::Vector3& position);
+	void populate_voxel_map();
+	void create_mesh_data();
+	bool check_voxel(const godot::Vector3& position);
 
 	Ref<Mesh> create_mesh(); // Keep in mind: Godot likes Refs when returning stuff.
 };

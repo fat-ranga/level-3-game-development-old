@@ -27,7 +27,7 @@ public:
 	World();
 	~World();
 
-	uint8_t get_block_id(const godot::String p_name);
+	//uint8_t get_block_id(const godot::String p_name);
 	//bool is_block_solid(const uint8_t p_block_id);
 
 	// TODO: these empty variables will be set in the _ready function of the 
@@ -47,12 +47,16 @@ public:
 
 	// Unfortunately we can't specify the type of custom resource, since all those
 	// are defined in the GDScript side of things.
-	//godot::Resource block_types[];
-
+	
+	//godot::Array block_types[];
+	//godot::Array block_types[256];
+	//godot::Dictionary block_dictionary = {};
 	//int get_block_type();
 
 	void set_material(const Ref<godot::Material> p_material);
 	Ref<godot::Material> get_material() const;
+
+	uint8_t get_block_id(const godot::String block_string_id);
 };
 
 

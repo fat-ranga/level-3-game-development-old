@@ -50,10 +50,14 @@ void Chunk::_bind_methods() {
 
 // Test function.
 void Chunk::print_something(const String& thing){
+
 	godot::UtilityFunctions::print(thing);
+	//godot::UtilityFunctions::print(world->block_types[0]);
+
+	
 }
 
-void Chunk::populate_voxel_map(manuka::World* world) {
+void Chunk::populate_voxel_map() {
 	for (int x = 0; x < chunk_width; x++) {
 		for (int y = 0; y < chunk_height; y++) {
 			for (int z = 0; z < chunk_width; z++) {
@@ -65,7 +69,7 @@ void Chunk::populate_voxel_map(manuka::World* world) {
 	}
 }
 
-bool Chunk::check_voxel(const godot::Vector3& position, manuka::World *world) {//TODO: maybe change this to a generic Node3D to get data from?
+bool Chunk::check_voxel(const godot::Vector3& position) {//TODO: maybe change this to a generic Node3D to get data from?
 	int x = std::floorf(position.x);
 	int y = std::floorf(position.y);
 	int z = std::floorf(position.z);
@@ -81,6 +85,12 @@ bool Chunk::check_voxel(const godot::Vector3& position, manuka::World *world) {/
 	//return world->get_block_type(voxel_map[x][y][z]).is_solid;
 	//return false;
 	//return world->call()?;
+	// //
+	// //
+	// 
+	// 
+	// 
+	//return world->block_types[voxel_map[x][y][z]].is_solid
 	switch (voxel_map[x][y][z]) {
 	case 0:
 		return true;
@@ -90,19 +100,19 @@ bool Chunk::check_voxel(const godot::Vector3& position, manuka::World *world) {/
 	//return voxel_map[x][y][z];
 }
 
-void Chunk::create_mesh_data(manuka::World *world) {
+void Chunk::create_mesh_data() {
 	for (int y = 0; y < chunk_width; y++) { // Build from the bottom up.
 		for (int x = 0; x < chunk_height; x++) {
 			for (int z = 0; z < chunk_width; z++) {
-				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), world);
+				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z));
 			}
 		}
 	}
 }
 
-void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, manuka::World *world) {
+void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position) {
 	for (int p = 0; p < 6; p++){ // 6 faces per voxel.
-		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p], world)) { // Only draw blocks that are visible.
+		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p])) { // Only draw blocks that are visible.
 			// These values below aren't in a for loop because there are 4 vertices
 			// per face. Two triangles per face would be 6 vertices, but that results
 			// in 2 duplicate verts, which is why we use 4 and do this manually instead.

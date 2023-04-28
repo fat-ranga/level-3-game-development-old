@@ -1,15 +1,11 @@
 extends Chunk
 
-var world = null
+var block_types: Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# TODO: Yucky way to do this.
-	world = get_parent().get_parent()
-	print(world)
-	
-	populate_voxel_map(world)
-	create_mesh_data(world)
+	populate_voxel_map()
+	create_mesh_data()
 	mesh = create_mesh()
 	create_trimesh_collision()
 
