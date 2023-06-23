@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccj5wkpxqlmvs"]
+
+[ext_resource type="Script" path="res://source/ui/multiplayer_menu.gd" id="1_gr751"]
+[ext_resource type="Texture2D" uid="uid://y5dmw2ifjn2c" path="res://data/textures/atlas/dirt.png" id="1_onfxc"]
+
+[node name="MultiplayerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_gr751")
+metadata/_edit_lock_ = true
+
+[node name="Multiplayer" type="Label" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 423.5
+offset_top = 242.0
+offset_right = 728.5
+offset_bottom = 268.0
+text = "Multiplayer
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_onfxc")
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.5
+offset_top = -82.0
+offset_right = 152.5
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 32
+
+[node name="HostButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="JoinButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter IP address to join here..."
+alignment = 1
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="Port" type="LineEdit" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "25565"
+placeholder_text = "Enter IP address to join here..."
+alignment = 1
+caret_blink = true
+caret_blink_interval = 0.5
+
+[connection signal="pressed" from="VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]

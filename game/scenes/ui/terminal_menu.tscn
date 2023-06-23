@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3wig1jr3vvkk"]
+
+[ext_resource type="Script" path="res://source/ui/terminal_menu.gd" id="1_x864d"]
+
+[node name="TerminalMenu" type="MarginContainer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x864d")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = 194.0
+offset_top = 143.0
+offset_right = 246.0
+offset_bottom = 169.0
+text = "> "
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = 700.0
+offset_top = 137.0
+offset_right = 793.0
+offset_bottom = 267.0
+text = "Commands:
+start
+settings
+quit / exit
+credits"
+
+[node name="LineEdit" type="LineEdit" parent="Control"]
+layout_mode = 2
+offset_left = 212.0
+offset_top = 132.0
+offset_right = 588.0
+offset_bottom = 178.0
+placeholder_text = "Enter commands here..."
+
+[connection signal="text_submitted" from="Control/LineEdit" to="." method="_on_line_edit_text_submitted"]

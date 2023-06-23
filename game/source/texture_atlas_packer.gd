@@ -19,6 +19,9 @@ func load_textures(paths: PackedStringArray) -> Array:
 	
 	for texture_path in paths:
 		# TODO: Add error check for anything other than pngs.
+		if !texture_path.ends_with("png"):
+			print("not image g")
+		
 		var new_image = Image.load_from_file(texture_path)
 		var image_size = new_image.get_size()
 		

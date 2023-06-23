@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvgvkd4kxlqyy"]
+[gd_scene load_steps=10 format=3 uid="uid://cvgvkd4kxlqyy"]
 
 [ext_resource type="Script" path="res://source/player/player.gd" id="1_38koj"]
 [ext_resource type="Material" uid="uid://8tkij7jioxu6" path="res://data/new_standard_material_3d.tres" id="2_cb78g"]
@@ -13,23 +13,6 @@ top_radius = 0.3
 bottom_radius = 0.3
 height = 1.8
 radial_segments = 16
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eo47k"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("Camera3D:rotation")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("Camera3D:position")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("human:rotation")
-properties/4/spawn = true
-properties/4/sync = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2tpm"]
 resource_name = "human"
@@ -88,11 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 visible = false
 mesh = SubResource("CylinderMesh_kh317")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_eo47k")
-
 [node name="human" type="Node3D" parent="."]
-visible = false
 
 [node name="Human Base Mesh" type="MeshInstance3D" parent="human"]
 material_override = ExtResource("2_cb78g")

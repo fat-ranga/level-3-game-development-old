@@ -11,23 +11,16 @@ using namespace godot;
 
 namespace manuka {
 class VoxelData {
-	// Vertex positions that make up each face.
 public:
 	// Array of vertex positions, this is what we access.
 	static const godot::Vector3 VOXEL_VERTICES[8];
 	// Array of the faces that make up a cube.
 	static const int VOXEL_TRIS[6][4];
-	// TODO: face_check_directions?
+	// TODO: face_check_directions? Pretty much the normals of a cube.
 	static const godot::Vector3 FACE_CHECKS[6];
 	//
 	static const godot::Vector2 VOXEL_UVS[4];
 };
-
-//class BlockType {
-//public:
-//	godot::String block_name;
-//	bool is_solid;//Put in godot instead?
-//};
 
 } // Namespace manuka.
 

@@ -2,9 +2,13 @@ extends Control
 
 signal open_world
 
+@onready var title = $Title
+@onready var start_menu = $StartMenu
+@onready var multiplayer_menu = $MultiplayerMenu
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_node("StartMenu/Multiplayer").grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,7 +17,19 @@ func _process(delta):
 
 
 
+func _on_singleplayer_pressed() -> void:
+	pass # Replace with function body.
 
-func _on_start_button_pressed() -> void:
-	get_parent().open_world() # todo quick hack
-	call_deferred("queue_free")
+
+func _on_multiplayer_pressed() -> void:
+	start_menu.hide()
+	title.hide()
+	multiplayer_menu.show()
+
+
+func _on_settings_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_exit_pressed() -> void:
+	pass # Replace with function body.

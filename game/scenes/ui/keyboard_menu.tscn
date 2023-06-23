@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx4sp32e60rv0"]
+
+[ext_resource type="Script" path="res://source/ui/keyboard_control.gd" id="1_7bkow"]
+
+[node name="KeyboardMenu" type="GridContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -15.5
+offset_right = 23.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 8
+columns = 2
+script = ExtResource("1_7bkow")
+
+[node name="Start2" type="Button" parent="."]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(1, 0.764706, 0, 1)
+button_mask = 0
+text = "Start"
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(1, 0.764706, 0, 1)
+button_mask = 0
+text = "Settings"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(1, 0.764706, 0, 1)
+button_mask = 0
+text = "Exit"
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(1, 0.764706, 0, 1)
+button_mask = 0
+text = "Credits"
+
+[connection signal="pressed" from="Start2" to="." method="_on_start_2_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

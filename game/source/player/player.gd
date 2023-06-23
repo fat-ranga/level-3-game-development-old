@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 # Settings.
-const WALK_SPEED: float = 5.0
-const SPRINT_MULTIPLIER: float = 2.0
+const WALK_SPEED: float = 5.0 # 5.0
+const SPRINT_MULTIPLIER: float = 2.0 #2.0
 const CROUCH_MULTIPLIER: float = 0.5
 const TERMINAL_GRAVITATIONAL_VELOCITY := -53.0
 
@@ -54,17 +54,20 @@ var request_jump: bool = false
 
 @onready var camera: Camera3D = $Camera3D
 @onready var collider = $CollisionShape
-@onready var test_mesh = $MeshInstance3D
+@onready var test_mesh = $human
 
 func _enter_tree() -> void:
+	#name = str(get_multiplayer_authority())
+	
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
+	
 	if not is_multiplayer_authority(): return
 
 	camera.current = true
 	
-	# Convert these two to radians because Godot likes it, I suppose.
+	# Convert these two to radians.
 	camera_upper_clamp_rad = deg_to_rad(CAMERA_UPPER_CLAMP)
 	camera_lower_clamp_rad = deg_to_rad(CAMERA_LOWER_CLAMP)
 	
@@ -129,6 +132,8 @@ func _physics_process(delta):
 	check_movement_flags()
 	handle_crouching()
 	process_movement_state(delta)
+	
+	test_mesh.rotation.y = camera.rotation.y
 
 func check_movement_flags() -> void:
 	"""
@@ -149,6 +154,16 @@ func process_movement_state(delta) -> void:
 			print("swim")
 		MovementStates.NO_CLIP:
 			print("haxx")
+	
+	rpc("remote_set_position", global_position, test_mesh.global_rotation)
+	
+
+@rpc("unreliable")
+func remote_set_position(authority_position, authority_rotation):
+	global_position = authority_position
+	test_mesh.global_rotation = authority_rotation
+
+
 
 func ground_move(delta) -> void:
 	# TODO: So we don't hop and slide along if holding down jump.

@@ -36,7 +36,7 @@ class Chunk : public MeshInstance3D{
 	int vertex_index;
 
 	// These properties are passed from the world and set in GDScript.
-	godot::Array block_types[256];
+	//godot::Dictionary block_types;
 
 protected:
 	static void _bind_methods();
