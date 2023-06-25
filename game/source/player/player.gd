@@ -46,6 +46,7 @@ var can_jump: bool = false
 var is_momentum_preserved: bool = false
 var is_head_bonked: bool = false
 var offset_velocity := Vector3.ZERO
+var no_clip: bool = false
 
 # Input flags.
 var request_sprinting: bool = false
@@ -115,6 +116,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		request_jump = false
 	
+	if Input.is_action_pressed("no_clip"):
+		no_clip = !no_clip
+	
 
 func _process(delta):
 	if not is_multiplayer_authority(): return
@@ -139,11 +143,19 @@ func check_movement_flags() -> void:
 	"""
 	Checks the current movement situation of the player.
 	"""
+	collider.disabled = false # By default.
+	
+	if no_clip:
+		collider.disabled = true
+		current_movement_state = MovementStates.NO_CLIP
+		return
+	
 	if is_on_floor():
 		current_movement_state = MovementStates.ON_GROUND
+		return
 	else:
 		current_movement_state = MovementStates.IN_AIR
-
+		return
 func process_movement_state(delta) -> void:
 	match current_movement_state:
 		MovementStates.ON_GROUND:
@@ -153,7 +165,7 @@ func process_movement_state(delta) -> void:
 		MovementStates.SWIMMING:
 			print("swim")
 		MovementStates.NO_CLIP:
-			print("haxx")
+			no_clip_move(delta)
 	
 	rpc("remote_set_position", global_position, test_mesh.global_rotation)
 	
@@ -163,7 +175,32 @@ func remote_set_position(authority_position, authority_rotation):
 	global_position = authority_position
 	test_mesh.global_rotation = authority_rotation
 
-
+func no_clip_move(delta) -> void:
+	if request_sprinting:
+		horizontal_velocity = horizontal_velocity.lerp(
+				direction * (WALK_SPEED * SPRINT_MULTIPLIER),
+				REGULAR_ACCELERATION * delta)
+	else:
+		horizontal_velocity = horizontal_velocity.lerp(
+				direction * WALK_SPEED,
+				REGULAR_ACCELERATION * delta)
+	
+	# Flying.
+	if request_crouching:
+		movement.y = -7
+	elif request_jump:
+		movement.y = 7
+	else:
+		movement.y = 0.0
+	# Movement vector calculated from horizontal direction and gravity.
+	movement.z = horizontal_velocity.z + gravity_vector.z
+	movement.x = horizontal_velocity.x + gravity_vector.x
+	
+	# Final velocity calculated from movement.
+	set_velocity(movement)
+	
+	# Actually move the player.
+	move_and_slide()
 
 func ground_move(delta) -> void:
 	# TODO: So we don't hop and slide along if holding down jump.

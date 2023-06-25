@@ -43,7 +43,6 @@ void Chunk::_bind_methods() {
 	godot::ClassDB::bind_method(godot::D_METHOD("add_voxel_data_to_chunk"), &Chunk::add_voxel_data_to_chunk);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh"), &Chunk::create_mesh);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh_data"), &Chunk::create_mesh_data);
-	godot::ClassDB::bind_method(godot::D_METHOD("get_block_id"), &Chunk::get_block_id);
 }
 
 
@@ -70,7 +69,7 @@ void Chunk::populate_voxel_map() {
 	}
 }
 
-bool Chunk::check_voxel(const godot::Vector3& position) {
+bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_types) {
 	int x = std::floorf(position.x);
 	int y = std::floorf(position.y);
 	int z = std::floorf(position.z);
@@ -79,28 +78,38 @@ bool Chunk::check_voxel(const godot::Vector3& position) {
 	if (x < 0 || x > chunk_width - 1 || y < 0 || y > chunk_height - 1 || z < 0 || z > chunk_width - 1)
 		return false;
 
-	//return block_types[voxel_map[x][y][z]]["is_solid"];
-	//return block_types[voxel_map[x][y][z]]["is_solid"];
-	return 0;
+	// This converts the block ID to a string, which we can use to
+	// index into the block_types dictionary.
+	godot::String block_string = block_types.keys()[voxel_map[x][y][z]];
 
-	//return block_types[voxel_map[x][y][z]];
+	// For some reason I get a silent crash when I index a dictionary like this:
+	// block_types[block_string]["is_solid"]
+	// so that is why I put it into the separate 'block' dictionary before
+	// accessing the 'is_solid' property.
+
+	Dictionary block = block_types[block_string];
+	return block["is_solid"];
 }
 
-void Chunk::create_mesh_data() {
+void Chunk::create_mesh_data(const Dictionary& block_types) {
 	//godot::UtilityFunctions::print(block_types[0]);
 
 	for (int y = 0; y < chunk_width; y++) { // Build from the bottom up.
 		for (int x = 0; x < chunk_height; x++) {
 			for (int z = 0; z < chunk_width; z++) {
-				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z));
+				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types);
 			}
 		}
 	}
 }
 
-void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position) {
+void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictionary& block_types) {
+	// Probably correct.
+	int block_id = voxel_map[(int)position[0]][(int)position[1]][(int)position[2]];
+	//godot::UtilityFunctions::print(block_id);
+	
 	for (int p = 0; p < 6; p++){ // 6 faces per voxel.
-		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p])) { // Only draw blocks that are visible.
+		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p], block_types)) { // Only draw blocks that are visible.
 			// These values below aren't in a for loop because there are 4 vertices
 			// per face. Two triangles per face would be 6 vertices, but that results
 			// in 2 duplicate verts, which is why we use 4 and do this manually instead.
@@ -108,10 +117,13 @@ void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position) {
 			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][1]]);
 			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][2]]);
 			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][3]]);
-			uvs.push_back(VoxelData::VOXEL_UVS[0]);
-			uvs.push_back(VoxelData::VOXEL_UVS[1]);
-			uvs.push_back(VoxelData::VOXEL_UVS[2]);
-			uvs.push_back(VoxelData::VOXEL_UVS[3]);
+			//uvs.push_back(VoxelData::VOXEL_UVS[0]);
+			//uvs.push_back(VoxelData::VOXEL_UVS[1]);
+			//uvs.push_back(VoxelData::VOXEL_UVS[2]);
+			//uvs.push_back(VoxelData::VOXEL_UVS[3]);
+
+			add_texture(2);
+
 			triangles.push_back(vertex_index);
 			triangles.push_back(vertex_index + 1);
 			triangles.push_back(vertex_index + 2);
@@ -139,7 +151,6 @@ Ref<Mesh> Chunk::create_mesh() {
 	surface_arrays[godot::ArrayMesh::ARRAY_VERTEX] = { vertices };
 	surface_arrays[godot::ArrayMesh::ARRAY_TEX_UV] = { uvs };
 	surface_arrays[godot::ArrayMesh::ARRAY_INDEX] = { triangles };
-	// TODO: add normals as well
 	surface_arrays[godot::ArrayMesh::ARRAY_NORMAL] = { normals };
 
 	mesh->add_surface_from_arrays(godot::Mesh::PRIMITIVE_TRIANGLES, surface_arrays);
@@ -148,9 +159,21 @@ Ref<Mesh> Chunk::create_mesh() {
 
 }
 
-uint8_t Chunk::get_block_id()
+void Chunk::add_texture(int texture_id)
 {
-	return 0;
+	float texture_atlas_size_in_blocks = 4.0;
+	float normalised_block_texture_size = 1.0 / texture_atlas_size_in_blocks;
+
+	int current_row = floor(texture_id / 4.0) + 1;
+
+	float x = (texture_id / 4.0) - (current_row - 1);
+
+	float y = (current_row - 1) / 4.0;
+
+	uvs.push_back({ x, y });
+	uvs.push_back({ x, y + normalised_block_texture_size });
+	uvs.push_back({ x + normalised_block_texture_size, y });
+	uvs.push_back({ x + normalised_block_texture_size, y + normalised_block_texture_size });
 }
 
 

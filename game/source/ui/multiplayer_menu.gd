@@ -24,7 +24,7 @@ func _on_host_button_pressed() -> void:
 	
 	#call_deferred("add_child", world_scene.instantiate())
 	
-	EventBus.host_game.emit(int(port.text))
+	EventBus.host_game.emit(int(port.text), true)
 
 
 func _on_join_button_pressed() -> void:

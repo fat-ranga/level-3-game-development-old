@@ -1,15 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkbtljtp3mn2p"]
+[gd_scene load_steps=3 format=3 uid="uid://bkbtljtp3mn2p"]
 
 [ext_resource type="Script" path="res://source/voxel/chunk.gd" id="1_1dqif"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ljt4i"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5013i"]
-noise = SubResource("FastNoiseLite_ljt4i")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmi3s"]
-albedo_texture = SubResource("NoiseTexture2D_5013i")
+[ext_resource type="Material" uid="uid://d4etupgsksv12" path="res://data/materials/blocks.tres" id="1_vcjou"]
 
 [node name="Chunk" type="Chunk"]
-material_override = SubResource("StandardMaterial3D_cmi3s")
+material_override = ExtResource("1_vcjou")
 script = ExtResource("1_1dqif")

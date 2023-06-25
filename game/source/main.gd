@@ -67,13 +67,16 @@ func join_game(ip: String, port) -> void:
 	multiplayer.multiplayer_peer = enet_peer
 	
 
-func host_game(port) -> void:
+func host_game(port=25565, is_multiplayer=false) -> void:
 	#main_menu.hide()
 	call_deferred("add_child", world_scene.instantiate())
 	
 	print("game started")
 	
-	upnp_setup(port) #TODO: enable this if actually using multiplayer
+	if is_multiplayer:
+		upnp_setup(port)
+	
+	
 	
 	enet_peer.create_server(port)
 	multiplayer.multiplayer_peer = enet_peer

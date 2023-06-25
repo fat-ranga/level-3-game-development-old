@@ -1,6 +1,6 @@
 extends Node
 
-signal host_game
+signal host_game(is_multiplayer: bool)
 signal join_game(ip: String, port: int)
 
 # Called when the node enters the scene tree for the first time.
