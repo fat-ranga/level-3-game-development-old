@@ -48,6 +48,7 @@ public:
 		const Dictionary& block_types);
 	void populate_voxel_map();
 	void create_mesh_data(const Dictionary& block_types);
+	bool is_voxel_in_chunk(int x, int y, int z);
 	bool check_voxel(
 		const godot::Vector3& position,
 		const Dictionary& block_types);

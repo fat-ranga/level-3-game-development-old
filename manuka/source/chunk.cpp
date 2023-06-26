@@ -43,6 +43,7 @@ void Chunk::_bind_methods() {
 	godot::ClassDB::bind_method(godot::D_METHOD("add_voxel_data_to_chunk"), &Chunk::add_voxel_data_to_chunk);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh"), &Chunk::create_mesh);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh_data"), &Chunk::create_mesh_data);
+	godot::ClassDB::bind_method(godot::D_METHOD("is_voxel_in_chunk"), &Chunk::is_voxel_in_chunk);
 }
 
 
@@ -69,14 +70,25 @@ void Chunk::populate_voxel_map() {
 	}
 }
 
+bool Chunk::is_voxel_in_chunk(int x, int y, int z)
+{
+	if (x < 0 || x > chunk_width - 1 || y < 0 || y > chunk_height - 1 || z < 0 || z > chunk_width - 1)
+		return false;
+	else {
+		return true;
+	}
+}
+
 bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_types) {
 	int x = std::floorf(position.x);
 	int y = std::floorf(position.y);
 	int z = std::floorf(position.z);
 
 	// Always draw faces at the edges of the chunk.
-	if (x < 0 || x > chunk_width - 1 || y < 0 || y > chunk_height - 1 || z < 0 || z > chunk_width - 1)
+	if (!is_voxel_in_chunk(x, y, z)) {
 		return false;
+	}
+		
 
 	// This converts the block ID to a string, which we can use to
 	// index into the block_types dictionary.
