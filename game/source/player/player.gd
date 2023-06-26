@@ -65,7 +65,6 @@ func _enter_tree() -> void:
 func _ready():
 	
 	if not is_multiplayer_authority(): return
-
 	camera.current = true
 	
 	# Convert these two to radians.

@@ -1,7 +1,7 @@
 extends Node
 
 const TEXTURE_SIZE: int = 16
-const TEXTURE_ATLAS_SIZE: int = 48 # Only works in multiples of the TEXTURE_SIZE.
+const TEXTURE_ATLAS_SIZE: int = 64 # Only works in multiples of the TEXTURE_SIZE.
 
 	
 # Different root directories for storing game data such as textures and stuff.

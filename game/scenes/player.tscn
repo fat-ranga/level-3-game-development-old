@@ -74,6 +74,7 @@ mesh = SubResource("CylinderMesh_kh317")
 [node name="human" type="Node3D" parent="."]
 
 [node name="Human Base Mesh" type="MeshInstance3D" parent="human"]
+visible = false
 material_override = ExtResource("2_cb78g")
 mesh = SubResource("ArrayMesh_5oe3v")
 skeleton = NodePath("")

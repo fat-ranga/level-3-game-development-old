@@ -51,7 +51,7 @@ public:
 	bool check_voxel(
 		const godot::Vector3& position,
 		const Dictionary& block_types);
-	void add_texture(const int texture_id);
+	void add_texture(int texture_id);
 
 	Ref<Mesh> create_mesh(); // Keep in mind: Godot likes Refs when returning stuff.
 };

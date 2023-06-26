@@ -61,7 +61,7 @@ void Chunk::populate_voxel_map() {
 	for (int x = 0; x < chunk_width; x++) {
 		for (int y = 0; y < chunk_height; y++) {
 			for (int z = 0; z < chunk_width; z++) {
-				voxel_map[x][y][z] = 0;
+				voxel_map[x][y][z] = 2;
 				//voxel_map[x][y][z] = true;
 				//voxel_map[x][y][z] = world->get_block_id("stone");// must fit into uint_8, numeric ids at runtime
 			}
@@ -86,7 +86,6 @@ bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_
 	// block_types[block_string]["is_solid"]
 	// so that is why I put it into the separate 'block' dictionary before
 	// accessing the 'is_solid' property.
-
 	Dictionary block = block_types[block_string];
 	return block["is_solid"];
 }
@@ -122,7 +121,22 @@ void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictio
 			//uvs.push_back(VoxelData::VOXEL_UVS[2]);
 			//uvs.push_back(VoxelData::VOXEL_UVS[3]);
 
-			add_texture(2);
+			godot::String block_string = block_types.keys()[block_id];
+			Dictionary block = block_types[block_string];
+			//godot::UtilityFunctions::print(block);
+			Array block_texture_id_array = block["texture_id"];
+			//godot::UtilityFunctions::print(block_texture_id_array);
+
+			godot::Variant texture_id = block_texture_id_array[p];
+			//int texture_id = 3;
+
+			int fr_fr = texture_id;
+
+			//godot::UtilityFunctions::print(block_texture_id_array[p]);
+			//godot::UtilityFunctions::print(texture_id.get_type());
+			add_texture(block_texture_id_array[p]);
+			//add_texture(4);
+			
 
 			triangles.push_back(vertex_index);
 			triangles.push_back(vertex_index + 1);
@@ -159,8 +173,12 @@ Ref<Mesh> Chunk::create_mesh() {
 
 }
 
-void Chunk::add_texture(int texture_id)
+void Chunk::add_texture(int texture_id = 1)
 {
+	//godot::UtilityFunctions::print(texture_id);
+
+	//int p_texture_id = 2;
+
 	float texture_atlas_size_in_blocks = 4.0;
 	float normalised_block_texture_size = 1.0 / texture_atlas_size_in_blocks;
 

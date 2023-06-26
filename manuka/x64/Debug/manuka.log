@@ -1,0 +1,736 @@
+﻿  chunk.cpp
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(791,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(796,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(284,13): warning C4244: 'initializing': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(307,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(311,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(315,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(142,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(146,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(150,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(260,13): warning C4244: 'initializing': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(367,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(371,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(375,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(214,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(218,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(222,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(289,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(293,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(297,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(224,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(228,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(232,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\projection.hpp(101,26): warning C4244: 'return': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\type_info.hpp(223,28): warning C4244: 'argument': conversion from 'int64_t' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\type_info.hpp(223,60): warning C4244: 'argument': conversion from 'int64_t' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(90,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(96,2): message : see reference to class template instantiation 'godot::VariantCaster<T>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(102,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(108,2): message : see reference to class template instantiation 'godot::VariantCaster<T&>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(114,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(120,2): message : see reference to class template instantiation 'godot::VariantCaster<const T&>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(126,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(133,2): message : see reference to class template instantiation 'godot::VariantObjectClassChecker<T>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(246,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(249,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(252,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(255,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(258,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(261,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(264,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(267,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(270,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(273,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(77,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(80,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(83,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(86,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(89,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(92,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(95,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\canvas_item.hpp(193,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\canvas_item.hpp(191,14): message : This diagnostic occurred in the compiler generated function 'void godot::CanvasItem::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(311,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(314,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(317,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(320,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(323,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(326,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(329,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(332,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(104,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(102,14): message : This diagnostic occurred in the compiler generated function 'void godot::CollisionObject3D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(107,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(102,14): message : This diagnostic occurred in the compiler generated function 'void godot::CollisionObject3D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(110,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(102,14): message : This diagnostic occurred in the compiler generated function 'void godot::CollisionObject3D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\visual_instance3d.hpp(68,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\visual_instance3d.hpp(66,14): message : This diagnostic occurred in the compiler generated function 'void godot::VisualInstance3D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(165,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(168,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(171,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(174,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(177,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(180,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(183,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(186,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(189,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(192,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(195,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(198,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(201,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(204,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(69,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(72,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(75,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(78,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(73,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(74,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(75,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(99,57): warning C4244: 'argument': conversion from 'int' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(99,54): warning C4244: 'argument': conversion from 'int' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(99,51): warning C4244: 'argument': conversion from 'int' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(180,38): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(182,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(184,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(186,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(66,13): warning C4244: 'return': conversion from 'float' to 'const T', possible loss of data
+          with
+          [
+              T=int32_t
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(121,24): message : see reference to function template instantiation 'const T godot::SIGN<int32_t>(const T)' being compiled
+          with
+          [
+              T=int32_t
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2440: 'reinterpret_cast': cannot convert from 'void (__cdecl manuka::Chunk::* )(const godot::String &)' to 'void (__cdecl godot::___UnexistingClass::* )(const godot::String &)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : Pointers to members have different representations; cannot cast between them
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\class_db.hpp(217,82): message : see reference to function template instantiation 'godot::MethodBind *godot::create_method_bind<manuka::Chunk,const godot::String&>(void (__cdecl manuka::Chunk::* )(const godot::String &))' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(41,97): message : see reference to function template instantiation 'godot::MethodBind *godot::ClassDB::bind_method<godot::MethodDefinition,void(__cdecl manuka::Chunk::* )(const godot::String &),>(N,M)' being compiled
+          with
+          [
+              N=godot::MethodDefinition,
+              M=void (__cdecl manuka::Chunk::* )(const godot::String &)
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2512: 'godot::MethodBindT<const godot::String &>::MethodBindT': no appropriate default constructor available
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : while trying to match the argument list '()'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2672: 'godot::_post_initialize': no matching overloaded function found
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\memory.hpp(79,20): message : could be 'T *godot::_post_initialize(T *)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2440: 'reinterpret_cast': cannot convert from 'void (__cdecl manuka::Chunk::* )(void)' to 'void (__cdecl godot::___UnexistingClass::* )(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : Pointers to members have different representations; cannot cast between them
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\class_db.hpp(217,82): message : see reference to function template instantiation 'godot::MethodBind *godot::create_method_bind<manuka::Chunk,>(void (__cdecl manuka::Chunk::* )(void))' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(42,95): message : see reference to function template instantiation 'godot::MethodBind *godot::ClassDB::bind_method<godot::MethodDefinition,void(__cdecl manuka::Chunk::* )(void),>(N,M)' being compiled
+          with
+          [
+              N=godot::MethodDefinition,
+              M=void (__cdecl manuka::Chunk::* )(void)
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2512: 'godot::MethodBindT<>::MethodBindT': no appropriate default constructor available
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : while trying to match the argument list '()'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2440: 'reinterpret_cast': cannot convert from 'void (__cdecl manuka::Chunk::* )(const godot::Vector3 &,const godot::Dictionary &)' to 'void (__cdecl godot::___UnexistingClass::* )(const godot::Vector3 &,const godot::Dictionary &)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : Pointers to members have different representations; cannot cast between them
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\class_db.hpp(217,82): message : see reference to function template instantiation 'godot::MethodBind *godot::create_method_bind<manuka::Chunk,const godot::Vector3&,const godot::Dictionary&>(void (__cdecl manuka::Chunk::* )(const godot::Vector3 &,const godot::Dictionary &))' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(43,105): message : see reference to function template instantiation 'godot::MethodBind *godot::ClassDB::bind_method<godot::MethodDefinition,void(__cdecl manuka::Chunk::* )(const godot::Vector3 &,const godot::Dictionary &),>(N,M)' being compiled
+          with
+          [
+              N=godot::MethodDefinition,
+              M=void (__cdecl manuka::Chunk::* )(const godot::Vector3 &,const godot::Dictionary &)
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2512: 'godot::MethodBindT<const godot::Vector3 &,const godot::Dictionary &>::MethodBindT': no appropriate default constructor available
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : while trying to match the argument list '()'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(506,18): error C2440: 'reinterpret_cast': cannot convert from 'R (__cdecl manuka::Chunk::* )(void)' to 'godot::Ref<godot::Mesh> (__cdecl godot::___UnexistingClass::* )(void)'
+          with
+          [
+              R=godot::Ref<godot::Mesh>
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(506,18): message : Pointers to members have different representations; cannot cast between them
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\class_db.hpp(217,82): message : see reference to function template instantiation 'godot::MethodBind *godot::create_method_bind<manuka::Chunk,godot::Ref<godot::Mesh>,>(R (__cdecl manuka::Chunk::* )(void))' being compiled
+          with
+          [
+              R=godot::Ref<godot::Mesh>
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(44,81): message : see reference to function template instantiation 'godot::MethodBind *godot::ClassDB::bind_method<godot::MethodDefinition,godot::Ref<godot::Mesh>(__cdecl manuka::Chunk::* )(void),>(N,M)' being compiled
+          with
+          [
+              N=godot::MethodDefinition,
+              M=godot::Ref<godot::Mesh> (__cdecl manuka::Chunk::* )(void)
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(506,18): error C2512: 'godot::MethodBindTR<godot::Ref<godot::Mesh>>::MethodBindTR': no appropriate default constructor available
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(506,18): message : while trying to match the argument list '()'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(506,18): error C2672: 'godot::_post_initialize': no matching overloaded function found
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\memory.hpp(79,20): message : could be 'T *godot::_post_initialize(T *)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2440: 'reinterpret_cast': cannot convert from 'void (__cdecl manuka::Chunk::* )(const godot::Dictionary &)' to 'void (__cdecl godot::___UnexistingClass::* )(const godot::Dictionary &)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : Pointers to members have different representations; cannot cast between them
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\class_db.hpp(217,82): message : see reference to function template instantiation 'godot::MethodBind *godot::create_method_bind<manuka::Chunk,const godot::Dictionary&>(void (__cdecl manuka::Chunk::* )(const godot::Dictionary &))' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\chunk.cpp(45,91): message : see reference to function template instantiation 'godot::MethodBind *godot::ClassDB::bind_method<godot::MethodDefinition,void(__cdecl manuka::Chunk::* )(const godot::Dictionary &),>(N,M)' being compiled
+          with
+          [
+              N=godot::MethodDefinition,
+              M=void (__cdecl manuka::Chunk::* )(const godot::Dictionary &)
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2512: 'godot::MethodBindT<const godot::Dictionary &>::MethodBindT': no appropriate default constructor available
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : while trying to match the argument list '()'
+  register_types.cpp
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(791,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(796,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(284,13): warning C4244: 'initializing': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(307,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(311,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(315,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(142,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(146,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(150,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(260,13): warning C4244: 'initializing': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(367,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(371,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(375,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(214,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(218,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(222,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(289,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(293,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(297,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(224,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(228,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(232,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\projection.hpp(101,26): warning C4244: 'return': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\type_info.hpp(223,28): warning C4244: 'argument': conversion from 'int64_t' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\type_info.hpp(223,60): warning C4244: 'argument': conversion from 'int64_t' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(90,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(96,2): message : see reference to class template instantiation 'godot::VariantCaster<T>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(102,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(108,2): message : see reference to class template instantiation 'godot::VariantCaster<T&>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(114,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(120,2): message : see reference to class template instantiation 'godot::VariantCaster<const T&>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(126,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(133,2): message : see reference to class template instantiation 'godot::VariantObjectClassChecker<T>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(246,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(249,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(252,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(255,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(258,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(261,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(264,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(267,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(270,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(273,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(77,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(80,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(83,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(86,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(89,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(92,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(95,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\canvas_item.hpp(193,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\canvas_item.hpp(191,14): message : This diagnostic occurred in the compiler generated function 'void godot::CanvasItem::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(311,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(314,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(317,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(320,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(323,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(326,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(329,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(332,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(104,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(102,14): message : This diagnostic occurred in the compiler generated function 'void godot::CollisionObject3D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(107,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(102,14): message : This diagnostic occurred in the compiler generated function 'void godot::CollisionObject3D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(110,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\collision_object3d.hpp(102,14): message : This diagnostic occurred in the compiler generated function 'void godot::CollisionObject3D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\visual_instance3d.hpp(68,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\visual_instance3d.hpp(66,14): message : This diagnostic occurred in the compiler generated function 'void godot::VisualInstance3D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(165,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(168,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(171,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(174,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(177,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(180,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(183,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(186,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(189,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(192,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(195,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(198,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(201,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(204,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(69,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(72,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(75,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(78,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(66,13): warning C4244: 'return': conversion from 'float' to 'const T', possible loss of data
+          with
+          [
+              T=int32_t
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(121,24): message : see reference to function template instantiation 'const T godot::SIGN<int32_t>(const T)' being compiled
+          with
+          [
+              T=int32_t
+          ]
+  test_node2d.cpp
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(791,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(796,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(284,13): warning C4244: 'initializing': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(307,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(311,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(315,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(142,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(146,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(150,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(260,13): warning C4244: 'initializing': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(367,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(371,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(375,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(214,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(218,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(222,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(289,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(293,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(297,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(224,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(228,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(232,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\projection.hpp(101,26): warning C4244: 'return': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\type_info.hpp(223,28): warning C4244: 'argument': conversion from 'int64_t' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\type_info.hpp(223,60): warning C4244: 'argument': conversion from 'int64_t' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(90,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(96,2): message : see reference to class template instantiation 'godot::VariantCaster<T>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(102,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(108,2): message : see reference to class template instantiation 'godot::VariantCaster<T&>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(114,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(120,2): message : see reference to class template instantiation 'godot::VariantCaster<const T&>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(126,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(133,2): message : see reference to class template instantiation 'godot::VariantObjectClassChecker<T>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(246,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(249,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(252,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(255,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(258,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(261,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(264,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(267,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(270,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(273,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(77,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(80,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(83,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(86,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(89,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(92,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(95,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\canvas_item.hpp(193,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\canvas_item.hpp(191,14): message : This diagnostic occurred in the compiler generated function 'void godot::CanvasItem::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(66,13): warning C4244: 'return': conversion from 'float' to 'const T', possible loss of data
+          with
+          [
+              T=int32_t
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(121,24): message : see reference to function template instantiation 'const T godot::SIGN<int32_t>(const T)' being compiled
+          with
+          [
+              T=int32_t
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2440: 'reinterpret_cast': cannot convert from 'void (__cdecl manuka::TestNode2D::* )(const godot::String &)' to 'void (__cdecl godot::___UnexistingClass::* )(const godot::String &)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : Pointers to members have different representations; cannot cast between them
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\class_db.hpp(217,82): message : see reference to function template instantiation 'godot::MethodBind *godot::create_method_bind<manuka::TestNode2D,const godot::String&>(void (__cdecl manuka::TestNode2D::* )(const godot::String &))' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\test_node2d.cpp(23,91): message : see reference to function template instantiation 'godot::MethodBind *godot::ClassDB::bind_method<godot::MethodDefinition,void(__cdecl manuka::TestNode2D::* )(const godot::String &),>(N,M)' being compiled
+          with
+          [
+              N=godot::MethodDefinition,
+              M=void (__cdecl manuka::TestNode2D::* )(const godot::String &)
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2512: 'godot::MethodBindT<const godot::String &>::MethodBindT': no appropriate default constructor available
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : while trying to match the argument list '()'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2672: 'godot::_post_initialize': no matching overloaded function found
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\memory.hpp(79,20): message : could be 'T *godot::_post_initialize(T *)'
+  voxel_data.cpp
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(791,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(796,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(284,13): warning C4244: 'initializing': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(307,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(311,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(315,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(142,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(146,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(150,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(260,13): warning C4244: 'initializing': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(367,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(371,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(375,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(214,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(218,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(222,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(289,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(293,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(297,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(224,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(228,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(232,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\projection.hpp(101,26): warning C4244: 'return': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\type_info.hpp(223,28): warning C4244: 'argument': conversion from 'int64_t' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\type_info.hpp(223,60): warning C4244: 'argument': conversion from 'int64_t' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(90,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(96,2): message : see reference to class template instantiation 'godot::VariantCaster<T>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(102,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(108,2): message : see reference to class template instantiation 'godot::VariantCaster<T&>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(114,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(120,2): message : see reference to class template instantiation 'godot::VariantCaster<const T&>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(126,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(133,2): message : see reference to class template instantiation 'godot::VariantObjectClassChecker<T>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(246,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(249,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(252,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(255,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(258,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(261,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(264,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(267,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(270,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(273,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(77,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(80,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(83,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(86,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(89,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(92,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(95,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\canvas_item.hpp(193,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\canvas_item.hpp(191,14): message : This diagnostic occurred in the compiler generated function 'void godot::CanvasItem::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(311,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(314,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(317,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(320,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(323,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(326,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(329,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(332,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(165,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(168,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(171,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(174,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(177,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(180,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(183,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(186,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(189,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(192,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(195,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(198,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(201,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(204,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\mesh.hpp(163,14): message : This diagnostic occurred in the compiler generated function 'void godot::Mesh::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\visual_instance3d.hpp(68,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\visual_instance3d.hpp(66,14): message : This diagnostic occurred in the compiler generated function 'void godot::VisualInstance3D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(66,13): warning C4244: 'return': conversion from 'float' to 'const T', possible loss of data
+          with
+          [
+              T=int32_t
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(121,24): message : see reference to function template instantiation 'const T godot::SIGN<int32_t>(const T)' being compiled
+          with
+          [
+              T=int32_t
+          ]
+  world.cpp
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(791,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(796,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(284,13): warning C4244: 'initializing': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(307,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(311,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2.hpp(315,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(142,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(146,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(150,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(260,13): warning C4244: 'initializing': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(367,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(371,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3.hpp(375,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(214,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(218,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector3i.hpp(222,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(289,17): warning C4244: 'argument': conversion from 'const double' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(293,17): warning C4244: 'argument': conversion from 'const int32_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4.hpp(297,17): warning C4244: 'argument': conversion from 'const int64_t' to 'const real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(224,20): warning C4244: 'argument': conversion from 'const int64_t' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(228,20): warning C4244: 'argument': conversion from 'const float' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector4i.hpp(232,20): warning C4244: 'argument': conversion from 'const double' to 'const int32_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\projection.hpp(101,26): warning C4244: 'return': conversion from 'double' to 'real_t', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\type_info.hpp(223,28): warning C4244: 'argument': conversion from 'int64_t' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\type_info.hpp(223,60): warning C4244: 'argument': conversion from 'int64_t' to 'int', possible loss of data
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(90,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(96,2): message : see reference to class template instantiation 'godot::VariantCaster<T>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(102,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(108,2): message : see reference to class template instantiation 'godot::VariantCaster<T&>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(114,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(120,2): message : see reference to class template instantiation 'godot::VariantCaster<const T&>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(126,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\binder_common.hpp(133,2): message : see reference to class template instantiation 'godot::VariantObjectClassChecker<T>' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(246,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(249,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(252,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(255,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(258,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(261,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(264,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(267,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(270,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(273,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\node.hpp(244,14): message : This diagnostic occurred in the compiler generated function 'void godot::Node::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(77,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(80,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(83,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(86,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(89,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(92,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(95,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\texture2d.hpp(75,14): message : This diagnostic occurred in the compiler generated function 'void godot::Texture2D::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\canvas_item.hpp(193,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\canvas_item.hpp(191,14): message : This diagnostic occurred in the compiler generated function 'void godot::CanvasItem::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(311,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(314,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(317,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(320,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(323,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(326,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(329,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(332,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\control.hpp(309,14): message : This diagnostic occurred in the compiler generated function 'void godot::Control::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(69,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(72,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(75,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(78,3): warning C4984: 'if constexpr' is a C++17 language extension
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\gen\include\godot_cpp\classes\material.hpp(67,14): message : This diagnostic occurred in the compiler generated function 'void godot::Material::register_virtuals(void)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\math.hpp(66,13): warning C4244: 'return': conversion from 'float' to 'const T', possible loss of data
+          with
+          [
+              T=int32_t
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\variant\vector2i.hpp(121,24): message : see reference to function template instantiation 'const T godot::SIGN<int32_t>(const T)' being compiled
+          with
+          [
+              T=int32_t
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2440: 'reinterpret_cast': cannot convert from 'void (__cdecl manuka::World::* )(godot::Ref<godot::Material>)' to 'void (__cdecl godot::___UnexistingClass::* )(godot::Ref<godot::Material>)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : Pointers to members have different representations; cannot cast between them
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\class_db.hpp(217,82): message : see reference to function template instantiation 'godot::MethodBind *godot::create_method_bind<manuka::World,godot::Ref<godot::Material>>(void (__cdecl manuka::World::* )(godot::Ref<godot::Material>))' being compiled
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\world.cpp(15,83): message : see reference to function template instantiation 'godot::MethodBind *godot::ClassDB::bind_method<godot::MethodDefinition,void(__cdecl manuka::World::* )(godot::Ref<godot::Material>),>(N,M)' being compiled
+          with
+          [
+              N=godot::MethodDefinition,
+              M=void (__cdecl manuka::World::* )(godot::Ref<godot::Material>)
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2512: 'godot::MethodBindT<godot::Ref<godot::Material>>::MethodBindT': no appropriate default constructor available
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): message : while trying to match the argument list '()'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(347,18): error C2672: 'godot::_post_initialize': no matching overloaded function found
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\memory.hpp(79,20): message : could be 'T *godot::_post_initialize(T *)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(589,18): error C2440: 'reinterpret_cast': cannot convert from 'R (__cdecl manuka::World::* )(void) const' to 'godot::Ref<godot::Material> (__cdecl godot::___UnexistingClass::* )(void) const'
+          with
+          [
+              R=godot::Ref<godot::Material>
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(589,18): message : Pointers to members have different representations; cannot cast between them
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\class_db.hpp(217,82): message : see reference to function template instantiation 'godot::MethodBind *godot::create_method_bind<manuka::World,godot::Ref<godot::Material>,>(R (__cdecl manuka::World::* )(void) const)' being compiled
+          with
+          [
+              R=godot::Ref<godot::Material>
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\world.cpp(16,69): message : see reference to function template instantiation 'godot::MethodBind *godot::ClassDB::bind_method<godot::MethodDefinition,godot::Ref<godot::Material>(__cdecl manuka::World::* )(void) const,>(N,M)' being compiled
+          with
+          [
+              N=godot::MethodDefinition,
+              M=godot::Ref<godot::Material> (__cdecl manuka::World::* )(void) const
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(589,18): error C2512: 'godot::MethodBindTRC<godot::Ref<godot::Material>>::MethodBindTRC': no appropriate default constructor available
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(589,18): message : while trying to match the argument list '()'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(589,18): error C2672: 'godot::_post_initialize': no matching overloaded function found
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\memory.hpp(79,20): message : could be 'T *godot::_post_initialize(T *)'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(506,18): error C2440: 'reinterpret_cast': cannot convert from 'R (__cdecl manuka::World::* )(godot::String)' to 'uint8_t (__cdecl godot::___UnexistingClass::* )(godot::String)'
+          with
+          [
+              R=uint8_t
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(506,18): message : Pointers to members have different representations; cannot cast between them
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\class_db.hpp(217,82): message : see reference to function template instantiation 'godot::MethodBind *godot::create_method_bind<manuka::World,uint8_t,godot::String>(R (__cdecl manuka::World::* )(godot::String))' being compiled
+          with
+          [
+              R=uint8_t
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\manuka\source\world.cpp(18,69): message : see reference to function template instantiation 'godot::MethodBind *godot::ClassDB::bind_method<godot::MethodDefinition,uint8_t(__cdecl manuka::World::* )(godot::String),>(N,M)' being compiled
+          with
+          [
+              N=godot::MethodDefinition,
+              M=uint8_t (__cdecl manuka::World::* )(godot::String)
+          ]
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(506,18): error C2512: 'godot::MethodBindTR<uint8_t,godot::String>::MethodBindTR': no appropriate default constructor available
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(506,18): message : while trying to match the argument list '()'
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\method_bind.hpp(506,18): error C2672: 'godot::_post_initialize': no matching overloaded function found
+D:\game_development\kael level 3 game\level-3-game-development\external\godot-cpp\include\godot_cpp\core\memory.hpp(79,20): message : could be 'T *godot::_post_initialize(T *)'
+  Generating Code...

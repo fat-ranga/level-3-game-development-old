@@ -8,6 +8,8 @@ var current_status: String = ""
 @onready var main_menu_scene: PackedScene = preload("res://scenes/ui/main_menu.tscn")
 @onready var world_scene: PackedScene = preload("res://scenes/voxel/world.tscn")
 
+var world: World
+
 # Networking stuff.
 const PLAYER := preload("res://scenes/player.tscn")
 #const PORT: int = 25565 # Same as Minecraft.
@@ -37,6 +39,11 @@ func load_resources() -> void:
 	
 	current_status = "Reading block types..."
 	var block_types: Dictionary = data_importer.get_json_data(Constants.BLOCK_TYPES_PATH)
+	world = world_scene.instantiate() # Prepare the world so we can send data to it.
+	world.block_types = block_types
+	
+	#print(block_types)
+	
 	#print(block_types.stone.block_name)
 	#print(block_types["stone"].is_solid)
 	#print(block_types["stone"])
@@ -45,14 +52,6 @@ func open_main_menu() -> void:
 	
 	#call_deferred("add_child", main_menu_scene)
 	call_deferred("add_child", main_menu_scene.instantiate())
-	
-	
-	
-
-func open_world() -> void:
-	print("world opened")
-	
-	call_deferred("add_child", world_scene.instantiate())
 
 ####################
 # NETWORKING
@@ -69,7 +68,7 @@ func join_game(ip: String, port) -> void:
 
 func host_game(port=25565, is_multiplayer=false) -> void:
 	#main_menu.hide()
-	call_deferred("add_child", world_scene.instantiate())
+	call_deferred("add_child", world)
 	
 	print("game started")
 	
