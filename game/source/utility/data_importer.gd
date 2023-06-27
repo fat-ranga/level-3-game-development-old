@@ -16,3 +16,22 @@ func get_json_data(path: String) -> Dictionary:
 	# TODO: More robust error-checking: right now we only get an invalid get index.
 	return json_data
 
+func add_block_type_numeric_ids(block_types: Dictionary) -> Dictionary:
+	var id_counter: int = 0
+	
+	for block in block_types:
+		# Initialise new property.
+		block_types[block]["numeric_id"] = id_counter
+		
+		id_counter += 1
+		
+	
+	#print(block_types)
+	#print(block_types.keys())
+	
+	return block_types
+		#print()
+		#print(block["numeric_id"])
+	
+		#print(block_types.keys()[block["numeric_id"]])
+		

@@ -60,15 +60,37 @@ public:
 		const Dictionary& block_types);
 	void populate_voxel_map(
 		const Vector3& position,
-		int world_size_in_voxels);
+		int world_size_in_voxels,
+		const Dictionary block_types);
 	void create_mesh_data(const Dictionary& block_types);
 	bool is_voxel_in_chunk(int x, int y, int z);
 	bool check_voxel(
 		const godot::Vector3& position,
 		const Dictionary& block_types);
 	void add_texture(int texture_id);
-	uint8_t get_voxel(const Vector3& position, int world_size_in_voxels);
+	uint8_t get_voxel(
+		const Vector3& position,
+		int world_size_in_voxels,
+		const Dictionary block_types);
 	bool is_voxel_in_world(const Vector3& position, int world_size_in_voxels);
+
+	// Stuff for getting block data and stuff.
+	
+
+	//Dictionary get_voxel_data_from_string(const String voxel_name, const Dictionary block_types) {
+	//	if (block_types.has(voxel_name) == true) {
+	//		return block_types[voxel_name];
+	//	}
+	//		
+	//	return null;
+	//}
+		
+
+	//func get_voxel_data_from_int(voxel_integer) :
+	//	return voxel_dictionary[voxel_list[voxel_integer]];
+
+	//func get_voxel_int_from_string(voxel_name) :
+	//	return voxel_list.find(voxel_name);
 
 	Ref<Mesh> create_mesh(); // Keep in mind: Godot likes Refs when returning stuff.
 };

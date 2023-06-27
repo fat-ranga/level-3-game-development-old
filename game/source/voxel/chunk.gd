@@ -8,7 +8,7 @@ var block_types: Dictionary
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Magical C++ functions!
-	populate_voxel_map(position, world_size_in_blocks)
+	populate_voxel_map(position, world_size_in_blocks, block_types)
 	create_mesh_data(block_types)
 	mesh = create_mesh()
 	create_trimesh_collision()

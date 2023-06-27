@@ -39,6 +39,7 @@ func load_resources() -> void:
 	
 	current_status = "Reading block types..."
 	var block_types: Dictionary = data_importer.get_json_data(Constants.BLOCK_TYPES_PATH)
+	data_importer.add_block_type_numeric_ids(block_types)
 	world = world_scene.instantiate() # Prepare the world so we can send data to it.
 	world.block_types = block_types
 	

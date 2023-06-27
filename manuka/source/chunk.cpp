@@ -74,7 +74,7 @@ void Chunk::print_something(const String& thing){
 	
 }
 
-void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_voxels) {
+void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_voxels, const Dictionary block_types) {
 	for (int x = 0; x < chunk_width; x++) {
 		for (int y = 0; y < chunk_height; y++) {
 			for (int z = 0; z < chunk_width; z++) {
@@ -82,7 +82,7 @@ void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_
 				Vector3 final_position = voxel_pos + world_position;
 
 				// Cache coherency or something!
-				voxel_map[(x * 16 * 16) + (y * 16) + z] = get_voxel(final_position, world_size_in_voxels);
+				voxel_map[(x * 16 * 16) + (y * 16) + z] = get_voxel(final_position, world_size_in_voxels, block_types);
 				//voxel_map[(x * 16 * 16) + (y * 16) + z] = 2;
 				//voxel_map[x][y][z] = world->get_block_id("stone");// must fit into uint_8, numeric ids at runtime
 			}
@@ -213,32 +213,54 @@ void Chunk::add_texture(int texture_id = 1)
 
 	float y = (current_row - 1) / 4.0;
 
-	uvs.push_back({ x, y });
-	uvs.push_back({ x, y + normalised_block_texture_size });
+	//uvs.push_back({ x, y + normalised_block_texture_size });
+	//uvs.push_back({ x + normalised_block_texture_size, y + normalised_block_texture_size });
+	//uvs.push_back({ x, y });
+	//uvs.push_back({ x + normalised_block_texture_size, y });
+
 	uvs.push_back({ x + normalised_block_texture_size, y });
+	uvs.push_back({ x, y });
 	uvs.push_back({ x + normalised_block_texture_size, y + normalised_block_texture_size });
+	uvs.push_back({ x, y + normalised_block_texture_size });
+	
+	
+	
+	
+	
 }
 
 
-uint8_t Chunk::get_voxel(const Vector3& position, int world_size_in_voxels)
-{
+uint8_t Chunk::get_voxel(const Vector3& position, int world_size_in_voxels, const Dictionary block_types) {
+	Dictionary stone = block_types["stone"];
+	int stone_id = stone["numeric_id"];
+
+	Dictionary grass = block_types["grass_block"];
+	int grass_id = grass["numeric_id"];
+
+	Dictionary bedrock = block_types["bedrock"];
+	int bedrock_id = bedrock["numeric_id"];
+	
+	//TODO write get_block_type function
+	// also send error when int is greater than 255 becuase we need uint_8.
+
 	if (!is_voxel_in_world(position, world_size_in_voxels)) {
 		return 0;
 	}
 
 	if (position.y < 1) {
-		return 1;
+		return bedrock_id;
 	}
-	else if (position.y == chunk_height){
-		return 3;
+	else if (position.y == chunk_height - 1){
+		return grass_id;
 	}
 	else {
-		return 2;
+		return stone_id;
 	}
 }
 
-bool Chunk::is_voxel_in_world(const Vector3& position, int world_size_in_voxels)
-{
+bool Chunk::is_voxel_in_world(const Vector3& position, int world_size_in_voxels) {
+
+
 	if (position.x < 0 || position.x >= world_size_in_voxels)
 		return false;
 	if (position.y < 0 || position.y >= chunk_height)

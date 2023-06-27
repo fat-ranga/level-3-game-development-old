@@ -44,6 +44,8 @@ func generate_world() -> void:
 		for z in range(world_size_in_chunks):
 			create_new_chunk(x, z)
 	
+	print(block_types["stone"].keys())
+	
 
 func create_new_chunk(x: int, z: int) -> void:
 	var new_chunk: Chunk = chunk_scene.instantiate()
