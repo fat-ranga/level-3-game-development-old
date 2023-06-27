@@ -26,15 +26,29 @@ Chunk::Chunk()
 {
 
 	// Array of all block types in the chunk.
-	//voxel_map[16][16][16];
+	//voxel_map[chunk_width][chunk_height][chunk_width];
 
+	//voxel_map.;
+	//uint8_t fr_voxel_map* = new uint8_t[16][16][16];
 	vertex_index = 0;
+
+	
+
+	//voxel_map = new std::array<uint8_t, chunk_width>;
+
+	//std::array<uint8_t, 4096> voxel_map;
+
+	//voxel_map;
+
+	//voxel_map.
+
+	//std::array
+
 }
 
 Chunk::~Chunk()
 {
 }
-
 
 void Chunk::_bind_methods() {
 	// Bind methods here to be called in GDScript.
@@ -44,6 +58,8 @@ void Chunk::_bind_methods() {
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh"), &Chunk::create_mesh);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh_data"), &Chunk::create_mesh_data);
 	godot::ClassDB::bind_method(godot::D_METHOD("is_voxel_in_chunk"), &Chunk::is_voxel_in_chunk);
+	godot::ClassDB::bind_method(godot::D_METHOD("get_voxel"), &Chunk::get_voxel);
+	godot::ClassDB::bind_method(godot::D_METHOD("is_voxel_in_world"), &Chunk::is_voxel_in_world);
 }
 
 
@@ -58,12 +74,16 @@ void Chunk::print_something(const String& thing){
 	
 }
 
-void Chunk::populate_voxel_map() {
+void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_voxels) {
 	for (int x = 0; x < chunk_width; x++) {
 		for (int y = 0; y < chunk_height; y++) {
 			for (int z = 0; z < chunk_width; z++) {
-				voxel_map[x][y][z] = 2;
-				//voxel_map[x][y][z] = true;
+				Vector3 voxel_pos = Vector3(x, y, z);
+				Vector3 final_position = voxel_pos + world_position;
+
+				// Cache coherency or something!
+				voxel_map[(x * 16 * 16) + (y * 16) + z] = get_voxel(final_position, world_size_in_voxels);
+				//voxel_map[(x * 16 * 16) + (y * 16) + z] = 2;
 				//voxel_map[x][y][z] = world->get_block_id("stone");// must fit into uint_8, numeric ids at runtime
 			}
 		}
@@ -92,7 +112,8 @@ bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_
 
 	// This converts the block ID to a string, which we can use to
 	// index into the block_types dictionary.
-	godot::String block_string = block_types.keys()[voxel_map[x][y][z]];
+	godot::String block_string = block_types.keys()[voxel_map[(x * 16 * 16) + (y * 16) + z]];
+	//godot::String block_string = block_types.keys()[voxel_map[x * 16 + y * 16 + z]];
 
 	// For some reason I get a silent crash when I index a dictionary like this:
 	// block_types[block_string]["is_solid"]
@@ -105,8 +126,8 @@ bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_
 void Chunk::create_mesh_data(const Dictionary& block_types) {
 	//godot::UtilityFunctions::print(block_types[0]);
 
-	for (int y = 0; y < chunk_width; y++) { // Build from the bottom up.
-		for (int x = 0; x < chunk_height; x++) {
+	for (int y = 0; y < chunk_height; y++) { // Build from the bottom up.
+		for (int x = 0; x < chunk_width; x++) {
 			for (int z = 0; z < chunk_width; z++) {
 				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types);
 			}
@@ -116,8 +137,12 @@ void Chunk::create_mesh_data(const Dictionary& block_types) {
 
 void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictionary& block_types) {
 	// Probably correct.
-	int block_id = voxel_map[(int)position[0]][(int)position[1]][(int)position[2]];
+	//int block_id = voxel_map[(int)position[0]][(int)position[1]][(int)position[2]];
+	int block_id = voxel_map[((int)position[0] * 16 *  16) + ((int)position[1] * 16) + (int)position[2]];
 	//godot::UtilityFunctions::print(block_id);
+	godot::String block_string = block_types.keys()[block_id];
+	Dictionary block = block_types[block_string];
+	Array block_texture_id_array = block["texture_id"];
 	
 	for (int p = 0; p < 6; p++){ // 6 faces per voxel.
 		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p], block_types)) { // Only draw blocks that are visible.
@@ -133,22 +158,10 @@ void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictio
 			//uvs.push_back(VoxelData::VOXEL_UVS[2]);
 			//uvs.push_back(VoxelData::VOXEL_UVS[3]);
 
-			godot::String block_string = block_types.keys()[block_id];
-			Dictionary block = block_types[block_string];
-			//godot::UtilityFunctions::print(block);
-			Array block_texture_id_array = block["texture_id"];
-			//godot::UtilityFunctions::print(block_texture_id_array);
-
-			godot::Variant texture_id = block_texture_id_array[p];
-			//int texture_id = 3;
-
-			int fr_fr = texture_id;
-
-			//godot::UtilityFunctions::print(block_texture_id_array[p]);
-			//godot::UtilityFunctions::print(texture_id.get_type());
-			add_texture(block_texture_id_array[p]);
-			//add_texture(4);
 			
+			//godot::UtilityFunctions::print();
+			add_texture(block_texture_id_array[p]);
+			//add_texture(2);
 
 			triangles.push_back(vertex_index);
 			triangles.push_back(vertex_index + 1);
@@ -204,6 +217,36 @@ void Chunk::add_texture(int texture_id = 1)
 	uvs.push_back({ x, y + normalised_block_texture_size });
 	uvs.push_back({ x + normalised_block_texture_size, y });
 	uvs.push_back({ x + normalised_block_texture_size, y + normalised_block_texture_size });
+}
+
+
+uint8_t Chunk::get_voxel(const Vector3& position, int world_size_in_voxels)
+{
+	if (!is_voxel_in_world(position, world_size_in_voxels)) {
+		return 0;
+	}
+
+	if (position.y < 1) {
+		return 1;
+	}
+	else if (position.y == chunk_height){
+		return 3;
+	}
+	else {
+		return 2;
+	}
+}
+
+bool Chunk::is_voxel_in_world(const Vector3& position, int world_size_in_voxels)
+{
+	if (position.x < 0 || position.x >= world_size_in_voxels)
+		return false;
+	if (position.y < 0 || position.y >= chunk_height)
+		return false;
+	if (position.z < 0 || position.z >= world_size_in_voxels)
+		return false;
+	
+	return true;
 }
 
 

@@ -28,9 +28,10 @@ func _ready() -> void:
 	chunks.fill(0)
 	# set value
 	#chunks[x + z * world_size_in_chunks]
-	
+	#var fully = Time.get_ticks_usec()
 	generate_world()
-	
+	#var cap = Time.get_ticks_usec()
+	#print(cap - fully)
 	#print(block_types)
 	#print(new_chunk.block_types)
 	
@@ -47,6 +48,7 @@ func generate_world() -> void:
 func create_new_chunk(x: int, z: int) -> void:
 	var new_chunk: Chunk = chunk_scene.instantiate()
 	
+	new_chunk.world_size_in_blocks = world_size_in_blocks
 	new_chunk.chunk_coords = Vector2i(x, z)
 	new_chunk.position = Vector3(new_chunk.chunk_coords.x * Constants.CHUNK_WIDTH,
 	0.0,
@@ -55,7 +57,9 @@ func create_new_chunk(x: int, z: int) -> void:
 	new_chunk.block_types = block_types
 	
 	# Indexing like this because it is one, not two-dimensional.
-	chunks[x + z * world_size_in_chunks] = new_chunk
+	#var fully = Time.get_ticks_usec()
+	chunks[x * world_size_in_chunks + z] = new_chunk
+	
 	
 	chunk_container.call_deferred("add_child", new_chunk)
 
@@ -68,11 +72,11 @@ func is_chunk_in_world(coord: Vector2i) -> bool:
 	return true
 
 func is_voxel_in_world(pos: Vector3) -> bool:
-	if not pos.x > 0 && pos.x < world_size_in_blocks - 1:
+	if not pos.x > 0 or not pos.x < world_size_in_blocks - 1:
 		return false
-	if not pos.y > 0 && pos.y < Constants.CHUNK_HEIGHT - 1:
+	if not pos.y > 0 or not pos.y < Constants.CHUNK_HEIGHT - 1:
 		return false
-	if not pos.z > 0 && pos.z < world_size_in_blocks - 1:
+	if not pos.z > 0 or not pos.z < world_size_in_blocks - 1:
 		return false
 	
 	return true

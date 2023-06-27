@@ -32,7 +32,19 @@ class Chunk : public MeshInstance3D{
 	const int chunk_width = 16;
 	const int chunk_height = 16;
 
-	uint8_t voxel_map[16][16][16];
+	//uint8_t voxel_map[16][16][16];
+
+	// This will be accessed as a three-dimensional array
+	// using some multiplication stuff!
+	// TODO: Find some way to generate the thing at runtime using chunk_width and stuff.
+	std::array<uint8_t, 4096> voxel_map;
+
+	//int* voxel_map;
+
+	//std::vector<uint8_t> voxel_map();
+	//std::vector<uint8_t, 4096> voxel_map;
+	//uint8_t voxel_map[4096];
+
 	int vertex_index;
 
 protected:
@@ -40,19 +52,23 @@ protected:
 public:
 	Chunk();
 	~Chunk();
-
+	// Remember to prepend everything with const, especially Vector3!!!
 	// Declare functions here.
 	void print_something(const String& thing);
 	void add_voxel_data_to_chunk(
 		const godot::Vector3& position,
 		const Dictionary& block_types);
-	void populate_voxel_map();
+	void populate_voxel_map(
+		const Vector3& position,
+		int world_size_in_voxels);
 	void create_mesh_data(const Dictionary& block_types);
 	bool is_voxel_in_chunk(int x, int y, int z);
 	bool check_voxel(
 		const godot::Vector3& position,
 		const Dictionary& block_types);
 	void add_texture(int texture_id);
+	uint8_t get_voxel(const Vector3& position, int world_size_in_voxels);
+	bool is_voxel_in_world(const Vector3& position, int world_size_in_voxels);
 
 	Ref<Mesh> create_mesh(); // Keep in mind: Godot likes Refs when returning stuff.
 };
