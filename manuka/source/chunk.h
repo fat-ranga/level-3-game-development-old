@@ -57,22 +57,31 @@ public:
 	void print_something(const String& thing);
 	void add_voxel_data_to_chunk(
 		const godot::Vector3& position,
-		const Dictionary& block_types);
+		const Dictionary& block_types,
+		const Vector3& chunk_position,
+		int world_size_in_voxels);
 	void populate_voxel_map(
 		const Vector3& position,
 		int world_size_in_voxels,
-		const Dictionary block_types);
-	void create_mesh_data(const Dictionary& block_types);
+		const Dictionary& block_types);
+	void create_mesh_data(
+		const Dictionary& block_types,
+		const Vector3& chunk_position,
+		int world_size_in_voxels);
 	bool is_voxel_in_chunk(int x, int y, int z);
 	bool check_voxel(
 		const godot::Vector3& position,
-		const Dictionary& block_types);
+		const Dictionary& block_types,
+		const Vector3& chunk_position,
+		int world_size_in_voxels);
 	void add_texture(int texture_id);
 	uint8_t get_voxel(
 		const Vector3& position,
 		int world_size_in_voxels,
-		const Dictionary block_types);
+		const Dictionary& block_types);
 	bool is_voxel_in_world(const Vector3& position, int world_size_in_voxels);
+
+	int block_string_to_id(const String& block_name, const Dictionary& block_types);
 
 	// Stuff for getting block data and stuff.
 	
