@@ -9,7 +9,7 @@ var block_types: Dictionary
 func _ready() -> void:
 	# Magical C++ functions!
 	populate_voxel_map(position, world_size_in_blocks, block_types)
-	create_mesh_data(block_types)
+	create_mesh_data(block_types, position, world_size_in_blocks)
 	mesh = create_mesh()
 	create_trimesh_collision()
 

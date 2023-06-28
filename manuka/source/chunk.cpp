@@ -60,6 +60,7 @@ void Chunk::_bind_methods() {
 	godot::ClassDB::bind_method(godot::D_METHOD("is_voxel_in_chunk"), &Chunk::is_voxel_in_chunk);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_voxel"), &Chunk::get_voxel);
 	godot::ClassDB::bind_method(godot::D_METHOD("is_voxel_in_world"), &Chunk::is_voxel_in_world);
+	godot::ClassDB::bind_method(godot::D_METHOD("block_string_to_id"), &Chunk::block_string_to_id);
 }
 
 
@@ -74,7 +75,7 @@ void Chunk::print_something(const String& thing){
 	
 }
 
-void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_voxels, const Dictionary block_types) {
+void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_voxels, const Dictionary& block_types) {
 	for (int x = 0; x < chunk_width; x++) {
 		for (int y = 0; y < chunk_height; y++) {
 			for (int z = 0; z < chunk_width; z++) {
@@ -90,30 +91,27 @@ void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_
 	}
 }
 
-bool Chunk::is_voxel_in_chunk(int x, int y, int z)
-{
-	if (x < 0 || x > chunk_width - 1 || y < 0 || y > chunk_height - 1 || z < 0 || z > chunk_width - 1)
-		return false;
-	else {
-		return true;
-	}
-}
 
-bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_types) {
+bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_types, const Vector3& chunk_position, int world_size_in_voxels) {
 	int x = std::floorf(position.x);
 	int y = std::floorf(position.y);
 	int z = std::floorf(position.z);
 
 	// Always draw faces at the edges of the chunk.
 	if (!is_voxel_in_chunk(x, y, z)) {
-		return false;
-	}
-		
+		Vector3 global_voxel_position = position + chunk_position;
 
+		Array block_type_keys = block_types.keys();
+
+		uint8_t thing = get_voxel(global_voxel_position, world_size_in_voxels, block_types);
+		godot::String edge_block_string = block_type_keys[thing];
+
+		Dictionary edge_block_type = block_types[edge_block_string];
+		return edge_block_type["is_solid"];
+	}
 	// This converts the block ID to a string, which we can use to
 	// index into the block_types dictionary.
 	godot::String block_string = block_types.keys()[voxel_map[(x * 16 * 16) + (y * 16) + z]];
-	//godot::String block_string = block_types.keys()[voxel_map[x * 16 + y * 16 + z]];
 
 	// For some reason I get a silent crash when I index a dictionary like this:
 	// block_types[block_string]["is_solid"]
@@ -123,19 +121,19 @@ bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_
 	return block["is_solid"];
 }
 
-void Chunk::create_mesh_data(const Dictionary& block_types) {
+void Chunk::create_mesh_data(const Dictionary& block_types, const Vector3& chunk_position, int world_size_in_voxels) {
 	//godot::UtilityFunctions::print(block_types[0]);
 
 	for (int y = 0; y < chunk_height; y++) { // Build from the bottom up.
 		for (int x = 0; x < chunk_width; x++) {
 			for (int z = 0; z < chunk_width; z++) {
-				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types);
+				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types, chunk_position, world_size_in_voxels);
 			}
 		}
 	}
 }
 
-void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictionary& block_types) {
+void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictionary& block_types, const Vector3& chunk_position, int world_size_in_voxels) {
 	// Probably correct.
 	//int block_id = voxel_map[(int)position[0]][(int)position[1]][(int)position[2]];
 	int block_id = voxel_map[((int)position[0] * 16 *  16) + ((int)position[1] * 16) + (int)position[2]];
@@ -145,7 +143,7 @@ void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictio
 	Array block_texture_id_array = block["texture_id"];
 	
 	for (int p = 0; p < 6; p++){ // 6 faces per voxel.
-		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p], block_types)) { // Only draw blocks that are visible.
+		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p], block_types, chunk_position, world_size_in_voxels)) { // Only draw blocks that are visible.
 			// These values below aren't in a for loop because there are 4 vertices
 			// per face. Two triangles per face would be 6 vertices, but that results
 			// in 2 duplicate verts, which is why we use 4 and do this manually instead.
@@ -230,31 +228,31 @@ void Chunk::add_texture(int texture_id = 1)
 }
 
 
-uint8_t Chunk::get_voxel(const Vector3& position, int world_size_in_voxels, const Dictionary block_types) {
-	Dictionary stone = block_types["stone"];
-	int stone_id = stone["numeric_id"];
-
-	Dictionary grass = block_types["grass_block"];
-	int grass_id = grass["numeric_id"];
-
-	Dictionary bedrock = block_types["bedrock"];
-	int bedrock_id = bedrock["numeric_id"];
+uint8_t Chunk::get_voxel(const Vector3& position, int world_size_in_voxels, const Dictionary& block_types) {
+	int stone = block_string_to_id("stone", block_types);
+	int air = block_string_to_id("air", block_types);
+	int bedrock = block_string_to_id("bedrock", block_types);
+	int grass = block_string_to_id("grass_block", block_types);
+	
 	
 	//TODO write get_block_type function
 	// also send error when int is greater than 255 becuase we need uint_8.
 
 	if (!is_voxel_in_world(position, world_size_in_voxels)) {
-		return 0;
+		// Important that we return something transparent, otherwise
+		// no meshes will be generated, since chunks at world's edge would be surrounded in
+		// something solid, and therefore not visible.
+		return air;
 	}
 
 	if (position.y < 1) {
-		return bedrock_id;
+		return bedrock;
 	}
 	else if (position.y == chunk_height - 1){
-		return grass_id;
+		return grass;
 	}
 	else {
-		return stone_id;
+		return stone;
 	}
 }
 
@@ -271,7 +269,22 @@ bool Chunk::is_voxel_in_world(const Vector3& position, int world_size_in_voxels)
 	return true;
 }
 
+int Chunk::block_string_to_id(const String& block_name, const Dictionary& block_types)
+{
+	Dictionary block = block_types[block_name];
+	int block_numeric_id = block["numeric_id"];
 
+	return block_numeric_id;
+}
+
+bool Chunk::is_voxel_in_chunk(int x, int y, int z)
+{
+	if (x < 0 || x > chunk_width - 1 || y < 0 || y > chunk_height - 1 || z < 0 || z > chunk_width - 1)
+		return false;
+	else {
+		return true;
+	}
+}
 
 
 } // Namespace manuka.
