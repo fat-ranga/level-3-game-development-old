@@ -12,7 +12,7 @@ extends World
 var seed: String = "0"
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var block_types: Dictionary # JSON passed from Main.
-var world_size_in_chunks: int = 30 # Must be even!
+var world_size_in_chunks: int = 20 # Must be even!
 @onready var world_size_in_blocks = world_size_in_chunks * Constants.CHUNK_WIDTH
 var chunks: Array # Generated in _ready().
 var active_chunks: Array

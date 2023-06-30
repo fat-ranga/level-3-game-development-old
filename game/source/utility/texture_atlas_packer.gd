@@ -19,10 +19,11 @@ func load_textures(paths: PackedStringArray) -> Array:
 	
 	for texture_path in paths:
 		# TODO: Add error check for anything other than pngs.
-		if !texture_path.ends_with("png"):
-			print("not image g")
+		#if !texture_path.ends_with("png"):
+			#printerr("Atlas Packer: Texture not PNG: " + texture_path)
 		
 		var new_image = Image.load_from_file(texture_path)
+		print(new_image.get_format())
 		var image_size = new_image.get_size()
 		
 		if image_size.x != Constants.TEXTURE_SIZE or image_size.y != Constants.TEXTURE_SIZE:

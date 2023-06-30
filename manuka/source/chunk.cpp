@@ -84,7 +84,8 @@ void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_
 				Vector3 final_position = voxel_pos + world_position;
 
 				// Cache coherency or something!
-				voxel_map[(x * 16 * 16) + (y * 16) + z] = get_voxel(final_position, world_size_in_voxels, block_types);
+				voxel_map[(x * chunk_width * chunk_height) + (y * chunk_width) + z] = get_voxel(final_position, world_size_in_voxels, block_types);
+				//godot::UtilityFunctions::print((x * chunk_width * chunk_height) + (y * chunk_width) + z);
 				//voxel_map[(x * 16 * 16) + (y * 16) + z] = 2;
 				//voxel_map[x][y][z] = world->get_block_id("stone");// must fit into uint_8, numeric ids at runtime
 			}
@@ -112,7 +113,7 @@ bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_
 	}
 	// This converts the block ID to a string, which we can use to
 	// index into the block_types dictionary.
-	godot::String block_string = block_types.keys()[voxel_map[(x * 16 * 16) + (y * 16) + z]];
+	godot::String block_string = block_types.keys()[voxel_map[(x * chunk_width * chunk_height) + (y * chunk_width) + z]];
 
 	// For some reason I get a silent crash when I index a dictionary like this:
 	// block_types[block_string]["is_solid"]
@@ -128,7 +129,16 @@ void Chunk::create_mesh_data(const Dictionary& block_types, const Vector3& chunk
 	for (int y = 0; y < chunk_height; y++) { // Build from the bottom up.
 		for (int x = 0; x < chunk_width; x++) {
 			for (int z = 0; z < chunk_width; z++) {
-				Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types, chunk_position, world_size_in_voxels);
+
+				int block_id = voxel_map[(x * chunk_width * chunk_height) + (y * chunk_width) + z];
+				godot::String block_string = block_types.keys()[block_id];
+				Dictionary block = block_types[block_string];
+
+				// Only draw solid blocks. We don't want to render air faces.
+				if (block["is_solid"]){
+					Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types, chunk_position, world_size_in_voxels);
+				}
+				
 			}
 		}
 	}
@@ -136,7 +146,7 @@ void Chunk::create_mesh_data(const Dictionary& block_types, const Vector3& chunk
 
 void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictionary& block_types, const Vector3& chunk_position, int world_size_in_voxels) {
 	// Probably correct.
-	int block_id = voxel_map[((int)position[0] * 16 *  16) + ((int)position[1] * 16) + (int)position[2]];
+	int block_id = voxel_map[((int)position[0] * chunk_width *  chunk_height) + ((int)position[1] * chunk_width) + (int)position[2]];
 	godot::String block_string = block_types.keys()[block_id];
 	Dictionary block = block_types[block_string];
 	Array block_texture_id_array = block["texture_id"];
@@ -236,9 +246,9 @@ uint8_t Chunk::get_voxel(const Vector3& position, int world_size_in_voxels, cons
 	int bedrock = block_string_to_id("bedrock", block_types);
 	int grass = block_string_to_id("grass_block", block_types);
 	
-	
-	//TODO write get_block_type function
-	// also send error when int is greater than 255 becuase we need uint_8.
+	int y_pos = (int)std::floor(position.y);
+
+	/* IMMUTABLE PASS */
 
 	if (!is_voxel_in_world(position, world_size_in_voxels)) {
 		// Important that we return something transparent, otherwise
@@ -247,21 +257,25 @@ uint8_t Chunk::get_voxel(const Vector3& position, int world_size_in_voxels, cons
 		return air;
 	}
 
-	if (position.y < 1) {
+	if (y_pos < 1) {
 		return bedrock;
 	}
-	else if (position.y == chunk_height - 1){
-		Ref<FastNoiseLite> noise;
-		noise.instantiate();
-		float temp_noise = noise->get_noise_2d(position.x, position.z);
 
-		if (temp_noise < 0.0) {
-			return grass;
-		}
-		else {
-			return bedrock;
-		}
-		
+	Ref<FastNoiseLite> noise;
+	noise.instantiate();
+	float noise_value = godot::MAX(noise->get_noise_2d(position.x, position.z), 0);
+
+	//float temp_noise = noise->get_noise_2d(position.x, position.z);
+
+	/* BASIC TERRAIN PASS */
+
+	int terrain_height = (int)std::floor(chunk_height * noise_value);
+
+	if (y_pos == terrain_height) {
+		return grass;
+	}
+	else if(y_pos > terrain_height){
+		return air;
 	}
 	else {
 		return stone;
