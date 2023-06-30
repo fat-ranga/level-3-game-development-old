@@ -10,6 +10,8 @@ var current_status: String = ""
 
 var world: World
 
+var player_spawn_position: Vector3 # Calculated after the world is instantiated.
+
 # Networking stuff.
 const PLAYER := preload("res://scenes/player.tscn")
 #const PORT: int = 25565 # Same as Minecraft.
@@ -41,7 +43,9 @@ func load_resources() -> void:
 	var block_types: Dictionary = data_importer.get_json_data(Constants.BLOCK_TYPES_PATH)
 	data_importer.add_block_type_numeric_ids(block_types)
 	world = world_scene.instantiate() # Prepare the world so we can send data to it.
+	player_spawn_position = Vector3((world.world_size_in_chunks * Constants.CHUNK_WIDTH) / 2, Constants.CHUNK_HEIGHT, (world.world_size_in_chunks * Constants.CHUNK_WIDTH) / 2)
 	world.block_types = block_types
+	#print(world.block_types)
 	
 	#print(block_types)
 	
@@ -59,24 +63,22 @@ func open_main_menu() -> void:
 #################
 
 func join_game(ip: String, port) -> void:
-	#main_menu.hide()
-	call_deferred("add_child", world_scene.instantiate())
+	call_deferred("add_child", world)
 	
 	enet_peer.create_client(ip, port)
-	print(ip)
 	multiplayer.multiplayer_peer = enet_peer
+	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_disconnected.connect(remove_player)
+	
+	add_player(multiplayer.get_unique_id())
 	
 
 func host_game(port=25565, is_multiplayer=false) -> void:
 	#main_menu.hide()
 	call_deferred("add_child", world)
 	
-	print("game started")
-	
 	if is_multiplayer:
 		upnp_setup(port)
-	
-	
 	
 	enet_peer.create_server(port)
 	multiplayer.multiplayer_peer = enet_peer
@@ -86,23 +88,23 @@ func host_game(port=25565, is_multiplayer=false) -> void:
 	add_player(multiplayer.get_unique_id())
 
 func add_player(peer_id) -> void:
-	print("Player added")
+	print("Player added: " + str(peer_id))
 	
-	var player = PLAYER.instantiate()
-	print("1")
+	var player: Node3D = PLAYER.instantiate()
+	world.player = player
+	player.position = player_spawn_position
 	player.name = str(peer_id)
-	print("2")
 	call_deferred("add_child", player)
-	print("3")
 
 func remove_player(peer_id) -> void:
-	print("Player removed")
+	print("Player removed: " + str(peer_id))
 	
 	var player = get_node_or_null(str(peer_id))
 	if player:
 		player.call_deferred("queue_free")
 
 func upnp_setup(port) -> void:
+	print("begin upnp setup")
 	var upnp = UPNP.new()
 	
 	var discover_result = upnp.discover()

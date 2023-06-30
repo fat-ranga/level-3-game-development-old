@@ -4,5 +4,5 @@
 
 [resource]
 albedo_texture = ExtResource("1_dkbda")
-texture_filter = 4
+texture_filter = 0
 texture_repeat = false

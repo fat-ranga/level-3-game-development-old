@@ -28,6 +28,8 @@ func _on_host_button_pressed() -> void:
 
 
 func _on_join_button_pressed() -> void:
+	print("join button pressed")
+	
 	get_parent().hide()
 	hide()
 	EventBus.join_game.emit(address_entry.text, int(port.text))

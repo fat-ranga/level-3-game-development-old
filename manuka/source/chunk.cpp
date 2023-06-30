@@ -6,6 +6,7 @@
 #include <godot_cpp/classes/surface_tool.hpp>
 #include <godot_cpp/classes/mesh_instance3d.hpp>
 #include <godot_cpp/classes/array_mesh.hpp>
+#include <godot_cpp/classes/fast_noise_lite.hpp>
 
 #include <godot_cpp/classes/control.hpp>
 #include <godot_cpp/classes/global_constants.hpp>
@@ -135,9 +136,7 @@ void Chunk::create_mesh_data(const Dictionary& block_types, const Vector3& chunk
 
 void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictionary& block_types, const Vector3& chunk_position, int world_size_in_voxels) {
 	// Probably correct.
-	//int block_id = voxel_map[(int)position[0]][(int)position[1]][(int)position[2]];
 	int block_id = voxel_map[((int)position[0] * 16 *  16) + ((int)position[1] * 16) + (int)position[2]];
-	//godot::UtilityFunctions::print(block_id);
 	godot::String block_string = block_types.keys()[block_id];
 	Dictionary block = block_types[block_string];
 	Array block_texture_id_array = block["texture_id"];
@@ -151,6 +150,8 @@ void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictio
 			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][1]]);
 			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][2]]);
 			vertices.push_back(position + VoxelData::VOXEL_VERTICES[VoxelData::VOXEL_TRIS[p][3]]);
+
+			//godot::UtilityFunctions::print("after vertex push");
 			//uvs.push_back(VoxelData::VOXEL_UVS[0]);
 			//uvs.push_back(VoxelData::VOXEL_UVS[1]);
 			//uvs.push_back(VoxelData::VOXEL_UVS[2]);
@@ -158,6 +159,7 @@ void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictio
 
 			
 			//godot::UtilityFunctions::print();
+			//godot::UtilityFunctions::print(block_texture_id_array);
 			add_texture(block_texture_id_array[p]);
 			//add_texture(2);
 
@@ -249,7 +251,17 @@ uint8_t Chunk::get_voxel(const Vector3& position, int world_size_in_voxels, cons
 		return bedrock;
 	}
 	else if (position.y == chunk_height - 1){
-		return grass;
+		Ref<FastNoiseLite> noise;
+		noise.instantiate();
+		float temp_noise = noise->get_noise_2d(position.x, position.z);
+
+		if (temp_noise < 0.0) {
+			return grass;
+		}
+		else {
+			return bedrock;
+		}
+		
 	}
 	else {
 		return stone;

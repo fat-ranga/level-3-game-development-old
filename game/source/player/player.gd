@@ -171,6 +171,9 @@ func process_movement_state(delta) -> void:
 
 @rpc("unreliable")
 func remote_set_position(authority_position, authority_rotation):
+	#print(authority_position)
+	#get_tree().get_remote_sender_id()
+	#get_remote_sender_id()
 	global_position = authority_position
 	test_mesh.global_rotation = authority_rotation
 

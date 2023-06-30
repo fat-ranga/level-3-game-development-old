@@ -5,6 +5,7 @@ const TEXTURE_ATLAS_SIZE: int = 64 # Only works in multiples of the TEXTURE_SIZE
 
 const CHUNK_WIDTH: int = 16
 const CHUNK_HEIGHT: int = 16 # TODO make it affect actal chunk c++ thing
+const VIEW_DISTANCE = 2
 	
 # Different root directories for storing game data such as textures and stuff.
 # We have these because it's easier to work on the game in editor using the local resource directory.
