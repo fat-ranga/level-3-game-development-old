@@ -72,6 +72,7 @@ visible = false
 mesh = SubResource("CylinderMesh_kh317")
 
 [node name="human" type="Node3D" parent="."]
+visible = false
 
 [node name="Human Base Mesh" type="MeshInstance3D" parent="human"]
 material_override = ExtResource("2_cb78g")

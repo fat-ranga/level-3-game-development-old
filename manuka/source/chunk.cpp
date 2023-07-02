@@ -123,7 +123,7 @@ bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_
 	return block["is_solid"];
 }
 
-void Chunk::create_mesh_data(const Dictionary& block_types, const Vector3& chunk_position, int world_size_in_voxels) {
+void Chunk::create_mesh_data(const Dictionary& block_types, const Vector3& chunk_position, int world_size_in_voxels, int texture_atlas_size_in_blocks, const Dictionary& texture_ids) {
 	//godot::UtilityFunctions::print(block_types[0]);
 
 	for (int y = 0; y < chunk_height; y++) { // Build from the bottom up.
@@ -136,7 +136,7 @@ void Chunk::create_mesh_data(const Dictionary& block_types, const Vector3& chunk
 
 				// Only draw solid blocks. We don't want to render air faces.
 				if (block["is_solid"]){
-					Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types, chunk_position, world_size_in_voxels);
+					Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types, chunk_position, world_size_in_voxels, texture_atlas_size_in_blocks, texture_ids);
 				}
 				
 			}
@@ -144,7 +144,14 @@ void Chunk::create_mesh_data(const Dictionary& block_types, const Vector3& chunk
 	}
 }
 
-void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictionary& block_types, const Vector3& chunk_position, int world_size_in_voxels) {
+void Chunk::add_voxel_data_to_chunk(
+	const godot::Vector3& position,
+	const Dictionary& block_types,
+	const Vector3& chunk_position,
+	int world_size_in_voxels,
+	int texture_atlas_size_in_blocks,
+	const Dictionary& texture_ids) {
+
 	// Probably correct.
 	int block_id = voxel_map[((int)position[0] * chunk_width *  chunk_height) + ((int)position[1] * chunk_width) + (int)position[2]];
 	godot::String block_string = block_types.keys()[block_id];
@@ -170,7 +177,10 @@ void Chunk::add_voxel_data_to_chunk(const godot::Vector3& position, const Dictio
 			
 			//godot::UtilityFunctions::print();
 			//godot::UtilityFunctions::print(block_texture_id_array);
-			add_texture(block_texture_id_array[p]);
+			String texture_name = block_texture_id_array[p];
+			int texture_id = texture_ids[texture_name];
+
+			add_texture(texture_id, texture_atlas_size_in_blocks);
 			//add_texture(2);
 
 			triangles.push_back(vertex_index);
@@ -208,20 +218,23 @@ Ref<Mesh> Chunk::create_mesh() {
 
 }
 
-void Chunk::add_texture(int texture_id = 1)
+void Chunk::add_texture(int texture_id = 1, int texture_atlas_size_in_blocks = 4)
 {
 	//godot::UtilityFunctions::print(texture_id);
 
 	//int p_texture_id = 2;
 
-	float texture_atlas_size_in_blocks = 4.0;
-	float normalised_block_texture_size = 1.0 / texture_atlas_size_in_blocks;
+	//float texture_atlas_size_in_blocks = 4.0;
+	float normalised_block_texture_size = 1.0 / (float)texture_atlas_size_in_blocks;
 
-	int current_row = floor(texture_id / 4.0) + 1;
+	int current_row = floor(texture_id / (float)texture_atlas_size_in_blocks) + 1;
 
-	float x = (texture_id / 4.0) - (current_row - 1);
+	float x = (texture_id / (float)texture_atlas_size_in_blocks) - (current_row - 1);
 
-	float y = (current_row - 1) / 4.0;
+	float y = (current_row - 1) / (float)texture_atlas_size_in_blocks;
+
+	//godot::UtilityFunctions::print(x);
+	//godot::UtilityFunctions::print(y);
 
 	//uvs.push_back({ x, y + normalised_block_texture_size });
 	//uvs.push_back({ x + normalised_block_texture_size, y + normalised_block_texture_size });

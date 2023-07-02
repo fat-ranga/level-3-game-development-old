@@ -31,18 +31,28 @@ func _ready() -> void:
 	open_main_menu()
 
 func load_resources() -> void:
+	world = world_scene.instantiate() # Prepare the world so we can send data to it.
+	
 	current_status = "Reading textures..."
 	var texture_paths: PackedStringArray = atlas_packer.get_texture_paths_in_directory()
 	var textures: Array = atlas_packer.load_textures(texture_paths)
 	
 	current_status = "Generating texture atlas..."
-	var texture_atlas: Image = atlas_packer.pack_atlas(textures)
-	texture_atlas.save_png(Constants.DIRECTORY_USER + "atlas_frfr.png")
+	var texture_atlas: ImageTexture = atlas_packer.pack_atlas(textures)
+	#texture_atlas.save_png(Constants.DIRECTORY_LOCAL_EXECUTABLE + "atlas_frfr.png")
+	world.atlas_size_in_blocks = atlas_packer.atlas_size_in_blocks
+	world.texture_ids = atlas_packer.texture_ids
+	
+	var chunk_material: StandardMaterial3D = StandardMaterial3D.new()
+	chunk_material.albedo_texture = texture_atlas
+	chunk_material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	world.chunk_material = chunk_material
+	
+	#print(atlas_packer.texture_ids)
 	
 	current_status = "Reading block types..."
 	var block_types: Dictionary = data_importer.get_json_data(Constants.BLOCK_TYPES_PATH)
 	data_importer.add_block_type_numeric_ids(block_types)
-	world = world_scene.instantiate() # Prepare the world so we can send data to it.
 	player_spawn_position = Vector3((world.world_size_in_chunks * Constants.CHUNK_WIDTH) / 2, Constants.CHUNK_HEIGHT, (world.world_size_in_chunks * Constants.CHUNK_WIDTH) / 2)
 	world.block_types = block_types
 	#print(world.block_types)

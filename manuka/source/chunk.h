@@ -59,7 +59,9 @@ public:
 		const godot::Vector3& position,
 		const Dictionary& block_types,
 		const Vector3& chunk_position,
-		int world_size_in_voxels);
+		int world_size_in_voxels,
+		int texture_atlas_size_in_blocks,
+		const Dictionary& texture_ids);
 	void populate_voxel_map(
 		const Vector3& position,
 		int world_size_in_voxels,
@@ -67,14 +69,18 @@ public:
 	void create_mesh_data(
 		const Dictionary& block_types,
 		const Vector3& chunk_position,
-		int world_size_in_voxels);
+		int world_size_in_voxels,
+		int texture_atlas_size_in_blocks,
+		const Dictionary& texture_ids);
 	bool is_voxel_in_chunk(int x, int y, int z);
 	bool check_voxel(
 		const godot::Vector3& position,
 		const Dictionary& block_types,
 		const Vector3& chunk_position,
 		int world_size_in_voxels);
-	void add_texture(int texture_id);
+	void add_texture(
+		int texture_id,
+		int texture_atlas_size_in_blocks);
 	uint8_t get_voxel(
 		const Vector3& position,
 		int world_size_in_voxels,

@@ -12,7 +12,13 @@ extends World
 var seed: String = "0"
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var block_types: Dictionary # JSON passed from Main.
-var world_size_in_chunks: int = 20 # Must be even!
+var world_size_in_chunks: int = 4 # Must be even!
+
+# These are passed from Main, after the texture atlas packer has done its thing.
+var texture_atlas
+var atlas_size_in_blocks: int
+var texture_ids: Dictionary
+
 @onready var world_size_in_blocks = world_size_in_chunks * Constants.CHUNK_WIDTH
 var chunks: Array # Generated in _ready().
 var active_chunks: Array
@@ -22,6 +28,7 @@ var player_current_chunk_coord: Vector2i
 
 @onready var chunk_scene = preload("res://scenes/voxel/chunk.tscn")
 @onready var chunk_container = $Chunks
+var chunk_material: StandardMaterial3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -65,9 +72,11 @@ func create_new_chunk(x: int, z: int) -> void:
 	new_chunk.chunk_coords.y * Constants.CHUNK_WIDTH)
 	new_chunk.name = "Chunk " + str(new_chunk.chunk_coords)
 	new_chunk.block_types = block_types
+	new_chunk.material = chunk_material
+	new_chunk.atlas_size_in_blocks = atlas_size_in_blocks
+	new_chunk.texture_ids = texture_ids
 	
 	# Indexing like this because it is one, not two-dimensional.
-	#var fully = Time.get_ticks_usec()
 	chunks[x * world_size_in_chunks + z] = new_chunk
 	
 	
@@ -87,7 +96,7 @@ func check_view_distance() -> void:
 	#coord = get_chunk_coord_from_vector3(Vector3())
 	
 	# We append it this way so that we aren't just passing a reference around.
-	var previously_active_chunks: Array
+	var previously_active_chunks: Array = []
 	previously_active_chunks.append_array(active_chunks)
 	
 	for x in range(coord.x - Constants.VIEW_DISTANCE, coord.x + Constants.VIEW_DISTANCE):

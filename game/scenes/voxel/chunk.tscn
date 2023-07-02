@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkbtljtp3mn2p"]
+[gd_scene load_steps=2 format=3 uid="uid://bkbtljtp3mn2p"]
 
 [ext_resource type="Script" path="res://source/voxel/chunk.gd" id="1_1dqif"]
-[ext_resource type="Material" uid="uid://d4etupgsksv12" path="res://data/materials/blocks.tres" id="1_vcjou"]
 
 [node name="Chunk" type="Chunk"]
-material_override = ExtResource("1_vcjou")
 script = ExtResource("1_1dqif")

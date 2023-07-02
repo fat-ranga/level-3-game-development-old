@@ -12,7 +12,7 @@ const VIEW_DISTANCE = 2
 # When we export the game, we can't write to res:// anymore, so we need to use either the user directory
 # or the directory where the actual game exe is stored.
 @onready var DIRECTORY_RES = "res://data"
-@onready var DIRECTORY_LOCAL_EXECUTABLE = str(OS.get_executable_path().get_base_dir())
+@onready var DIRECTORY_LOCAL_EXECUTABLE = str(OS.get_executable_path().get_base_dir()) + "/"
 @onready var DIRECTORY_USER = "user://"
 
 @onready var ROOT_DIRECTORY: String = DIRECTORY_LOCAL_EXECUTABLE
