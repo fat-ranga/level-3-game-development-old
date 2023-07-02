@@ -19,6 +19,8 @@ var texture_atlas
 var atlas_size_in_blocks: int
 var texture_ids: Dictionary
 
+var biomes: Dictionary
+
 @onready var world_size_in_blocks = world_size_in_chunks * Constants.CHUNK_WIDTH
 var chunks: Array # Generated in _ready().
 var active_chunks: Array
@@ -75,6 +77,7 @@ func create_new_chunk(x: int, z: int) -> void:
 	new_chunk.material = chunk_material
 	new_chunk.atlas_size_in_blocks = atlas_size_in_blocks
 	new_chunk.texture_ids = texture_ids
+	new_chunk.biomes = biomes
 	
 	# Indexing like this because it is one, not two-dimensional.
 	chunks[x * world_size_in_chunks + z] = new_chunk

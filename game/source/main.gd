@@ -57,6 +57,10 @@ func load_resources() -> void:
 	world.block_types = block_types
 	#print(world.block_types)
 	
+	current_status = "Reading biomes..."
+	var biomes: Dictionary = data_importer.get_json_data(Constants.BIOMES_PATH)
+	world.biomes = biomes
+	
 	#print(block_types)
 	
 	#print(block_types.stone.block_name)

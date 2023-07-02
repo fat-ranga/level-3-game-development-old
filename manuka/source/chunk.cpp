@@ -76,7 +76,12 @@ void Chunk::print_something(const String& thing){
 	
 }
 
-void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_voxels, const Dictionary& block_types) {
+void Chunk::populate_voxel_map(
+	const Vector3& world_position,
+	int world_size_in_voxels,
+	const Dictionary& block_types,
+	const Dictionary& biomes) {
+
 	for (int x = 0; x < chunk_width; x++) {
 		for (int y = 0; y < chunk_height; y++) {
 			for (int z = 0; z < chunk_width; z++) {
@@ -84,7 +89,7 @@ void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_
 				Vector3 final_position = voxel_pos + world_position;
 
 				// Cache coherency or something!
-				voxel_map[(x * chunk_width * chunk_height) + (y * chunk_width) + z] = get_voxel(final_position, world_size_in_voxels, block_types);
+				voxel_map[(x * chunk_width * chunk_height) + (y * chunk_width) + z] = get_voxel(final_position, world_size_in_voxels, block_types, biomes);
 				//godot::UtilityFunctions::print((x * chunk_width * chunk_height) + (y * chunk_width) + z);
 				//voxel_map[(x * 16 * 16) + (y * 16) + z] = 2;
 				//voxel_map[x][y][z] = world->get_block_id("stone");// must fit into uint_8, numeric ids at runtime
@@ -94,7 +99,12 @@ void Chunk::populate_voxel_map(const Vector3& world_position, int world_size_in_
 }
 
 
-bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_types, const Vector3& chunk_position, int world_size_in_voxels) {
+bool Chunk::check_voxel(
+	const godot::Vector3& position,
+	const Dictionary& block_types,
+	const Vector3& chunk_position,
+	int world_size_in_voxels,
+	const Dictionary& biomes) {
 	int x = std::floorf(position.x);
 	int y = std::floorf(position.y);
 	int z = std::floorf(position.z);
@@ -105,7 +115,7 @@ bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_
 
 		Array block_type_keys = block_types.keys();
 
-		uint8_t thing = get_voxel(global_voxel_position, world_size_in_voxels, block_types);
+		uint8_t thing = get_voxel(global_voxel_position, world_size_in_voxels, block_types, biomes);
 		godot::String edge_block_string = block_type_keys[thing];
 
 		Dictionary edge_block_type = block_types[edge_block_string];
@@ -123,7 +133,13 @@ bool Chunk::check_voxel(const godot::Vector3& position, const Dictionary& block_
 	return block["is_solid"];
 }
 
-void Chunk::create_mesh_data(const Dictionary& block_types, const Vector3& chunk_position, int world_size_in_voxels, int texture_atlas_size_in_blocks, const Dictionary& texture_ids) {
+void Chunk::create_mesh_data(
+	const Dictionary& block_types,
+	const Vector3& chunk_position,
+	int world_size_in_voxels,
+	int texture_atlas_size_in_blocks,
+	const Dictionary& texture_ids,
+	const Dictionary& biomes) {
 	//godot::UtilityFunctions::print(block_types[0]);
 
 	for (int y = 0; y < chunk_height; y++) { // Build from the bottom up.
@@ -136,7 +152,7 @@ void Chunk::create_mesh_data(const Dictionary& block_types, const Vector3& chunk
 
 				// Only draw solid blocks. We don't want to render air faces.
 				if (block["is_solid"]){
-					Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types, chunk_position, world_size_in_voxels, texture_atlas_size_in_blocks, texture_ids);
+					Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types, chunk_position, world_size_in_voxels, texture_atlas_size_in_blocks, texture_ids, biomes);
 				}
 				
 			}
@@ -150,7 +166,8 @@ void Chunk::add_voxel_data_to_chunk(
 	const Vector3& chunk_position,
 	int world_size_in_voxels,
 	int texture_atlas_size_in_blocks,
-	const Dictionary& texture_ids) {
+	const Dictionary& texture_ids,
+	const Dictionary& biomes) {
 
 	// Probably correct.
 	int block_id = voxel_map[((int)position[0] * chunk_width *  chunk_height) + ((int)position[1] * chunk_width) + (int)position[2]];
@@ -159,7 +176,7 @@ void Chunk::add_voxel_data_to_chunk(
 	Array block_texture_id_array = block["texture_id"];
 	
 	for (int p = 0; p < 6; p++){ // 6 faces per voxel.
-		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p], block_types, chunk_position, world_size_in_voxels)) { // Only draw blocks that are visible.
+		if (!Chunk::check_voxel(position + VoxelData::FACE_CHECKS[p], block_types, chunk_position, world_size_in_voxels, biomes)) { // Only draw blocks that are visible.
 			// These values below aren't in a for loop because there are 4 vertices
 			// per face. Two triangles per face would be 6 vertices, but that results
 			// in 2 duplicate verts, which is why we use 4 and do this manually instead.
@@ -253,13 +270,20 @@ void Chunk::add_texture(int texture_id = 1, int texture_atlas_size_in_blocks = 4
 }
 
 
-uint8_t Chunk::get_voxel(const Vector3& position, int world_size_in_voxels, const Dictionary& block_types) {
+uint8_t Chunk::get_voxel(
+	const Vector3& position,
+	int world_size_in_voxels,
+	const Dictionary& block_types,
+	const Dictionary& biomes) {
 	int stone = block_string_to_id("stone", block_types);
 	int air = block_string_to_id("air", block_types);
 	int bedrock = block_string_to_id("bedrock", block_types);
 	int grass = block_string_to_id("grass_block", block_types);
+	int dirt = block_string_to_id("dirt", block_types);
 	
 	int y_pos = (int)std::floor(position.y);
+	Dictionary biome = biomes["farmland"];
+	Dictionary lodes = biome["lodes"];
 
 	/* IMMUTABLE PASS */
 
@@ -282,17 +306,67 @@ uint8_t Chunk::get_voxel(const Vector3& position, int world_size_in_voxels, cons
 
 	/* BASIC TERRAIN PASS */
 
-	int terrain_height = (int)std::floor(chunk_height * noise_value);
+	int terrain_height = (int)std::floor((int)biome["terrain_height"] * noise_value + (int)biome["solid_ground_height"]);
+
+	uint8_t voxel_value = air;
 
 	if (y_pos == terrain_height) {
-		return grass;
+		voxel_value = grass;
+	}
+	else if (y_pos < terrain_height && y_pos > terrain_height - 4){
+		voxel_value = dirt;
 	}
 	else if(y_pos > terrain_height){
 		return air;
 	}
 	else {
-		return stone;
+		voxel_value = stone;
 	}
+
+	/* SECOND PASS */
+
+	if (voxel_value == stone) {
+		for (int i = 0; i < lodes.size(); i++){
+			//godot::UtilityFunctions::print(lodes.size());
+			//godot::UtilityFunctions::print("sus");
+			//godot::UtilityFunctions::print(lodes);
+
+			//Dictionary lode = lodes.keys()[i-1];
+
+			//if (y_pos > lode["min_height"]){
+			//	godot::UtilityFunctions::print("ok");
+			//}
+			//Array lodes_array = lodes.keys();
+			//godot::UtilityFunctions::print(i);
+			Dictionary current_lode = lodes[lodes.keys()[i]];
+
+			//godot::UtilityFunctions::print(lodes_array[i]);
+			//godot::UtilityFunctions::print(i);
+
+			if (y_pos > (int)current_lode["min_height"] && y_pos < (int)current_lode["max_height"]){
+				noise->set_frequency(0.1);
+
+				float noise_x = position.x + (float)current_lode["noise_offset"];
+				float noise_y = position.y + (float)current_lode["noise_offset"];
+				float noise_z = position.z + (float)current_lode["noise_offset"];
+
+				float noise_value_3d = noise->get_noise_3d(noise_x, noise_y, noise_z);
+				if (noise_value_3d > 0.4) {
+					//godot::UtilityFunctions::print("noise lode fr");
+
+					
+					String lode_block = current_lode["block_name"];
+					//godot::UtilityFunctions::print(current_lode["block_name"]);
+
+
+					voxel_value = (uint8_t)block_string_to_id(lode_block, block_types);
+					//voxel_value = air;
+				}
+			}
+		}
+	}
+
+	return voxel_value;
 }
 
 bool Chunk::is_voxel_in_world(const Vector3& position, int world_size_in_voxels) {

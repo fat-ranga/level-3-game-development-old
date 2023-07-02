@@ -29,15 +29,15 @@ class Chunk : public MeshInstance3D{
 	godot::ArrayMesh array_mesh;
 	Vector2 custom_position;
 
-	const int chunk_width = 16;
-	const int chunk_height = 16;
+	const int chunk_width = 32;
+	const int chunk_height = 32;
 
 	//uint8_t voxel_map[16][16][16];
 
 	// This will be accessed as a three-dimensional array
 	// using some multiplication stuff!
 	// TODO: Find some way to generate the thing at runtime using chunk_width and stuff.
-	std::array<uint8_t, 4096> voxel_map;
+	std::array<uint8_t, 32768> voxel_map;
 
 	//int* voxel_map;
 
@@ -61,30 +61,35 @@ public:
 		const Vector3& chunk_position,
 		int world_size_in_voxels,
 		int texture_atlas_size_in_blocks,
-		const Dictionary& texture_ids);
+		const Dictionary& texture_ids,
+		const Dictionary& biomes);
 	void populate_voxel_map(
 		const Vector3& position,
 		int world_size_in_voxels,
-		const Dictionary& block_types);
+		const Dictionary& block_types,
+		const Dictionary& biomes);
 	void create_mesh_data(
 		const Dictionary& block_types,
 		const Vector3& chunk_position,
 		int world_size_in_voxels,
 		int texture_atlas_size_in_blocks,
-		const Dictionary& texture_ids);
+		const Dictionary& texture_ids,
+		const Dictionary& biomes);
 	bool is_voxel_in_chunk(int x, int y, int z);
 	bool check_voxel(
 		const godot::Vector3& position,
 		const Dictionary& block_types,
 		const Vector3& chunk_position,
-		int world_size_in_voxels);
+		int world_size_in_voxels,
+		const Dictionary& biomes);
 	void add_texture(
 		int texture_id,
 		int texture_atlas_size_in_blocks);
 	uint8_t get_voxel(
 		const Vector3& position,
 		int world_size_in_voxels,
-		const Dictionary& block_types);
+		const Dictionary& block_types,
+		const Dictionary& biomes);
 	bool is_voxel_in_world(const Vector3& position, int world_size_in_voxels);
 
 	int block_string_to_id(const String& block_name, const Dictionary& block_types);

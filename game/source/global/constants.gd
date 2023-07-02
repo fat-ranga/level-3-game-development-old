@@ -3,8 +3,8 @@ extends Node
 const TEXTURE_SIZE: int = 16
 const TEXTURE_ATLAS_SIZE: int = 64 # Only works in multiples of the TEXTURE_SIZE.
 
-const CHUNK_WIDTH: int = 16
-const CHUNK_HEIGHT: int = 16 # TODO make it affect actal chunk c++ thing
+const CHUNK_WIDTH: int = 32
+const CHUNK_HEIGHT: int = 32 # TODO make it affect actal chunk c++ thing
 const VIEW_DISTANCE = 2
 	
 # Different root directories for storing game data such as textures and stuff.
@@ -18,5 +18,6 @@ const VIEW_DISTANCE = 2
 @onready var ROOT_DIRECTORY: String = DIRECTORY_LOCAL_EXECUTABLE
 
 
-@onready var BLOCK_TYPES_PATH: String = str(ROOT_DIRECTORY + "/block_types.json")#"user://textures"
-@onready var TEXTURE_DIRECTORY: String = str(ROOT_DIRECTORY + "/textures/atlas")#"user://textures"
+@onready var BLOCK_TYPES_PATH: String = str(ROOT_DIRECTORY + "block_types.json")#"user://textures"
+@onready var TEXTURE_DIRECTORY: String = str(ROOT_DIRECTORY + "textures/atlas")#"user://textures"
+@onready var BIOMES_PATH: String = str(ROOT_DIRECTORY + "biomes.json")
