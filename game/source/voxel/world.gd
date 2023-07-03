@@ -22,11 +22,16 @@ var texture_ids: Dictionary
 var biomes: Dictionary
 
 @onready var world_size_in_blocks = world_size_in_chunks * Constants.CHUNK_WIDTH
+
 var chunks: Array # Generated in _ready().
 var active_chunks: Array
+var chunks_to_generate: Array
+var chunks_to_remesh: Array
+
 var player: Node3D
 var player_last_chunk_coord: Vector2i
 var player_current_chunk_coord: Vector2i
+var previously_active_chunks: Array
 
 @onready var chunk_scene = preload("res://scenes/voxel/chunk.tscn")
 @onready var chunk_container = $Chunks
@@ -59,12 +64,34 @@ func generate_world() -> void:
 	
 	for x in range((world_size_in_chunks / 2) - Constants.VIEW_DISTANCE, (world_size_in_chunks / 2) + Constants.VIEW_DISTANCE):
 		for z in range((world_size_in_chunks / 2) - Constants.VIEW_DISTANCE, (world_size_in_chunks / 2) + Constants.VIEW_DISTANCE):
-			create_new_chunk(x, z)
-	
-	#print(block_types["stone"].keys())
+			#create_new_chunk(x, z)
+			#chunks[x * world_size_in_chunks + z] = initialise_chunk(x, z)
+			chunks_to_generate.append(Vector2i(x, z))
 	
 
-func create_new_chunk(x: int, z: int) -> void:
+#func create_new_chunk(x: int, z: int) -> void:
+#	var new_chunk: Chunk = chunk_scene.instantiate()
+#
+#	new_chunk.world_size_in_blocks = world_size_in_blocks
+#	new_chunk.chunk_coords = Vector2i(x, z)
+#	new_chunk.position = Vector3(new_chunk.chunk_coords.x * Constants.CHUNK_WIDTH,
+#	0.0,
+#	new_chunk.chunk_coords.y * Constants.CHUNK_WIDTH)
+#	new_chunk.name = "Chunk " + str(new_chunk.chunk_coords)
+#	new_chunk.block_types = block_types
+#	new_chunk.material = chunk_material
+#	new_chunk.atlas_size_in_blocks = atlas_size_in_blocks
+#	new_chunk.texture_ids = texture_ids
+#	new_chunk.biomes = biomes
+#
+#	# Indexing like this because it is one, not two-dimensional.
+#	chunks[x * world_size_in_chunks + z] = new_chunk
+#
+#
+#	chunk_container.call_deferred("add_child", new_chunk)
+#	active_chunks.append(Vector2i(x, z))
+
+func initialise_chunk(x: int, z: int) -> Chunk:
 	var new_chunk: Chunk = chunk_scene.instantiate()
 	
 	new_chunk.world_size_in_blocks = world_size_in_blocks
@@ -79,12 +106,26 @@ func create_new_chunk(x: int, z: int) -> void:
 	new_chunk.texture_ids = texture_ids
 	new_chunk.biomes = biomes
 	
-	# Indexing like this because it is one, not two-dimensional.
-	chunks[x * world_size_in_chunks + z] = new_chunk
+	return new_chunk
+
+func generate_chunk() -> void:
+	var chunk: Chunk = initialise_chunk(chunks_to_generate[0].x, chunks_to_generate[0].y)
 	
+	chunk.generate_terrain()
+	chunk.generate_mesh()
+	chunk.generate_collider()
 	
-	chunk_container.call_deferred("add_child", new_chunk)
-	active_chunks.append(Vector2i(x, z))
+	chunks[chunks_to_generate[0].x * world_size_in_chunks + chunks_to_generate[0].y] = chunk
+	chunk_container.call_deferred("add_child", chunk)
+	active_chunks.append(Vector2i(chunks_to_generate[0].x, chunks_to_generate[0].y))
+	
+	print("generated chunk" + str(chunks_to_generate[0]))
+	
+	chunks_to_generate.remove_at(0)
+
+#func remesh_chunks() -> void:
+#	for i in range(chunks_to_remesh):
+#		chunks_to_remesh[i].clear_mesh()
 
 func get_chunk_coord_from_vector3(pos: Vector3) -> Vector2i:
 	var x: int = floori(pos.x / Constants.CHUNK_WIDTH)
@@ -93,45 +134,40 @@ func get_chunk_coord_from_vector3(pos: Vector3) -> Vector2i:
 	return Vector2i(x, z)
 
 func check_view_distance() -> void:
-	var coord: Vector2i
+	var coord: Vector2i = get_chunk_coord_from_vector3(player.position)
 	
-	coord = get_chunk_coord_from_vector3(player.position)
-	#coord = get_chunk_coord_from_vector3(Vector3())
-	
-	# We append it this way so that we aren't just passing a reference around.
-	var previously_active_chunks: Array = []
+
+	previously_active_chunks.clear()
 	previously_active_chunks.append_array(active_chunks)
+
+	active_chunks.clear()
+	
+	var things_to_remove: Array = []
 	
 	for x in range(coord.x - Constants.VIEW_DISTANCE, coord.x + Constants.VIEW_DISTANCE):
 		for z in range(coord.y - Constants.VIEW_DISTANCE, coord.y + Constants.VIEW_DISTANCE):
 			if is_chunk_in_world(x, z):
-				if chunks[x * world_size_in_chunks + z] == null:
-					create_new_chunk(x, z)
-				else:
-					chunks[x * world_size_in_chunks + z].show()
+				var chunk: Chunk = chunks[x * world_size_in_chunks + z]
 				
-				# Check if the chunk is disabled or not.
-				#elif chunks[x * world_size_in_chunks + z]:
-					#chunks[x * world_size_in_chunks + z].process_mode = PROCESS_MODE_INHERIT
-					#chunks[x * world_size_in_chunks + z].show()
-					#active_chunks.append(Vector2i(x, z))
+				if chunk == null:
+					chunks_to_generate.append(Vector2i(x, z))
+					#create_new_chunk(x, z)
+				elif !chunk.visible:
+					chunk.show()
+				
+				active_chunks.append(Vector2i(x, z))
 			
-			#print("before")
-			#print(previously_active_chunks)
-			
-			# Remove chunks that are within the view distance.
-			for i in range(previously_active_chunks.size() - 1):
-				if previously_active_chunks[i] == Vector2i(x, z):
-					previously_active_chunks.remove_at(i)
+			for i in range(previously_active_chunks.size()):
+				if not i > previously_active_chunks.size() - 1: # Took me way too long to come up with this check.
+					if previously_active_chunks[i] == Vector2i(x, z):
+						previously_active_chunks.remove_at(i)
 	
 	for c in previously_active_chunks:
-		#chunks[c.x * world_size_in_chunks + c.y].process_mode = PROCESS_MODE_DISABLED
 		chunks[c.x * world_size_in_chunks + c.y].hide()
 
-					
 
 func is_chunk_in_world(x: int, z: int) -> bool:
-	if x > 0 && x < world_size_in_chunks - 1 && z > 0 && z < world_size_in_chunks - 1:
+	if x >= 0 && x < world_size_in_chunks && z >= 0 && z < world_size_in_chunks:
 		return true
 	else:
 		return false
@@ -143,9 +179,13 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	# Only update what chunks to load/unload if the player has actually moved.
 	
-	player_current_chunk_coord = Vector2i(player.position.x, player.position.z)
+	while chunks_to_generate.size() > 0:
+		generate_chunk()
+	
+	player_current_chunk_coord = get_chunk_coord_from_vector3(player.position)
 	
 	if player_current_chunk_coord != player_last_chunk_coord:
 		check_view_distance()
 	
 	player_last_chunk_coord = player_current_chunk_coord
+	

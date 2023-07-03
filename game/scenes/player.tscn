@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvgvkd4kxlqyy"]
+[gd_scene load_steps=12 format=3 uid="uid://cvgvkd4kxlqyy"]
 
 [ext_resource type="Script" path="res://source/player/player.gd" id="1_38koj"]
 [ext_resource type="Material" uid="uid://8tkij7jioxu6" path="res://data/new_standard_material_3d.tres" id="2_cb78g"]
 [ext_resource type="Texture2D" uid="uid://76ukexv58622" path="res://data/textures_import/human_diffuse.png" id="3_vaehy"]
 [ext_resource type="Texture2D" uid="uid://h535sq7nfip" path="res://data/textures/ui/crosshair.png" id="4_6mibw"]
+[ext_resource type="Script" path="res://source/utility/debug_screen.gd" id="5_8vvhx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7nvsj"]
 size = Vector3(0.4, 1.8, 0.4)
@@ -52,6 +53,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6n0kg")
 
+[sub_resource type="LabelSettings" id="LabelSettings_pjxyo"]
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 wall_min_slide_angle = 0.0
@@ -98,3 +101,14 @@ grow_vertical = 2
 size_flags_vertical = 4
 texture = ExtResource("4_6mibw")
 stretch_mode = 5
+
+[node name="Debug" type="Label" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "gruieowbgopamnvpnwribnp"
+label_settings = SubResource("LabelSettings_pjxyo")
+autowrap_mode = 2
+script = ExtResource("5_8vvhx")

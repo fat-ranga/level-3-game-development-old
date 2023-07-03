@@ -32,7 +32,7 @@ Chunk::Chunk()
 	//voxel_map.;
 	//uint8_t fr_voxel_map* = new uint8_t[16][16][16];
 	vertex_index = 0;
-
+	noise_value = 0.0;
 	
 
 	//voxel_map = new std::array<uint8_t, chunk_width>;
@@ -44,6 +44,12 @@ Chunk::Chunk()
 	//voxel_map.
 
 	//std::array
+
+	//int stone;
+	//int air;
+	//int bedrock;
+	//int grass;
+	//int dirt;
 
 }
 
@@ -82,17 +88,21 @@ void Chunk::populate_voxel_map(
 	const Dictionary& block_types,
 	const Dictionary& biomes) {
 
+	stone = block_string_to_id("stone", block_types);
+	air = block_string_to_id("air", block_types);
+	bedrock = block_string_to_id("bedrock", block_types);
+	grass = block_string_to_id("grass_block", block_types);
+	dirt = block_string_to_id("dirt", block_types);
+
 	for (int x = 0; x < chunk_width; x++) {
 		for (int y = 0; y < chunk_height; y++) {
 			for (int z = 0; z < chunk_width; z++) {
 				Vector3 voxel_pos = Vector3(x, y, z);
 				Vector3 final_position = voxel_pos + world_position;
 
+				//voxel_map[(x * chunk_width * chunk_height) + (y * chunk_width) + z] = air;
 				// Cache coherency or something!
 				voxel_map[(x * chunk_width * chunk_height) + (y * chunk_width) + z] = get_voxel(final_position, world_size_in_voxels, block_types, biomes);
-				//godot::UtilityFunctions::print((x * chunk_width * chunk_height) + (y * chunk_width) + z);
-				//voxel_map[(x * 16 * 16) + (y * 16) + z] = 2;
-				//voxel_map[x][y][z] = world->get_block_id("stone");// must fit into uint_8, numeric ids at runtime
 			}
 		}
 	}
@@ -275,11 +285,7 @@ uint8_t Chunk::get_voxel(
 	int world_size_in_voxels,
 	const Dictionary& block_types,
 	const Dictionary& biomes) {
-	int stone = block_string_to_id("stone", block_types);
-	int air = block_string_to_id("air", block_types);
-	int bedrock = block_string_to_id("bedrock", block_types);
-	int grass = block_string_to_id("grass_block", block_types);
-	int dirt = block_string_to_id("dirt", block_types);
+	
 	
 	int y_pos = (int)std::floor(position.y);
 	Dictionary biome = biomes["farmland"];
@@ -300,9 +306,18 @@ uint8_t Chunk::get_voxel(
 
 	Ref<FastNoiseLite> noise;
 	noise.instantiate();
-	float noise_value = godot::MAX(noise->get_noise_2d(position.x, position.z), 0);
 
-	//float temp_noise = noise->get_noise_2d(position.x, position.z);
+	//int cool_value = (position.x + position.z) / 2.0;
+
+	//if ((int)position.x % 4 == 0 && (int)position.z % 4 == 0) {
+		//noise_value = (noise->get_noise_2d(position.x, position.z) + 1.0) / 2.0;
+	//}
+	// Only sample every 4 blocks on a surface
+	//if (((int)position.x * chunk_width + (int)position.z) % 2 == 0) {
+	//	noise_value = (noise->get_noise_2d(position.x, position.z) + 1.0) / 2.0;
+	//}
+	
+	noise_value = (noise->get_noise_2d(position.x, position.z) + 1.0) / 2.0;
 
 	/* BASIC TERRAIN PASS */
 
@@ -327,40 +342,24 @@ uint8_t Chunk::get_voxel(
 
 	if (voxel_value == stone) {
 		for (int i = 0; i < lodes.size(); i++){
-			//godot::UtilityFunctions::print(lodes.size());
-			//godot::UtilityFunctions::print("sus");
-			//godot::UtilityFunctions::print(lodes);
-
-			//Dictionary lode = lodes.keys()[i-1];
-
-			//if (y_pos > lode["min_height"]){
-			//	godot::UtilityFunctions::print("ok");
-			//}
-			//Array lodes_array = lodes.keys();
-			//godot::UtilityFunctions::print(i);
 			Dictionary current_lode = lodes[lodes.keys()[i]];
 
-			//godot::UtilityFunctions::print(lodes_array[i]);
-			//godot::UtilityFunctions::print(i);
-
 			if (y_pos > (int)current_lode["min_height"] && y_pos < (int)current_lode["max_height"]){
-				noise->set_frequency(0.1);
+				// Only sample every 8 blocks in a volume.
+				if (((int)position.x * chunk_width * chunk_height + (int)position.y * chunk_width + (int)position.z) % 2 == 0) {
+					noise->set_frequency(0.1);
 
-				float noise_x = position.x + (float)current_lode["noise_offset"];
-				float noise_y = position.y + (float)current_lode["noise_offset"];
-				float noise_z = position.z + (float)current_lode["noise_offset"];
+					float noise_x = position.x + (float)current_lode["noise_offset"];
+					float noise_y = position.y + (float)current_lode["noise_offset"];
+					float noise_z = position.z + (float)current_lode["noise_offset"];
 
-				float noise_value_3d = noise->get_noise_3d(noise_x, noise_y, noise_z);
+
+					noise_value_3d = noise->get_noise_3d(noise_x, noise_y, noise_z);
+				}
 				if (noise_value_3d > 0.4) {
-					//godot::UtilityFunctions::print("noise lode fr");
-
-					
 					String lode_block = current_lode["block_name"];
-					//godot::UtilityFunctions::print(current_lode["block_name"]);
-
 
 					voxel_value = (uint8_t)block_string_to_id(lode_block, block_types);
-					//voxel_value = air;
 				}
 			}
 		}

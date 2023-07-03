@@ -47,6 +47,15 @@ class Chunk : public MeshInstance3D{
 
 	int vertex_index;
 
+	float noise_value;
+	float noise_value_3d;
+
+	int stone;
+	int air;
+	int bedrock;
+	int grass;
+	int dirt;
+
 protected:
 	static void _bind_methods();
 public:
