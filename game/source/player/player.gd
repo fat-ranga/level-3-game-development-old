@@ -52,10 +52,14 @@ var no_clip: bool = false
 var request_sprinting: bool = false
 var request_crouching: bool = false
 var request_jump: bool = false
+var placing_block: bool = false
+var breaking_block: bool = false
 
 @onready var camera: Camera3D = $Camera3D
 @onready var collider = $CollisionShape
 @onready var test_mesh = $human
+var block_outline: Node3D
+var world: Node3D
 
 func _enter_tree() -> void:
 	#name = str(get_multiplayer_authority())
@@ -118,6 +122,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_pressed("no_clip"):
 		no_clip = !no_clip
 	
+	if Input.is_action_pressed("break_block"):
+		breaking_block = true
+	else:
+		breaking_block = false
+	
+	if Input.is_action_pressed("break_block"):
+		placing_block = true
+	else:
+		placing_block = false
+	
 
 func _process(delta):
 	if not is_multiplayer_authority(): return
@@ -126,6 +140,8 @@ func _process(delta):
 	
 	process_camera_position()
 	process_camera_fov_change()
+	
+	set_block_outline()
 		
 	# cubic interpolation
 
@@ -135,8 +151,34 @@ func _physics_process(delta):
 	check_movement_flags()
 	handle_crouching()
 	process_movement_state(delta)
+	process_voxel_edits()
 	
 	test_mesh.rotation.y = camera.rotation.y
+
+func process_voxel_edits() -> void:
+	if breaking_block and block_outline.visible:
+		var chunk: Chunk = world.get_chunk_from_vector3(block_outline.position)
+		chunk.set_voxel(block_outline.position, 0)
+
+func set_block_outline() -> void:
+	var space_state = get_world_3d().direct_space_state
+	
+	var start_position: Vector3 = camera.global_transform.origin
+	var end_position: Vector3 = camera.global_transform.origin + camera.global_transform.basis.z * -5
+	
+	var ray_parameters := PhysicsRayQueryParameters3D.create(
+			start_position,
+			end_position,
+			1)
+	
+	ray_parameters.exclude = [self]
+	
+	var collision = space_state.intersect_ray(ray_parameters)
+	if collision:
+		block_outline.position = Vector3i(collision["position"] - (collision["normal"] / 2))
+		block_outline.show()
+	else:
+		block_outline.hide()
 
 func check_movement_flags() -> void:
 	"""
@@ -331,7 +373,7 @@ func process_camera_fov_change() -> void:
 	#camera.fov = camera.fov * camera_fov_change
 
 func process_mesh_transform() -> void:
-	test_mesh.rotation.y = camera.rotation.y + 3.14159
+	test_mesh.rotation.y = camera.rotation.y + PI
 
 func clamp_vector_with_offset(vector, clamp_origin, clamp_length):
 	var offset = vector - clamp_origin
@@ -362,9 +404,3 @@ func clamp_vector(vector: Vector3, clamp_length: float) -> Vector3:
 	if vector.length() <= clamp_length:
 		return vector
 	return vector * (clamp_length / vector.length())
-
-func cast_collider(offset: Vector3) -> bool:
-	collider.translate(offset)
-	
-	
-	return false

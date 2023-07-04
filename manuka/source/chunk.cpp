@@ -22,52 +22,47 @@ using namespace godot;
 
 
 namespace manuka {
-// TODO: Are constructors and deconstructors required?
-Chunk::Chunk()
-{
 
-	// Array of all block types in the chunk.
-	//voxel_map[chunk_width][chunk_height][chunk_width];
-
-	//voxel_map.;
-	//uint8_t fr_voxel_map* = new uint8_t[16][16][16];
+Chunk::Chunk(){
 	vertex_index = 0;
 	noise_value = 0.0;
-	
 
-	//voxel_map = new std::array<uint8_t, chunk_width>;
+	block_types;
+	chunk_position;
+	world_size_in_voxels;
+	texture_atlas_size_in_blocks;
+	texture_ids;
+	biomes;
 
-	//std::array<uint8_t, 4096> voxel_map;
-
-	//voxel_map;
-
-	//voxel_map.
-
-	//std::array
-
-	//int stone;
-	//int air;
-	//int bedrock;
-	//int grass;
-	//int dirt;
 
 }
 
-Chunk::~Chunk()
-{
+Chunk::~Chunk(){
 }
 
 void Chunk::_bind_methods() {
+	// Properties and stuff.
+	ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "block_types"), "set_block_types", "get_block_types");
+	ADD_PROPERTY(PropertyInfo(Variant::VECTOR3, "chunk_position"), "set_chunk_position", "get_chunk_position");
+	ADD_PROPERTY(PropertyInfo(Variant::INT, "world_size_in_voxels"), "set_world_size_in_voxels", "get_world_size_in_voxels");
+	ADD_PROPERTY(PropertyInfo(Variant::INT, "texture_atlas_size_in_blocks"), "set_texture_atlas_size_in_blocks", "get_texture_atlas_size_in_blocks");
+	ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "texture_ids"), "set_texture_ids", "get_texture_ids");
+	ADD_PROPERTY(PropertyInfo(Variant::DICTIONARY, "biomes"), "set_biomes", "get_biomes");
+
 	// Bind methods here to be called in GDScript.
 	godot::ClassDB::bind_method(godot::D_METHOD("print_something", "bruh"), &Chunk::print_something);
 	godot::ClassDB::bind_method(godot::D_METHOD("populate_voxel_map"), &Chunk::populate_voxel_map);
-	godot::ClassDB::bind_method(godot::D_METHOD("add_voxel_data_to_chunk"), &Chunk::add_voxel_data_to_chunk);
+	godot::ClassDB::bind_method(godot::D_METHOD("add_voxel_data_to_chunk"), &Chunk::update_mesh_data);
 	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh"), &Chunk::create_mesh);
-	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh_data"), &Chunk::create_mesh_data);
+	godot::ClassDB::bind_method(godot::D_METHOD("create_mesh_data"), &Chunk::update_chunk);
 	godot::ClassDB::bind_method(godot::D_METHOD("is_voxel_in_chunk"), &Chunk::is_voxel_in_chunk);
 	godot::ClassDB::bind_method(godot::D_METHOD("get_voxel"), &Chunk::get_voxel);
 	godot::ClassDB::bind_method(godot::D_METHOD("is_voxel_in_world"), &Chunk::is_voxel_in_world);
 	godot::ClassDB::bind_method(godot::D_METHOD("block_string_to_id"), &Chunk::block_string_to_id);
+	godot::ClassDB::bind_method(godot::D_METHOD("clear_mesh_data"), &Chunk::clear_mesh_data);
+	godot::ClassDB::bind_method(godot::D_METHOD("set_voxel"), &Chunk::set_voxel);
+	godot::ClassDB::bind_method(godot::D_METHOD("get_surrounding_voxels"), &Chunk::get_surrounding_voxels);
+	godot::ClassDB::bind_method(godot::D_METHOD("get_voxel_from_global_vector_3"), &Chunk::get_voxel_from_global_vector_3);
 }
 
 
@@ -143,14 +138,10 @@ bool Chunk::check_voxel(
 	return block["is_solid"];
 }
 
-void Chunk::create_mesh_data(
-	const Dictionary& block_types,
-	const Vector3& chunk_position,
-	int world_size_in_voxels,
-	int texture_atlas_size_in_blocks,
-	const Dictionary& texture_ids,
-	const Dictionary& biomes) {
+void Chunk::update_chunk() {
 	//godot::UtilityFunctions::print(block_types[0]);
+
+	clear_mesh_data();
 
 	for (int y = 0; y < chunk_height; y++) { // Build from the bottom up.
 		for (int x = 0; x < chunk_width; x++) {
@@ -162,15 +153,25 @@ void Chunk::create_mesh_data(
 
 				// Only draw solid blocks. We don't want to render air faces.
 				if (block["is_solid"]){
-					Chunk::add_voxel_data_to_chunk(godot::Vector3(x, y, z), block_types, chunk_position, world_size_in_voxels, texture_atlas_size_in_blocks, texture_ids, biomes);
+					Chunk::update_mesh_data(godot::Vector3(x, y, z), block_types, chunk_position, world_size_in_voxels, texture_atlas_size_in_blocks, texture_ids, biomes);
 				}
 				
 			}
 		}
 	}
+
+	create_mesh();
 }
 
-void Chunk::add_voxel_data_to_chunk(
+void Chunk::clear_mesh_data() {
+	vertex_index = 0;
+	vertices.clear();
+	triangles.clear();
+	normals.clear();
+	uvs.clear();
+}
+
+void Chunk::update_mesh_data(
 	const godot::Vector3& position,
 	const Dictionary& block_types,
 	const Vector3& chunk_position,
@@ -368,6 +369,18 @@ uint8_t Chunk::get_voxel(
 	return voxel_value;
 }
 
+uint8_t Chunk::get_voxel_from_global_vector_3(const Vector3& pos, const Vector3& chunk_pos)
+{
+	int x = std::floorf(pos.x);
+	int y = std::floorf(pos.y);
+	int z = std::floorf(pos.z);
+
+	x -= std::floorf(chunk_pos.x);
+	z -= std::floorf(chunk_pos.z);
+
+	return voxel_map[x * chunk_width * chunk_height + y * chunk_width + z];
+}
+
 bool Chunk::is_voxel_in_world(const Vector3& position, int world_size_in_voxels) {
 
 
@@ -379,6 +392,35 @@ bool Chunk::is_voxel_in_world(const Vector3& position, int world_size_in_voxels)
 		return false;
 	
 	return true;
+}
+
+void Chunk::set_voxel(const Vector3& pos, int block_id){
+	int x = std::floorf(pos.x);
+	int y = std::floorf(pos.y);
+	int z = std::floorf(pos.z);
+
+	voxel_map[x * chunk_width * chunk_height + y * chunk_width + z] = (uint8_t)block_id;
+
+	update_chunk();
+}
+
+Array Chunk::get_surrounding_voxels(int x, int y, int z){
+	Vector3 this_voxel = Vector3(x, y, z);
+	
+	Array voxels_to_update;
+
+	for (int p = 0; p < 6; p++) { // 6 faces per voxel means 6 adjacent voxels.
+		Vector3 current_voxel = this_voxel + VoxelData::FACE_CHECKS[p];
+
+		if (!is_voxel_in_chunk((int)current_voxel.x, (int)current_voxel.y, (int)current_voxel.z)) {
+
+			voxels_to_update.append(Vector3(current_voxel.x, current_voxel.y, current_voxel.z));
+
+			//chunks[chunk_coords.x * world_size_in_voxels + chunk_coords.y]->update_chunk();
+		}
+	}
+
+	return voxels_to_update;
 }
 
 int Chunk::block_string_to_id(const String& block_name, const Dictionary& block_types)
@@ -397,6 +439,52 @@ bool Chunk::is_voxel_in_chunk(int x, int y, int z)
 		return true;
 	}
 }
+
+// Useless property functions!!!!!
+
+void Chunk::set_block_types(const Dictionary &p_block_types) {
+	block_types = p_block_types;
+}
+Dictionary Chunk::get_block_types() const {
+	return block_types;
+}
+
+void Chunk::set_chunk_position(const Vector3& p_chunk_position) {
+	chunk_position = p_chunk_position;
+}
+Vector3 Chunk::get_chunk_position() const {
+	return chunk_position;
+}
+
+void Chunk::set_world_size_in_voxels(const int p_world_size_in_voxels) {
+	world_size_in_voxels = p_world_size_in_voxels;
+}
+int Chunk::get_world_size_in_voxels() const {
+	return world_size_in_voxels;
+}
+
+void Chunk::set_texture_atlas_size_in_blocks(const int p_texture_atlas_size_in_blocks) {
+	texture_atlas_size_in_blocks = p_texture_atlas_size_in_blocks;
+}
+int Chunk::get_texture_atlas_size_in_blocks() const {
+	return texture_atlas_size_in_blocks;
+}
+
+void Chunk::set_texture_ids(const Dictionary& p_texture_ids) {
+	texture_ids = p_texture_ids;
+}
+Dictionary Chunk::get_texture_ids() const {
+	return texture_ids;
+}
+
+void Chunk::set_biomes(const Dictionary& p_biomes) {
+	biomes = p_biomes;
+}
+Dictionary Chunk::get_biomes() const {
+	return biomes;
+}
+
+
 
 
 } // Namespace manuka.

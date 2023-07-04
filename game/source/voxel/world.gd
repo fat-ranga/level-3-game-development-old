@@ -52,6 +52,8 @@ func _ready() -> void:
 	#var fully = Time.get_ticks_usec()
 	generate_world()
 	player_last_chunk_coord = Vector2i(player.position.x, player.position.z)
+	player.block_outline = $BlockOutline
+	player.world = self
 	#var cap = Time.get_ticks_usec()
 	#print(cap - fully)
 	#print(block_types)
@@ -68,28 +70,6 @@ func generate_world() -> void:
 			#chunks[x * world_size_in_chunks + z] = initialise_chunk(x, z)
 			chunks_to_generate.append(Vector2i(x, z))
 	
-
-#func create_new_chunk(x: int, z: int) -> void:
-#	var new_chunk: Chunk = chunk_scene.instantiate()
-#
-#	new_chunk.world_size_in_blocks = world_size_in_blocks
-#	new_chunk.chunk_coords = Vector2i(x, z)
-#	new_chunk.position = Vector3(new_chunk.chunk_coords.x * Constants.CHUNK_WIDTH,
-#	0.0,
-#	new_chunk.chunk_coords.y * Constants.CHUNK_WIDTH)
-#	new_chunk.name = "Chunk " + str(new_chunk.chunk_coords)
-#	new_chunk.block_types = block_types
-#	new_chunk.material = chunk_material
-#	new_chunk.atlas_size_in_blocks = atlas_size_in_blocks
-#	new_chunk.texture_ids = texture_ids
-#	new_chunk.biomes = biomes
-#
-#	# Indexing like this because it is one, not two-dimensional.
-#	chunks[x * world_size_in_chunks + z] = new_chunk
-#
-#
-#	chunk_container.call_deferred("add_child", new_chunk)
-#	active_chunks.append(Vector2i(x, z))
 
 func initialise_chunk(x: int, z: int) -> Chunk:
 	var new_chunk: Chunk = chunk_scene.instantiate()
@@ -132,6 +112,12 @@ func get_chunk_coord_from_vector3(pos: Vector3) -> Vector2i:
 	var z: int = floori(pos.z / Constants.CHUNK_WIDTH)
 	
 	return Vector2i(x, z)
+
+func get_chunk_from_vector3(pos: Vector3) -> Chunk:
+	var x: int = floori(pos.x / Constants.CHUNK_WIDTH)
+	var z: int = floori(pos.z / Constants.CHUNK_WIDTH)
+	
+	return chunks[x * world_size_in_chunks + z]
 
 func check_view_distance() -> void:
 	var coord: Vector2i = get_chunk_coord_from_vector3(player.position)
