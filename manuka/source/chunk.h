@@ -10,8 +10,10 @@
 #include <godot_cpp/classes/static_body3d.hpp>
 #include <godot_cpp/classes/mesh_instance3d.hpp>
 #include <godot_cpp/classes/array_mesh.hpp>
+#include <godot_cpp/classes/fast_noise_lite.hpp>
 
-#include "world.h"
+#include "voxel_data.h"
+//#include "world.h"
 
 using namespace godot;
 
@@ -22,6 +24,7 @@ class Chunk : public MeshInstance3D{
 	godot::PackedVector3Array vertices;
 	godot::PackedVector3Array normals;
 	godot::PackedVector2Array uvs;
+	godot::PackedColorArray vertex_colours;
 	godot::Array surface_arrays;
 
 	godot::PackedInt32Array triangles;
@@ -29,8 +32,9 @@ class Chunk : public MeshInstance3D{
 	godot::ArrayMesh array_mesh;
 	Vector2 custom_position;
 
-	const int chunk_width = 32;
-	const int chunk_height = 32;
+	// These need to be changed in the Constants.gd file as well
+	const int chunk_width = 16;
+	const int chunk_height = 128;
 
 	//uint8_t voxel_map[16][16][16];
 
@@ -40,13 +44,6 @@ class Chunk : public MeshInstance3D{
 	std::array<uint8_t, 32768> voxel_map;
 
 	//int* voxel_map;
-
-	const Dictionary block_types;
-	const Vector3 chunk_position;
-	int world_size_in_voxels;
-	int texture_atlas_size_in_blocks;
-	const Dictionary texture_ids;
-	const Dictionary biomes;
 
 	//std::vector<uint8_t> voxel_map();
 	//std::vector<uint8_t, 4096> voxel_map;
@@ -63,58 +60,50 @@ class Chunk : public MeshInstance3D{
 	int grass;
 	int dirt;
 
+	Ref<FastNoiseLite> noise;
+
 protected:
 	static void _bind_methods();
 public:
+	// Properties.
+	Dictionary block_types;
+	Vector3 chunk_position;
+	int world_size_in_voxels;
+	int texture_atlas_size_in_blocks;
+	Dictionary texture_ids;
+	Dictionary biomes;
+	bool is_voxel_map_populated;
+	Array chunks; // Reference to all the other chunks.
+	int world_size_in_chunks;
+
+
+
 	Chunk();
 	~Chunk();
 	// Remember to prepend everything with const, especially Vector3!!!
 	// Declare functions here.
 	void print_something(const String& thing);
-	void update_mesh_data(
-		const godot::Vector3& position,
-		const Dictionary& block_types,
-		const Vector3& chunk_position,
-		int world_size_in_voxels,
-		int texture_atlas_size_in_blocks,
-		const Dictionary& texture_ids,
-		const Dictionary& biomes);
-	void populate_voxel_map(
-		const Vector3& position,
-		int world_size_in_voxels,
-		const Dictionary& block_types,
-		const Dictionary& biomes);
+	void update_mesh_data(const godot::Vector3& position);
+	void populate_voxel_map(const Vector3& world_position);
 	void update_chunk();
 	void clear_mesh_data();
 	bool is_voxel_in_chunk(int x, int y, int z);
-	bool check_voxel(
-		const godot::Vector3& position,
-		const Dictionary& block_types,
-		const Vector3& chunk_position,
-		int world_size_in_voxels,
-		const Dictionary& biomes);
-	void add_texture(
-		int texture_id,
-		int texture_atlas_size_in_blocks);
-	uint8_t get_voxel(
-		const Vector3& position,
-		int world_size_in_voxels,
-		const Dictionary& block_types,
-		const Dictionary& biomes);
-
+	bool check_voxel(const godot::Vector3& position);
+	void add_texture(int texture_id);
+	uint8_t get_voxel(const Vector3& position);
 	uint8_t get_voxel_from_global_vector_3(const Vector3& pos, const Vector3& chunk_pos);
-
 	bool is_voxel_in_world(const Vector3& position, int world_size_in_voxels);
-
 	void set_voxel(const Vector3& pos, int block_id);
 	Array get_surrounding_voxels(
 		int x,
 		int y,
 		int z);
-
 	int block_string_to_id(const String& block_name, const Dictionary& block_types);
-
 	Ref<Mesh> create_mesh(); // Keep in mind: Godot likes Refs when returning some stuff.
+	bool check_for_voxel(const Vector3& pos);
+	bool is_chunk_in_world(const Vector2i& coord);
+
+
 
 	// Useless property functions!!!!!
 	void set_block_types(const Dictionary& p_block_types);
@@ -135,6 +124,11 @@ public:
 	void set_biomes(const Dictionary& p_biomes);
 	Dictionary get_biomes() const;
 
+	void set_is_voxel_map_populated(bool p_is_voxel_map_populated);
+	bool get_is_voxel_map_populated() const;
+
+	void set_chunks(const Array& p_chunks);
+	Array get_chunks() const;
 
 }; 
 

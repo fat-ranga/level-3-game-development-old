@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=3 uid="uid://58tmgoiqsrmq"]
+[gd_scene load_steps=10 format=3 uid="uid://58tmgoiqsrmq"]
 
-[ext_resource type="Material" uid="uid://8tkij7jioxu6" path="res://data/new_standard_material_3d.tres" id="1_sfj78"]
 [ext_resource type="Script" path="res://source/voxel/world.gd" id="2_f4rna"]
 [ext_resource type="ArrayMesh" uid="uid://b23f27c82jmmc" path="res://data/meshes/block_outline_Cube.res" id="3_rjydf"]
 
@@ -17,6 +16,9 @@ background_mode = 2
 sky = SubResource("Sky_gtm5e")
 tonemap_mode = 2
 glow_enabled = true
+fog_light_color = Color(0.388235, 0.564706, 1, 1)
+fog_density = 0.001
+fog_sky_affect = 0.0
 
 [sub_resource type="Animation" id="Animation_y5kmc"]
 length = 0.001
@@ -447,7 +449,6 @@ _data = {
 }
 
 [node name="World" type="World"]
-material = ExtResource("1_sfj78")
 script = ExtResource("2_f4rna")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

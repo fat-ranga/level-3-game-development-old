@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cxutgtiipwyoi" path="res://data/textures/atlas/test_atlas.png" id="1_dkbda"]
 
 [resource]
+shading_mode = 2
+vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_dkbda")
 texture_filter = 0
 texture_repeat = false

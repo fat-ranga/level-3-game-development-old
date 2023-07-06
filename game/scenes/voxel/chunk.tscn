@@ -3,4 +3,6 @@
 [ext_resource type="Script" path="res://source/voxel/chunk.gd" id="1_1dqif"]
 
 [node name="Chunk" type="Chunk"]
+world_size_in_voxels = -10526726
+texture_atlas_size_in_blocks = -10724102
 script = ExtResource("1_1dqif")

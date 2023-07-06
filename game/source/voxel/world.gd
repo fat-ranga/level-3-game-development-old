@@ -10,9 +10,8 @@ extends World
 #var blocktypes: Array = [] # array of all the types of blocks we have in the game.
 
 var seed: String = "0"
-@onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var block_types: Dictionary # JSON passed from Main.
-var world_size_in_chunks: int = 4 # Must be even!
+var world_size_in_chunks: int = 10 # Must be even!
 
 # These are passed from Main, after the texture atlas packer has done its thing.
 var texture_atlas
@@ -43,7 +42,6 @@ func _ready() -> void:
 	#EventBus.join_game.connect(join_game)
 	#var new_chunk: Chunk = chunk_scene.instantiate()
 	
-	rng.seed = hash(seed)
 	
 	chunks.resize(world_size_in_chunks * world_size_in_chunks)
 	chunks.fill(null)
@@ -74,7 +72,8 @@ func generate_world() -> void:
 func initialise_chunk(x: int, z: int) -> Chunk:
 	var new_chunk: Chunk = chunk_scene.instantiate()
 	
-	new_chunk.world_size_in_blocks = world_size_in_blocks
+	new_chunk.chunks = chunks
+	new_chunk.world_size_in_voxels = world_size_in_blocks
 	new_chunk.chunk_coords = Vector2i(x, z)
 	new_chunk.position = Vector3(new_chunk.chunk_coords.x * Constants.CHUNK_WIDTH,
 	0.0,
@@ -82,7 +81,7 @@ func initialise_chunk(x: int, z: int) -> Chunk:
 	new_chunk.name = "Chunk " + str(new_chunk.chunk_coords)
 	new_chunk.block_types = block_types
 	new_chunk.material = chunk_material
-	new_chunk.atlas_size_in_blocks = atlas_size_in_blocks
+	new_chunk.texture_atlas_size_in_blocks = atlas_size_in_blocks
 	new_chunk.texture_ids = texture_ids
 	new_chunk.biomes = biomes
 	
@@ -91,9 +90,13 @@ func initialise_chunk(x: int, z: int) -> Chunk:
 func generate_chunk() -> void:
 	var chunk: Chunk = initialise_chunk(chunks_to_generate[0].x, chunks_to_generate[0].y)
 	
-	chunk.generate_terrain()
-	chunk.generate_mesh()
-	chunk.generate_collider()
+	chunk.populate_voxel_map(chunk.position)
+	chunk.update_chunk()
+	chunk.mesh = chunk.create_mesh()
+	chunk.mesh.surface_set_material(0, chunk.material)
+	chunk.create_trimesh_collision()
+	#chunk.generate_mesh()
+	#chunk.generate_collider()
 	
 	chunks[chunks_to_generate[0].x * world_size_in_chunks + chunks_to_generate[0].y] = chunk
 	chunk_container.call_deferred("add_child", chunk)
@@ -116,6 +119,7 @@ func get_chunk_coord_from_vector3(pos: Vector3) -> Vector2i:
 func get_chunk_from_vector3(pos: Vector3) -> Chunk:
 	var x: int = floori(pos.x / Constants.CHUNK_WIDTH)
 	var z: int = floori(pos.z / Constants.CHUNK_WIDTH)
+	
 	
 	return chunks[x * world_size_in_chunks + z]
 
@@ -149,6 +153,8 @@ func check_view_distance() -> void:
 						previously_active_chunks.remove_at(i)
 	
 	for c in previously_active_chunks:
+		if c == player_last_chunk_coord or c == player_current_chunk_coord:
+			continue
 		chunks[c.x * world_size_in_chunks + c.y].hide()
 
 

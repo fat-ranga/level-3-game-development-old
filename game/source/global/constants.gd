@@ -3,8 +3,8 @@ extends Node
 const TEXTURE_SIZE: int = 16
 const TEXTURE_ATLAS_SIZE: int = 64 # Only works in multiples of the TEXTURE_SIZE.
 
-const CHUNK_WIDTH: int = 32
-const CHUNK_HEIGHT: int = 32 # TODO make it affect actal chunk c++ thing
+const CHUNK_WIDTH: int = 16
+const CHUNK_HEIGHT: int = 128 # TODO make it affect actual chunk c++ thing
 const VIEW_DISTANCE = 2
 	
 # Different root directories for storing game data such as textures and stuff.

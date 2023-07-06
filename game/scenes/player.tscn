@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvgvkd4kxlqyy"]
+[gd_scene load_steps=15 format=3 uid="uid://cvgvkd4kxlqyy"]
 
 [ext_resource type="Script" path="res://source/player/player.gd" id="1_38koj"]
 [ext_resource type="Material" uid="uid://8tkij7jioxu6" path="res://data/new_standard_material_3d.tres" id="2_cb78g"]
 [ext_resource type="Texture2D" uid="uid://76ukexv58622" path="res://data/textures_import/human_diffuse.png" id="3_vaehy"]
 [ext_resource type="Texture2D" uid="uid://h535sq7nfip" path="res://data/textures/ui/crosshair.png" id="4_6mibw"]
 [ext_resource type="Script" path="res://source/utility/debug_screen.gd" id="5_8vvhx"]
+[ext_resource type="Script" path="res://source/player/inventory.gd" id="6_od14u"]
+[ext_resource type="Texture2D" uid="uid://dvu8o6cwfg7ff" path="res://data/textures/ui/tiles.png" id="6_ut6q5"]
+[ext_resource type="Texture2D" uid="uid://bikvrgg7g5vek" path="res://data/textures/ui/selected_tile.png" id="7_uu5vx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7nvsj"]
 size = Vector3(0.4, 1.8, 0.4)
@@ -54,6 +57,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6n0kg")
 
 [sub_resource type="LabelSettings" id="LabelSettings_pjxyo"]
+font_size = 8
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -65,7 +69,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("BoxShape3D_7nvsj")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 top_level = true
 fov = 90.0
 
@@ -84,31 +88,71 @@ skeleton = NodePath("")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Crosshair" type="TextureRect" parent="CanvasLayer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 texture_filter = 1
-texture_repeat = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
-texture = ExtResource("4_6mibw")
-stretch_mode = 5
-
-[node name="Debug" type="Label" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer/MarginContainer/CenterContainer"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_6mibw")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Debug" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
 text = "gruieowbgopamnvpnwribnp"
 label_settings = SubResource("LabelSettings_pjxyo")
 autowrap_mode = 2
 script = ExtResource("5_8vvhx")
+
+[node name="ToolBar" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/ToolBar"]
+custom_minimum_size = Vector2(156, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/MarginContainer/ToolBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_ut6q5")
+region_rect = Rect2(0, 0, 54, 54)
+patch_margin_left = 19
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Highlight" type="TextureRect" parent="CanvasLayer/MarginContainer/ToolBar"]
+layout_direction = 2
+layout_mode = 2
+texture = ExtResource("7_uu5vx")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Inventory" type="Node3D" parent="."]
+script = ExtResource("6_od14u")

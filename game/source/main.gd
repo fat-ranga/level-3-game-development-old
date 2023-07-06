@@ -44,6 +44,7 @@ func load_resources() -> void:
 	world.texture_ids = atlas_packer.texture_ids
 	
 	var chunk_material: StandardMaterial3D = StandardMaterial3D.new()
+	#chunk_material.vertex_color_use_as_albedo = true
 	chunk_material.albedo_texture = texture_atlas
 	chunk_material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 	world.chunk_material = chunk_material

@@ -54,11 +54,15 @@ var request_crouching: bool = false
 var request_jump: bool = false
 var placing_block: bool = false
 var breaking_block: bool = false
+var max_block_change_delay: int = 10
+var current_block_change_delay: int = max_block_change_delay
 
 @onready var camera: Camera3D = $Camera3D
 @onready var collider = $CollisionShape
 @onready var test_mesh = $human
+@onready var inventory = $Inventory
 var block_outline: Node3D
+var current_block_normal: Vector3 = Vector3.ZERO
 var world: Node3D
 
 func _enter_tree() -> void:
@@ -119,7 +123,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		request_jump = false
 	
-	if Input.is_action_pressed("no_clip"):
+	if Input.is_action_just_pressed("no_clip"):
 		no_clip = !no_clip
 	
 	if Input.is_action_pressed("break_block"):
@@ -127,7 +131,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		breaking_block = false
 	
-	if Input.is_action_pressed("break_block"):
+	if Input.is_action_pressed("place_block"):
 		placing_block = true
 	else:
 		placing_block = false
@@ -156,9 +160,58 @@ func _physics_process(delta):
 	test_mesh.rotation.y = camera.rotation.y
 
 func process_voxel_edits() -> void:
-	if breaking_block and block_outline.visible:
-		var chunk: Chunk = world.get_chunk_from_vector3(block_outline.position)
-		chunk.set_voxel(block_outline.position, 0)
+	if !block_outline.visible:
+		return
+	
+	
+	current_block_change_delay -= 1
+	if current_block_change_delay < 0:
+		current_block_change_delay = 0
+	if !current_block_change_delay < 1:
+		return
+	
+	if placing_block:
+		current_block_change_delay = max_block_change_delay
+		var voxel_position: Vector3 = block_outline.position + (current_block_normal)
+		
+		if Vector3i(position) == Vector3i(voxel_position):
+			return
+		if Vector3i(position.x, position.y + 1, position.z) == Vector3i(voxel_position):
+			return
+		
+		var chunk: Chunk = world.get_chunk_from_vector3(voxel_position)
+		
+		voxel_position.x -= chunk.position.x
+		voxel_position.z -= chunk.position.z
+		
+		chunk.set_voxel(voxel_position, 4)
+		chunk.update()
+		# Convert the voxel position back into global space.
+		var voxels_to_update: Array = chunk.get_surrounding_voxels(voxel_position.x + chunk.position.x, voxel_position.y, voxel_position.z + chunk.position.z)
+		
+		print(voxels_to_update)
+		if voxels_to_update:
+			for i in range(voxels_to_update.size()):
+				#print(i)
+				var chunk_to_update = world.get_chunk_from_vector3(voxels_to_update[i])
+				print("updateing chunk:" + str(chunk_to_update))
+				chunk_to_update.update()
+	
+	if breaking_block:
+		current_block_change_delay = max_block_change_delay
+		
+		var voxel_position: Vector3 = block_outline.position
+		var chunk: Chunk = world.get_chunk_from_vector3(voxel_position)
+		
+		voxel_position.x -= chunk.position.x
+		voxel_position.z -= chunk.position.z
+		
+		#print(chunk)
+		chunk.set_voxel(voxel_position, 0)
+		chunk.get_surrounding_voxels(voxel_position.x, voxel_position.y, voxel_position.z)
+		chunk.update()
+		#chunk.mesh = chunk.create_mesh()
+		#chunk.mesh.surface_set_material(0, material)
 
 func set_block_outline() -> void:
 	var space_state = get_world_3d().direct_space_state
@@ -175,7 +228,9 @@ func set_block_outline() -> void:
 	
 	var collision = space_state.intersect_ray(ray_parameters)
 	if collision:
-		block_outline.position = Vector3i(collision["position"] - (collision["normal"] / 2))
+		current_block_normal = collision["normal"]
+		block_outline.position = Vector3i(collision["position"] - (current_block_normal / 2))
+		
 		block_outline.show()
 	else:
 		block_outline.hide()
@@ -289,6 +344,9 @@ func ground_move(delta) -> void:
 	move_and_slide()
 
 func air_move(delta) -> void:
+	if is_on_ceiling():
+		gravity_vector.y += -movement.y
+	
 	gravity_vector += Vector3.DOWN * GRAVITY * (delta / 2) # Fall to the ground.
 	
 	# Makes the player slow down or speed up, depending on what they hit.
@@ -324,6 +382,9 @@ func air_move(delta) -> void:
 		gravity_vector.y = TERMINAL_GRAVITATIONAL_VELOCITY
 	else:
 		movement.y = gravity_vector.y
+	
+	#if is_on_ceiling():
+		#movement.y += gravity_vector.y
 	
 	# Final velocity calculated from movement.
 	set_velocity(movement)
