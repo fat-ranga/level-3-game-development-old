@@ -142,9 +142,9 @@ void Chunk::populate_voxel_map(const Vector3& world_position) {
 
 
 bool Chunk::check_voxel(const godot::Vector3& position){
-	int x = std::floorf(position.x);
-	int y = std::floorf(position.y);
-	int z = std::floorf(position.z);
+	int x = std::floor(position.x);
+	int y = std::floor(position.y);
+	int z = std::floor(position.z);
 
 	// Always draw faces at the edges of the chunk.
 	if (!is_voxel_in_chunk(x, y, z)) {
@@ -202,8 +202,8 @@ void Chunk::update_chunk() {
 bool Chunk::check_for_voxel(const Vector3& pos){
 	//godot::UtilityFunctions::print("position: ");
 	//godot::UtilityFunctions::print(pos);
-	int x_check = std::floorf(pos.x);
-	int z_check = std::floorf(pos.z);
+	int x_check = std::floor(pos.x);
+	int z_check = std::floor(pos.z);
 
 	int x = x_check / chunk_width;
 	int z = z_check / chunk_width;
@@ -427,12 +427,12 @@ uint8_t Chunk::get_voxel(const Vector3& position) {
 
 uint8_t Chunk::get_voxel_from_global_vector_3(const Vector3& pos, const Vector3& chunk_pos)
 {
-	int x = std::floorf(pos.x);
-	int y = std::floorf(pos.y);
-	int z = std::floorf(pos.z);
+	int x = std::floor(pos.x);
+	int y = std::floor(pos.y);
+	int z = std::floor(pos.z);
 
-	x -= std::floorf(chunk_pos.x);
-	z -= std::floorf(chunk_pos.z);
+	x -= std::floor(chunk_pos.x);
+	z -= std::floor(chunk_pos.z);
 
 	return voxel_map[x * chunk_width * chunk_height + y * chunk_width + z];
 }
@@ -451,9 +451,9 @@ bool Chunk::is_voxel_in_world(const Vector3& position, int world_size_in_voxels)
 }
 
 void Chunk::set_voxel(const Vector3& pos, int block_id){
-	int x = std::floorf(pos.x);
-	int y = std::floorf(pos.y);
-	int z = std::floorf(pos.z);
+	int x = std::floor(pos.x);
+	int y = std::floor(pos.y);
+	int z = std::floor(pos.z);
 
 	voxel_map[x * chunk_width * chunk_height + y * chunk_width + z] = (uint8_t)block_id;
 
